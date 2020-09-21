@@ -89,11 +89,9 @@ class BikeController extends Controller
     public function delete(Request $request)
     {
         $mybike = Bike::find($request->id);
-        // dd($mybike);
         
         $mybike->delete();
         
-        //dd($post);
         return redirect('mypage');
     }
     

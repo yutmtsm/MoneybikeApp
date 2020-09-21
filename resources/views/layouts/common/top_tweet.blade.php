@@ -5,7 +5,7 @@
         </div>
         @if (isset($timelines))
             @foreach ($timelines as $timeline)
-                <div class="col-md-12 mb-3">
+                <div class="col-md-12 mb-3 text-secondary">
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
                             <img src="{{ asset('storage/profile_image/' .$timeline->user->profile_image) }}" class="rounded-circle" width="50" height="50">
@@ -39,7 +39,7 @@
                             @endif
                             <div class="mr-3 d-flex align-items-center">
                                 <a href="{{ url('tweets/' .$timeline->id) }}"><i class="far fa-comment fa-fw"></i></a>
-                                <p class="mb-0 text-secondary">{{ count($timeline->comments) }}</p>
+                                <p class="mb-0 text-secondary"></p>
                             </div>
 
                             <!-- ここから -->
@@ -51,17 +51,12 @@
                                         <input type="hidden" name="tweet_id" value="{{ $timeline->id }}">
                                         <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
                                     </form>
-                                @else
-                                    <form method="POST" action="{{ url('favorites/' .array_column($timeline->favorites->toArray(), 'id', 'user_id')[$user->id]) }}" class="mb-0">
-                                        @csrf
-                                        @method('DELETE')
-
-                                        <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i></button>
-                                    </form>
+                               
                                 @endif
                                 <p class="mb-0 text-secondary">{{ count($timeline->favorites) }}</p>
                             </div>
                             <!-- ここまで -->
+
 
                         </div>
                     </div>

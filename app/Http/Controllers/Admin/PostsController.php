@@ -26,8 +26,8 @@ class PostsController extends Controller
         $following_ids = $follow_ids->pluck('followed_id')->toArray();
 
         $timelines = $post->getTimelines($user->id, $following_ids);
-        dd($timelines);
-        return view('posts.index', [
+        // dd($timelines);
+        return view('admin.posts.index', [
             'user'      => $user,
             'timelines' => $timelines
         ]);
@@ -63,21 +63,26 @@ class PostsController extends Controller
         // dd($form);
         
         if(isset($form['image'])){
+            // dd($form);
             //画像をStrange内に格納し、パスを代入
             $path = $request->file('image')->store('public/image/posts');
             //画像のパス先を格納
+            // dd($path);
             $post->image_path = basename($path);
+            
             // $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
             // $news->image_path = Storage::disk('s3')->url($path);
         } else {
             $post->image_path = null;
         }
-        // dd($form);
+        // dd($post);
+        // dd("ssssds");
         
+        unset($form['image']);
         unset($form['_token']);
-        dd($form);
+        // dd($form);
         $post->fill($form);
-        dd($post);
+        // dd($post);
         $post->save();
         dd($post);
 
