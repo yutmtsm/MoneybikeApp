@@ -30,7 +30,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::delete('users/{user}/unfollow', 'Admin\UsersController@unfollow')->name('unfollow');
     
     // ツイート関連
-    Route::resource('tweets', 'Admin\TweetsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+    Route::resource('mypage/posts', 'Admin\TweetsController', ['only' => ['index', 'store', 'show', 'edit', 'update', 'destroy']]);
+    Route::get('mypage/posts', 'Admin\TweetsController@create');
     
     // コメント関連
     Route::resource('comments', 'Admin\CommentsController', ['only' => ['store']]);

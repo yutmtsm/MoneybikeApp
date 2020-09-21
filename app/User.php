@@ -20,7 +20,10 @@ class User extends Authenticatable
         'name',
         'profile_image',
         'email',
-        'password'
+        'password',
+        'gender',
+        'sge',
+        'address'
     ];
     
     public function followers()

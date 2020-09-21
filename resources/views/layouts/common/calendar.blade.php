@@ -1,7 +1,7 @@
 <div class="item">
     <div class="card">
         <div class="card-header">
-            <div class="card-title text-center"><p>{{ $month }}月</p></div>
+            <div class="card-title text-center"><p>月</p></div>
             <div class="d-flex">
                 <a href="#">前の月</a>
                 <a class="ml-auto" href="#">次の月</a>

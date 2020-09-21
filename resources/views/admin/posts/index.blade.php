@@ -1,11 +1,14 @@
+@extends('layouts.app')
+
+@section('content')
 <div class="container">
-    <div class="row justify-content-center bg-light">
-        <div class="col-md-12 mb-3 text-right bg-light">
-            <a href="{{ url('tweets/create') }}" class="btn btn-md btn-primary mt-2">新規投稿</a>
+    <div class="row justify-content-center">
+        <div class="col-md-8 mb-3 text-right">
+            <a href="{{ url('users') }}">ユーザ一覧 <i class="fas fa-users" class="fa-fw"></i> </a>
         </div>
         @if (isset($timelines))
             @foreach ($timelines as $timeline)
-                <div class="col-md-12 mb-3">
+                <div class="col-md-8 mb-3">
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
                             <img src="{{ asset('storage/profile_image/' .$timeline->user->profile_image) }}" class="rounded-circle" width="50" height="50">
@@ -73,3 +76,4 @@
         {{ $timelines->links() }}
     </div>
 </div>
+@endsection

@@ -6,37 +6,14 @@
 @section('content')
     <div class="container">
         <h1>マイページ</h1>
-        <div class="row">
+        <div class="row  no-gutters">
             <!-- 左コンテンツ -->
+            <div class="col-md-4" style="padding: 0 7px;">
             @include('layouts.common.profile') 
+            </div>
             <!-- 真ん中コンテンツ -->
-            <div class="col-md-4">
-                <!--プロフィール編集ボタン/フォロー・フォロー解除ボタン-->
-                <div>
-                    @if ($user->id === Auth::user()->id)
-                        <a href="{{ url('users/' .$user->id .'/edit') }}" class="btn btn-primary">プロフィールを編集する</a>
-                    @else
-                        @if ($is_following)
-                            <form action="{{ route('unfollow', ['id' => $user->id]) }}" method="POST" class="mb-2">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-
-                                <button type="submit" class="btn btn-danger">フォロー解除</button>
-                            </form>
-                        @else
-                            <form action="{{ route('follow', ['id' => $user->id]) }}" method="POST" class="mb-2">
-                                {{ csrf_field() }}
-
-                                <button type="submit" class="btn btn-primary">フォローする</button>
-                            </form>
-                        @endif
-
-                        @if ($is_followed)
-                            <span class="mt-2 px-1 bg-secondary text-light">フォローされています</span>
-                        @endif
-                    @endif
-                </div>
-                <div class="col-md-6">
+            <div class="col-md-4"  style="padding: 0 7px;">
+                <div class="col-md-12">
                     <div class="item" style="margin-bottom: 20px;">
                         <div class="card">
                             <div class="card-header">
@@ -73,6 +50,10 @@
                     <!-- カレンダー -->
                     @include('layouts.common.calendar')
                 </div>
+            </div>
+            
+            <div class="col-md-4" style="padding: 0 7px;">
+                @include('layouts.common.top_tweet')
             </div>
         </div>
     </div>

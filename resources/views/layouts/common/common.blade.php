@@ -26,6 +26,9 @@
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ secure_asset('css/common.css') }}" rel="stylesheet">
         <link href="{{ secure_asset('css/' . $__env->yieldContent('css') ) }}" rel="stylesheet">
+        
+        <!-- Font Awesome -->
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     </head>
     <body>
         <div id="app">
