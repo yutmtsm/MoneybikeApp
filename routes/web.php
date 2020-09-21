@@ -37,6 +37,9 @@ Route::group(['middleware' => 'auth'], function() {
     
     // いいね関連
     Route::resource('favorites', 'Admin\FavoritesController', ['only' => ['store', 'destroy']]);
+    
+    // マイページの表示
+    Route::get('/mypage', 'Admin\MoneybikeController@mypage');
 
 });
 

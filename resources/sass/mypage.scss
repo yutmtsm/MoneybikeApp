@@ -1,0 +1,299 @@
+@charset "UTF-8";
+
+.section {
+  border: 2px solid black;
+}
+
+.card {
+  border: 2px solid black;
+}
+
+.btn-wrapper {
+  text-align: center;
+  padding: 8px 24px;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  margin: 10px 0;
+  opacity: 0.8;
+}
+
+.btn-wrapper:hover {
+  opacity: 1;
+}
+
+.signup {
+  background-color: #94c796;
+}
+
+/* Mypage */
+
+.content {
+  color: black;
+}
+
+.text-center {
+  display: inline;
+  text-align: left;
+}
+
+/* 自己紹介 */
+
+.personal-title {
+  font-size: 20px;
+  margin-left: 10px;
+  border-left: 8px solid #0000FF;
+  padding-left: 15px;
+}
+
+.personal-text {
+  margin-left: 20px;
+}
+
+.add-bike {
+  margin-left: 10px;
+  display: inline-block;
+  padding: 0.5em 0.5em;
+  text-decoration: none;
+  background: #f7f7f7;
+  border-left: solid 6px #0000FF;
+  color: #0000FF;
+  /*文字色*/
+  font-weight: bold;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+}
+
+.add-bike:active {
+  box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
+  transform: translateY(2px);
+}
+
+/*支出表示*/
+
+.cost {
+  width: 50%;
+}
+
+table {
+  background-color: white;
+  color: black;
+}
+
+.card-header {
+  padding: 0.75rem 1.25rem 0 0.75rem;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.card-title {
+  color: black;
+}
+
+/*投稿*/
+
+.title {
+  border-bottom: solid 1px #808080;
+}
+
+.title h2 {
+  font-size: 20px;
+}
+
+.post {
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.post-info {
+  padding: 0;
+  margin: 5px 5px;
+  display: block;
+}
+
+.post-name{
+  width: 150px;
+}
+
+.follow-btn{
+  margin: 0 0 0 auto;
+}
+
+tstrap4 colの隙間（padding、margin）をを削除する（CSS）Default .no-gutters {
+  margin: 0;
+  padding: 0;
+}
+
+.no-gutters {
+  margin: 0;
+  padding: 0;
+}
+
+.no-gutters {
+  margin: 0;
+  padding: 0;
+}
+
+.noimage-icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.post-icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.spot-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.post-name {
+  font-weight: bold;
+}
+
+.date {
+  font-size: 10px;
+}
+
+/* spot_search内 */
+.spot-image{
+  margin-left: 10px;
+}
+
+.spot-image img{
+  width:250px;
+  height: auto;
+}
+
+.post-text{
+  width: 100%;
+  padding: 15px;
+  border: 1px solid black;
+}
+.spot-comment{
+
+  margin: 0 auto;
+}
+
+.detail-btn{
+  display: inline-block;
+  width: 80%;
+}
+/* フォローボタン */
+.follow-button{
+  border: 1px solid #0000FF;
+  border-radius: 10px 20px 30px 40px / 5px 10px 50px 100px;
+  text-decoration: none;
+  padding: 5px 20px;
+  background-color: #0000FF;
+  color: white;
+
+}
+.follow-button:hover{
+  opacity: 0.8;
+  text-decoration: none;
+}
+.follow-button:active{
+  background-color: black;
+}
+
+.control-label{
+  margin-top: 3px;
+}
+.form-control{
+  margin-top: 3px;
+}
+
+.add-btn{
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.bike-icon {
+  width: 25px;
+  height: 25px;
+  margin-left: 20px;
+  border-radius: 50%;
+}
+.bike-text{
+  margin-left: 5px;
+}
+
+.bike-detail-btn{
+  margin-left: 10px;
+}
+
+/*バイク詳細画面*/
+.bike-detail{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bike-detail tr{
+  width: 200px;
+  border-bottom: solid 2px white;
+}
+
+.bike-detail tr:last-child{
+  border-bottom: none;
+}
+
+.bike-detail th{
+  width: 200px;
+  position: relative;
+  text-align: left;
+  width: 200px;
+  background-color: #0000FF;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.bike-detail th:after{
+  display: block;
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  top:calc(50% - 10px);
+  right:-10px;
+  border-left: 10px solid #0000FF;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.bike-detail td{
+  text-align: left;
+  width: 200px;
+  text-align: center;
+  background-color: #eee;
+  padding: 10px 0;
+}
+
+.bike-detail-title{
+  font-size: 20px;
+  font-weight: bold;
+  background: linear-gradient(transparent 70%, #4CE0FF 70%);
+}
+
+.moneypage{
+  border: 1px solid #C0C0C0;
+  padding-bottom: 40px;
+}
+
+#gmap {
+    width:100%;
+   height:500px;
+   color:white;
+}

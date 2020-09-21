@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+.btn-wrapper {
+  text-align: center;
+  padding: 8px 24px;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  margin: 10px 0;
+  opacity: 0.8;
+}
+
+.btn-wrapper:hover {
+  opacity: 1;
+}
+
+.signup {
+  background-color: #94c796;
+}
+
+/* Mypage */
+
+.content {
+  color: black;
+}
+
+.text-center {
+  display: inline;
+  text-align: left;
+}
+
+/* 自己紹介 */
+
+.personal-title {
+  font-size: 20px;
+  margin-left: 10px;
+  border-left: 8px solid #0000FF;
+  padding-left: 15px;
+}
+
+.personal-text {
+  margin-left: 20px;
+}
+
+.add-bike {
+  margin-left: 10px;
+  display: inline-block;
+  padding: 0.5em 0.5em;
+  text-decoration: none;
+  background: #f7f7f7;
+  border-left: solid 6px #0000FF;
+  color: #0000FF;
+  /*文字色*/
+  font-weight: bold;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+}
+
+.add-bike:active {
+  box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
+  transform: translateY(2px);
+}
+
+/*支出表示*/
+
+.cost {
+  width: 50%;
+}
+
+table {
+  background-color: white;
+  color: black;
+}
+
+.card-header {
+  padding: 0.75rem 1.25rem 0 0.75rem;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.card-title {
+  color: black;
+}
+
+/*投稿*/
+
+.post {
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.post-info,
+.post-content {
+  padding: 0;
+  margin: 5px 5px;
+  border-bottom: solid 1px #808080;
+}
+
+tstrap4 colの隙間（padding、margin）をを削除する（CSS）Default .no-gutters {
+  margin: 0;
+  padding: 0;
+}
+
+.no-gutters　 > .col,
+.no-gutters　 > [class*=col-] {
+  margin: 0;
+  padding: 0;
+}
+
+.add-btn{
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.other-link{
+  color: white;
+  text-decoration: none;
+}
+
+.no-gutters {
+  margin: 0;
+  padding: 0;
+}
+
+.post-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.post-comment-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  border-radius: 50%;
+}
+
+.post-name {
+  font-weight: bold;
+}
+
+.date {
+  font-size: 10px;
+}
