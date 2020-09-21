@@ -82,9 +82,9 @@ class PostsController extends Controller
         unset($form['_token']);
         // dd($form);
         $post->fill($form);
-        // dd($post);
-        $post->save();
         dd($post);
+        $post->save();
+        // dd($post);
 
         return redirect('mypage/posts');
     }

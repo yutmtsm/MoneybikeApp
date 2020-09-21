@@ -23,7 +23,8 @@ class Post extends Model
         'spot',
         'addmission_fee',
         'purchase_cost',
-        'image_path'
+        'image_path',
+        'sightseeing_day'
     ];
     
     public static $rules = array(
