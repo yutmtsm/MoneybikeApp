@@ -8,7 +8,7 @@
     <h1>新規投稿</h1>
     <div class="row" style="width: 100%;">
         <div class="col-md-6 mx-auto" >
-            <form action="{{ action('Admin\PostsController@create') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ action('Admin\TweetsController@create') }}" method="post" enctype="multipart/form-data">
                 @if (count($errors) > 0)
                     <ul>
                         @foreach($errors->all() as $e)

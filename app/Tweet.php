@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\Authenticatable as UserContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\softDeletes;
 
-class Post extends Model
+class Tweet extends Model
 {
     // use SoftDeletes;
 

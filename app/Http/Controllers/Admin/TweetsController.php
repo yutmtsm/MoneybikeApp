@@ -7,25 +7,25 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Comment;
 use App\User;
-use App\Post;
+use App\Tweet;
 use App\Follower;
 use Auth;
 
-class PostsController extends Controller
+class TweetsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Post $post, Follower $follower)
+    public function index(Tweet $tweet, Follower $follower)
     {
         $user = Auth::user();
         $follow_ids = $follower->followingIds($user->id);
         // followed_idだけ抜き出す
         $following_ids = $follow_ids->pluck('followed_id')->toArray();
 
-        $timelines = $post->getTimelines($user->id, $following_ids);
+        $timelines = $tweet->getTimelines($user->id, $following_ids);
         // dd($timelines);
         return view('admin.posts.index', [
             'user'      => $user,
@@ -52,39 +52,39 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, Post::$rules);
+        $this->validate($request, Tweet::$rules);
         // dd($request);
-        $post = new Post;
+        $tweet = new Tweet;
         $user = Auth::user();
         //userと関連付け
-        $post->user_id = $user->id;
-        //dd($post);
+        $tweet->user_id = $user->id;
+        //dd($tweet);
         $form = $request->all();
         // dd($form);
         
         if(isset($form['image'])){
             // dd($form);
             //画像をStrange内に格納し、パスを代入
-            $path = $request->file('image')->store('public/image/posts');
+            $path = $request->file('image')->store('public/image/tweets');
             //画像のパス先を格納
             // dd($path);
-            $post->image_path = basename($path);
+            $tweet->image_path = basename($path);
             
             // $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
             // $news->image_path = Storage::disk('s3')->url($path);
         } else {
-            $post->image_path = null;
+            $tweet->image_path = null;
         }
-        // dd($post);
+        // dd($tweet);
         // dd("ssssds");
         
         unset($form['image']);
         unset($form['_token']);
         // dd($form);
-        $post->fill($form);
-        dd($post);
-        $post->save();
-        // dd($post);
+        $tweet->fill($form);
+        // dd($tweet);
+        $tweet->save();
+        // dd($tweet);
 
         return redirect('mypage/posts');
     }
@@ -95,13 +95,13 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $tweet, Comment $comment)
+    public function show(Tweet $tweet, Comment $comment)
     {
         $user = auth()->user();
         $tweet = $tweet->getTweet($tweet->id);
         $comments = $comment->getComments($tweet->id);
 
-        return view('tweets.show', [
+        return view('posts.show', [
             'user'     => $user,
             'tweet' => $tweet,
             'comments' => $comments
@@ -114,16 +114,16 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $tweet)
+    public function edit(Tweet $tweet)
     {
         $user = auth()->user();
         $tweets = $tweet->getEditTweet($user->id, $tweet->id);
 
         if (!isset($tweets)) {
-            return redirect('tweets');
+            return redirect('posts');
         }
 
-        return view('tweets.edit', [
+        return view('posts.edit', [
             'user'   => $user,
             'tweets' => $tweets
         ]);
@@ -136,7 +136,7 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $tweet)
+    public function update(Request $request, Tweet $tweet)
     {
         $data = $request->all();
         $validator = Validator::make($data, [
@@ -146,7 +146,7 @@ class PostsController extends Controller
         $validator->validate();
         $tweet->tweetUpdate($tweet->id, $data);
 
-        return redirect('tweets');
+        return redirect('posts');
     }
 
     /**
@@ -155,7 +155,7 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $tweet)
+    public function destroy(Tweet $tweet)
     {
         $user = auth()->user();
         $tweet->tweetDestroy($user->id, $tweet->id);

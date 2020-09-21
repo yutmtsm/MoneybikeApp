@@ -30,9 +30,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::delete('users/{user}/unfollow', 'Admin\UsersController@unfollow')->name('unfollow');
     
     // ツイート関連
-    Route::get('mypage/posts', 'Admin\PostsController@index');
-    Route::get('mypage/posts/create', 'Admin\PostsController@create');
-    Route::post('mypage/posts/create', 'Admin\PostsController@store');
+    Route::get('mypage/posts', 'Admin\TweetsController@index');
+    Route::get('mypage/posts/create', 'Admin\TweetsController@create');
+    Route::post('mypage/posts/create', 'Admin\TweetsController@store');
     
     // コメント関連
     Route::resource('comments', 'Admin\CommentsController', ['only' => ['store']]);

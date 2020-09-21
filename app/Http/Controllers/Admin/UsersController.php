@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
 use App\User;
-use App\Post;
+use App\Tweet;
 use App\Follower;
 use Auth;
 
@@ -53,7 +53,7 @@ class UsersController extends Controller
         }
     }
     
-    public function show(User $user, Post $tweet, Follower $follower)
+    public function show(User $user, Tweet $tweet, Follower $follower)
     {
         $login_user = auth()->user();
         $is_following = $login_user->isFollowing($user->id);

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row justify-content-center bg-light">
         <div class="col-md-12 mb-3 text-right bg-light">
-            <a href="{{ action('Admin\PostsController@create') }}" class="btn btn-md btn-primary mt-2">新規投稿</a>
+            <a href="{{ action('Admin\TweetsController@create') }}" class="btn btn-md btn-primary mt-2">新規投稿</a>
         </div>
         @if (isset($timelines))
             @foreach ($timelines as $timeline)
@@ -14,7 +14,7 @@
                                 <a href="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->screen_name }}</a>
                             </div>
                             <div class="d-flex justify-content-end flex-grow-1">
-                                <p class="mb-0 text-secondary">観光日：{{ $timeline->sightseeing_day->format('Y-m-d D') }}</p>
+                                <p class="mb-0 text-secondary">Go on：{{ $timeline->sightseeing_day }}</p>
                             </div>
                         </div>
                         <div class="card-title">
@@ -44,7 +44,27 @@
                                 <a href="{{ url('tweets/' .$timeline->id) }}"><i class="far fa-comment fa-fw"></i></a>
                                 <p class="mb-0 text-secondary"></p>
                             </div>
+                            
+                            <!-- ここから -->
+                            <div class="d-flex align-items-center">
+                                @if (!in_array($user->id, array_column($timeline->favorites->toArray(), 'user_id'), TRUE))
+                                    <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
+                                        @csrf
 
+                                        <input type="hidden" name="tweet_id" value="{{ $timeline->id }}">
+                                        <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
+                                    </form>
+                                @else
+                                    <form method="POST" action="{{ url('favorites/' .array_column($timeline->favorites->toArray(), 'id', 'user_id')[$user->id]) }}" class="mb-0">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i></button>
+                                    </form>
+                                @endif
+                                <p class="mb-0 text-secondary">{{ count($timeline->favorites) }}</p>
+                            </div>
+                            <!-- ここまで -->
                             
 
 
