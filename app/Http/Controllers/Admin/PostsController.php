@@ -7,27 +7,27 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Comment;
 use App\User;
-use App\Tweet;
+use App\Post;
 use App\Follower;
 use Auth;
 
-class TweetsController extends Controller
+class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Tweet $tweet, Follower $follower)
+    public function index(Post $post, Follower $follower)
     {
         $user = Auth::user();
         $follow_ids = $follower->followingIds($user->id);
         // followed_idだけ抜き出す
         $following_ids = $follow_ids->pluck('followed_id')->toArray();
 
-        $timelines = $tweet->getTimelines($user->id, $following_ids);
-
-        return view('tweets.index', [
+        $timelines = $post->getTimelines($user->id, $following_ids);
+        dd($timelines);
+        return view('posts.index', [
             'user'      => $user,
             'timelines' => $timelines
         ]);
@@ -41,11 +41,7 @@ class TweetsController extends Controller
      */
     public function create()
     {
-        $user = auth()->user();
-
-        return view('tweets.create', [
-            'user' => $user
-        ]);
+        return view('admin.posts.create');
     }
 
     /**
@@ -54,18 +50,38 @@ class TweetsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Tweet $tweet)
+    public function store(Request $request)
     {
-        $user = auth()->user();
-        $data = $request->all();
-        $validator = Validator::make($data, [
-            'text' => ['required', 'string', 'max:140']
-        ]);
+        $this->validate($request, Post::$rules);
+        // dd($request);
+        $post = new Post;
+        $user = Auth::user();
+        //userと関連付け
+        $post->user_id = $user->id;
+        //dd($post);
+        $form = $request->all();
+        // dd($form);
+        
+        if(isset($form['image'])){
+            //画像をStrange内に格納し、パスを代入
+            $path = $request->file('image')->store('public/image/posts');
+            //画像のパス先を格納
+            $post->image_path = basename($path);
+            // $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
+            // $news->image_path = Storage::disk('s3')->url($path);
+        } else {
+            $post->image_path = null;
+        }
+        // dd($form);
+        
+        unset($form['_token']);
+        dd($form);
+        $post->fill($form);
+        dd($post);
+        $post->save();
+        dd($post);
 
-        $validator->validate();
-        $tweet->tweetStore($user->id, $data);
-
-        return redirect('tweets');
+        return redirect('mypage/posts');
     }
 
     /**
@@ -74,7 +90,7 @@ class TweetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Tweet $tweet, Comment $comment)
+    public function show(Post $tweet, Comment $comment)
     {
         $user = auth()->user();
         $tweet = $tweet->getTweet($tweet->id);
@@ -93,7 +109,7 @@ class TweetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tweet $tweet)
+    public function edit(Post $tweet)
     {
         $user = auth()->user();
         $tweets = $tweet->getEditTweet($user->id, $tweet->id);
@@ -115,7 +131,7 @@ class TweetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tweet $tweet)
+    public function update(Request $request, Post $tweet)
     {
         $data = $request->all();
         $validator = Validator::make($data, [
@@ -134,7 +150,7 @@ class TweetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tweet $tweet)
+    public function destroy(Post $tweet)
     {
         $user = auth()->user();
         $tweet->tweetDestroy($user->id, $tweet->id);

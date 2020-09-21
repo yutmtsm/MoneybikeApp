@@ -22,9 +22,14 @@ class User extends Authenticatable
         'email',
         'password',
         'gender',
-        'sge',
-        'address'
+        'age',
+        'address',
+        'profile_image'
     ];
+    
+    public function bikes(){
+        return $this->hasMany('App\Bike');
+    }
     
     public function followers()
     {

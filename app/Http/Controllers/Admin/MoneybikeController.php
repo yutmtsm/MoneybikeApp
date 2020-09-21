@@ -5,16 +5,19 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
-use App\Tweet;
+use App\Post;
+use App\Bike;
 use App\Follower;
 use Auth;
 use Carbon\Carbon;
 
 class MoneybikeController extends Controller
 {
-    public function mypage(User $user, Tweet $tweet, Follower $follower)
+    public function mypage(User $user, Post $tweet, Follower $follower)
     {
         $user = auth()->user();
+        $mybikes = Bike::where('user_id', $user->id)->get();
+        
         $is_following = $user->isFollowing($user->id);
         $is_followed = $user->isFollowed($user->id);
         $timelines = $tweet->getUserTimeLine($user->id);
@@ -39,11 +42,11 @@ class MoneybikeController extends Controller
         $total_spending22 = null;$total_spending23 = null;$total_spending24 = null;$total_spending25 = null;$total_spending26 = null;$total_spending27 = null;$total_spending28 = null;
         $total_spending29 = null;$total_spending30 = null;$total_spending31 = null;$total_spending32 = null;$total_spending33 = null;$total_spending34 = null;$total_spending35 = null;
         
-        $day_costs = Tweet::where('user_id', $user->id)->get();
+        $day_costs = Post::where('user_id', $user->id)->get();
         // dd($day_costs);
         
         return view('admin.mypage', [
-            'user'           => $user,
+            'user'           => $user, 'mybikes' => $mybikes,
             'is_following'   => $is_following,
             'is_followed'    => $is_followed,
             'timelines'      => $timelines,

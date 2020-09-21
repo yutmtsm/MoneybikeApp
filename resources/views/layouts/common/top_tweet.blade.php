@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row justify-content-center bg-light">
         <div class="col-md-12 mb-3 text-right bg-light">
-            <a href="{{ url('tweets/create') }}" class="btn btn-md btn-primary mt-2">新規投稿</a>
+            <a href="{{ action('Admin\PostsController@create') }}" class="btn btn-md btn-primary mt-2">新規投稿</a>
         </div>
         @if (isset($timelines))
             @foreach ($timelines as $timeline)

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\Authenticatable as UserContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\softDeletes;
 
-class Tweet extends Model
+class Post extends Model
 {
     // use SoftDeletes;
 
@@ -19,6 +19,15 @@ class Tweet extends Model
     protected $fillable = [
         'text'
     ];
+    
+    public static $rules = array(
+        'title' => 'required | max:50',
+        'spot' => 'required | max:50',
+        'addmission-fee' => 'numeric',
+        'purchase-cost' => 'numeric',
+        'text' => 'required | max:300',
+        'addmission-fee' => 'numeric',
+    );
 
     public function user()
     {

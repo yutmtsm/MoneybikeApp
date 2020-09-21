@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -28,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/tweets';
+    protected $redirectTo = '/mypage';
 
     /**
      * Create a new controller instance.
@@ -66,10 +68,35 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    
+    public function register(Request $request)
     {
+        $this->validator($request->all())->validate();
+        
+        event(new Registered($user = $this->create($request)));
+        
+        $this->guard()->login($user);
+        
+        return $this->registered($request, $user)
+                    ?: redirect($this->redirectPath());
+    }
+    
+    protected function create(Request $request)
+    {
+        $data = $request->all();
+        
+        // dd($money);
+        if(isset($data['image'])){
+            $path = $request->file('image')->store('public/profile_image');
+            //dd($path);
+            //$data->image = basename($path);
+        } else {
+            $path = "noimage.png";
+        }
+        //dd($data);
+        unset($data['_token']);
         // dd($data);
-        return User::create([
+        $user =  User::create([
             // 追加
             'screen_name' => $data['screen_name'],
             'name'        => $data['name'],
@@ -78,6 +105,9 @@ class RegisterController extends Controller
             'gender'      => $data['gender'],
             'age'         => $data['age'],
             'address'     => $data['address'],
+            'profile_image' => $data['image'] = basename($path),
         ]);
+        
+        return $user;
     }
 }
