@@ -12,16 +12,13 @@
             <div class="post-info d-flex">
                 <!-- タイトル -->
                 <div class="col-md-12 d-flex no-gutters">
-                    <a class="other-link" href="{{ action('MoneybikeController@otherpage', ['id' => $post->user_id]) }}">
-                        @if(isset($post->image_icon))
-                       <img class="post-icon" src="/storage/image/user/{{ $post->image_icon }}">
-                        @else
-                        <img class="post-icon" src="/storage/image/noimage.png">
-                        @endif
+                    <!--他のユーザーページへ-->
+                    <a class="other-link" href="#">
+                       <img class="post-icon" src="{{ asset('storage/profile_image/' .$login_user->profile_image) }}">
                     </a>
                    <div class="post-top">
                        <div class="form-inline">
-                           <a class="other-link" href="{{ action('MoneybikeController@otherpage', ['id' => $post->user_id]) }}">
+                           <a class="other-link" href="#">
                                <div class="post-name" style="margin-right: 10px;">{{ $post->user_name }}</div>
                             </a>
                            <div class="post-date">{{ $post->created_at }}</div>
@@ -31,9 +28,9 @@
                         </div>
                    </div>
                    <div class="col-md-4 text-right">
-                   @if($user->id == $post->user_id)
-                   <a href="{{ action('Admin\PostController@edit', ['id' => $post->id]) }}">編集</a>
-                   <a href="{{ action('Admin\PostController@delete', ['id' => $post->id]) }}">削除</a>
+                   @if($login_user->id == $post->user_id)
+                   <a class="btn btn-primary mr-1" href="{{ action('Admin\TweetsController@edit', ['id' => $post->id]) }}">編集</a>
+                   <a class="btn btn-danger" href="{{ action('Admin\TweetsController@delete', ['id' => $post->id]) }}">削除</a>
                    @endif
                </div>
                </div>
@@ -82,11 +79,7 @@
                     
                     <!-- 画像 -->
                     <div class="form-group">
-                        @if(isset($post->image_path))
-                        <img width="300px" height="auto" src="/storage/image/post/{{ $post->image_path }}">
-                        @else
-                        <img width="300px" height="auto" style="margin-bottom: 5px;" src="/storage/image/noimage.png">
-                        @endif
+                        <img width="300px" height="auto" src="/storage/image/post/{{$post->image_path}}">
                     </div>
                     <div class="col-md-6 comment-btn">
                     <!-- コメント表示モーダル -->
@@ -122,14 +115,14 @@
                                         <div class="col-md-12 d-flex no-gutters text-secondary">
                                             <div>
                                                 @if(isset($post->image_icon))
-                                               <img class="post-icon" src="/storage/image/user/{{ $user->image_path }}">
+                                               <img class="post-icon" src="/storage/image/user/{{ $login_user->image_path }}">
                                                 @else
                                                 <img class="post-icon" src="/storage/image/noimage.png">
                                                 @endif
                                             </div>
-                                            <form action="{{ action('Admin\CommentController@create', ['id' => $post->id]) }}" method="post">
+                                            <form action="{{ action('Admin\CommentsController@store', ['tweet_id' => $post->id]) }}" method="post">
                                                 <div class="form-group">
-                                                    <textarea class="form-control" name="comment" value="{{ old('comment') }}" style="resize: none;width:450px;height:200px;" placeholder="思ったことや気になることなどを入力してください">{{ old('comment') }}</textarea>
+                                                    <textarea class="form-control" name="text" value="{{ old('text') }}" style="resize: none;width:450px;height:200px;" placeholder="思ったことや気になることなどを入力してください">{{ old('comment') }}</textarea>
                                                     {{ csrf_field() }}
                                                     <input type="submit" class="btn-primary add-btn" value="コメント">
                                                 </div>
@@ -167,32 +160,28 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">
-                            @if($post_comment_count != 0)
-                            {{ $post_comment_count }}件のコメント
-                            @else
-                            0件のコメント
-                            @endif
+                            
                         </div>
                     </div>
                 </div>
             </div>
-            @foreach($post_comments as $post_comment)
+            @foreach($comments as $comment)
             <div class="card text-secondary">
                 <div class="card-body">
                     
                     <h5 class="card-title d-flex no-gutters" style="margin-top:3px;">
-                        <a class="other-link" href="{{ action('MoneybikeController@otherpage', ['id' => $post->user_id]) }}">
-                            @if(isset($post_comment->image_path))
-                            <img  class="post-comment-icon" src="/storage/image/user/{{ $post_comment->image_path }}">
+                        <a class="other-link" href="#">
+                            @if(isset($comment->image_path))
+                            <img  class="post-comment-icon" src="/storage/image/user/{{ $comment->image_path }}">
                             @else
                             <img class="post-comment-icon" src="/storage/image/noimage.png">
                             @endif
-                            <div class="post-name" style="padding-top:5px;">{{ $post_comment->user_name }}</div>
+                            <div class="post-name" style="padding-top:5px;">{{ $comment->user_name }}</div>
                         </a>
                     </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ $post_comment->created_at }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ $comment->created_at }}</h6>
                     <p class="card-text">
-                      {{ str_limit($post_comment->text, 1500) }}
+                      {{ str_limit($comment->text, 1500) }}
                     </p>
                     <a href="#!" class="card-link">Card link</a>
                     <a href="#!" class="card-link">Another link</a>

@@ -29,6 +29,7 @@ class Comment extends Model
     
     public function commentStore(Int $user_id, Array $data)
     {
+        // dd($data);
         $this->user_id = $user_id;
         $this->tweet_id = $data['tweet_id'];
         $this->text = $data['text'];

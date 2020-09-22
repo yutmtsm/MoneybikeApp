@@ -9,6 +9,7 @@ use App\Comment;
 use App\User;
 use App\Tweet;
 use App\Follower;
+use DB;
 use Auth;
 
 class TweetsController extends Controller
@@ -21,6 +22,7 @@ class TweetsController extends Controller
     public function index(Tweet $tweet, Follower $follower)
     {
         $user = auth()->user();
+        // dd($user);
         $is_following = $user->isFollowing($user->id);
         $is_followed = $user->isFollowed($user->id);
         $timelines = $tweet->getUserTimeLine($user->id);
@@ -72,7 +74,7 @@ class TweetsController extends Controller
         if(isset($form['image'])){
             // dd($form);
             //画像をStrange内に格納し、パスを代入
-            $path = $request->file('image')->store('public/image/tweets');
+            $path = $request->file('image')->store('public/image/posts');
             //画像のパス先を格納
             // dd($path);
             $tweet->image_path = basename($path);
@@ -103,16 +105,40 @@ class TweetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Tweet $tweet, Comment $comment)
+    public function show(Request $request, Tweet $tweet, Comment $comment)
     {
-        $user = auth()->user();
-        $tweet = $tweet->getTweet($tweet->id);
-        $comments = $comment->getComments($tweet->id);
-
-        return view('posts.show', [
-            'user'     => $user,
-            'tweet' => $tweet,
-            'comments' => $comments
+        // dd($request);
+        $login_user = auth()->user();
+        $post = $tweet->getTweet($request->id);
+        // ポストに紐づいたUser_idを持ってきて情報を代入
+            $users = User::find($post->user_id);
+            // dd($post->image_path);
+            $post->profile_name = $users->name;
+            $post->profile_image_path = $users->image_path;
+            $post->profile_created_at = $users->created_at;
+            // dd($post->profile_image_path);
+        
+        
+        $comments = $comment->getComments($post->id);
+        $comment_count = $comments->count();
+        // dd($comment_count);
+        
+        $total_cost = $post->addmission_fee + $post->purchase_cost;
+        
+        // dd($post_comments);
+        foreach($comments as $comment)
+        {
+            $post_comment_user = User::find($comment->user_id);
+            // dd($post_comment_user->name);
+            $comments->user_name = $post_comment_user->name;
+            $comments->image_path = $post_comment_user->image_path;
+        }
+        // dd($post->id);
+    
+        return view('admin.posts.show', [
+            'login_user' => $login_user, 'post' => $post,
+            'total_cost' => $total_cost,
+            'comments' => $comments, 'comment_count' => $comment_count
         ]);
     }
 
@@ -122,19 +148,17 @@ class TweetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tweet $tweet)
+    public function edit(Request $request)
     {
-        $user = auth()->user();
-        $tweets = $tweet->getEditTweet($user->id, $tweet->id);
-
-        if (!isset($tweets)) {
-            return redirect('posts');
+        //dd($request);
+        $post = Tweet::find($request->id);
+        //dd($post);
+        if(empty($post)){
+            abort(404);
         }
-
-        return view('posts.edit', [
-            'user'   => $user,
-            'tweets' => $tweets
-        ]);
+        return view('admin.posts.edit', [
+            'post_form' => $post,
+            ]);
     }
 
     /**
@@ -144,17 +168,66 @@ class TweetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tweet $tweet)
+    public function update(Request $request)
     {
-        $data = $request->all();
-        $validator = Validator::make($data, [
-            'text' => ['required', 'string', 'max:140']
+        // dd($request);
+        $this->validate($request, Tweet::$rules);
+        $post = Tweet::find($request->id);
+        $user = Auth::user();
+        // dd($post);
+        $post_form = $request->all();
+        // dd($post_form);
+        $total_cost = $post->addmission_fee + $post->purchase_cost;
+        
+        if ($request->remove == 'true') {
+            $post_form['image_path'] = null;
+        } elseif ($request->file('image')) {
+            $path = $request->file('image')->store('public/image/post');
+            $post_form['image_path'] = basename($path);
+            // $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
+            // $news->image_path = Storage::disk('s3')->url($path);
+        } else {
+            $post_form['image_path'] = $post->image_path;
+        }
+
+        unset($post_form['_token']);
+        unset($post_form['image']);
+        unset($post_form['remove']);
+        
+        $post->fill($post_form)->save();
+        // dd($post);
+        
+        $total_cost = $post->addmission_fee + $post->purchase_cost;
+        // dd($total_cost);
+        $users = DB::table('users')->get();
+        
+        //ポストに紐づいたUser_idを持ってきて情報を代入
+            $users = User::find($post->user_id);
+            $post->user_name = $users->name;
+            $post->image_icon = $users->image_path;
+            $post->created_at = $users->created_at;
+        
+        $post_comments = Comment::where('post_id', $post->id)->orderByDesc('created_at')->get();
+        // dd($post_comments);
+        $post_comment_count = Comment::where('post_id', $post->id)->count();
+        // dd($post_comment_count);
+        // $post_comment_user = User::find($$post_comments->user_id);
+        
+        // コメントに紐づいたユーザーの取得
+        // dd($post_comments);
+        foreach($post_comments as $post_comment)
+        {
+            $post_comment_user = User::find($post_comment->user_id);
+            // dd($post_comment_user->name);
+            $post_comment->user_name = $post_comment_user->name;
+            $post_comment->image_path = $post_comment_user->image_path;
+        }
+        
+        
+        return view('admin.post.detail', ['user' => $user, 'post' => $post, 'users' => $users,
+        'total_cost' => $total_cost,
+        'post_comments' => $post_comments, 'post_comment_count' => $post_comment_count
         ]);
-
-        $validator->validate();
-        $tweet->tweetUpdate($tweet->id, $data);
-
-        return redirect('posts');
     }
 
     /**

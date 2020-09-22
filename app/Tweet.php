@@ -30,6 +30,7 @@ class Tweet extends Model
     public static $rules = array(
         'title' => 'required | max:50',
         'spot' => 'required | max:50',
+        'pref' => 'required | max:50',
         'addmission-fee' => 'numeric',
         'purchase-cost' => 'numeric',
         'text' => 'required | max:300',
@@ -74,6 +75,11 @@ class Tweet extends Model
     {
         // 自身とフォローしているユーザIDを結合する
         return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
+    }
+    
+    public function getAllTimeLines()
+    {
+        return $this->all();
     }
     
     // 詳細画面

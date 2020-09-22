@@ -91,7 +91,7 @@ class RegisterController extends Controller
             //dd($path);
             //$data->image = basename($path);
         } else {
-            $path = "noimage.png";
+            $path = null;
         }
         //dd($data);
         unset($data['_token']);

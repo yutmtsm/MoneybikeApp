@@ -17,7 +17,13 @@ Route::get('/', function () {
 
 // ログイン状態
 Route::group(['middleware' => 'auth'], function() {
-
+    
+    // マイページの表示
+    Route::get('mypage', 'Admin\MoneybikeController@mypage');
+    Route::get('mypage/spot_search', 'Admin\MoneybikeController@spot_search');
+    Route::get('mypage/spot_search', 'Admin\MoneybikeController@search');
+    
+    
     // ユーザ関連
     Route::resource('users', 'Admin\UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
 
@@ -29,18 +35,19 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('mypage/posts', 'Admin\TweetsController@index');
     Route::get('mypage/posts/create', 'Admin\TweetsController@create');
     Route::post('mypage/posts/create', 'Admin\TweetsController@store');
-    // Route::post('mypage/posts/show{sightseeing_day}', 'Admin\TweetsController@store');
+    Route::get('mypage/posts/detail', 'Admin\TweetsController@show');
+    Route::get('mypage/posts/detail/edit', 'Admin\TweetsController@edit');
+    Route::post('mypage/posts/detail/edit', 'Admin\TweetsController@update');
     Route::get('mypage/posts/delete', 'Admin\TweetsController@delete');
-    
+
     // コメント関連
-    Route::resource('comments', 'Admin\CommentsController', ['only' => ['store']]);
+    Route::post('mypage/posts/comments', 'Admin\CommentsController@store');
+    Route::post('mypage/posts/detail/comments', 'Admin\CommentsController@store');
     
     // いいね関連
     Route::resource('favorites', 'Admin\FavoritesController', ['only' => ['store', 'destroy']]);
     // Route::post('favorites', 'Admin\FavoritesController@store');
     // Route::get('favorites', 'Admin\FavoritesController@destroy');    
-    // マイページの表示
-    Route::get('mypage', 'Admin\MoneybikeController@mypage');
     
     // バイク追加画面
     Route::get('mypage/add_bike', 'Admin\BikeController@create');

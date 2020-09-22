@@ -9,7 +9,7 @@ return [
     |-----------------------------------------------------------------
     */
     'nav_mypage' => 'マイページ',
-    'nav_myposts' => 'マイツイート',
+    'nav_mypost' => 'マイツイート',
     'nav_moneyaccount' => 'お金管理',
     'nav_spotsearch' => 'スポット検索',
     'nav_logout' => 'ログアウト',

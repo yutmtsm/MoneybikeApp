@@ -93,4 +93,10 @@ class User extends Authenticatable
 
         return;
     }
+    
+    // ログイン以外のユーザー取得
+    public function getAllUser($user_id)
+    {
+        return $this->where('id', '!=', $user_id)->orderByDesc('created_at')->simplePaginate(10);
+    }
 }
