@@ -53,7 +53,9 @@
             </div>
             
             <div class="col-md-4" style="padding: 0 7px;">
-                @include('layouts.common.top_tweet')
+                <div class="container">
+                    @include('layouts.common.top_tweet')
+                </div>
             </div>
         </div>
     </div>

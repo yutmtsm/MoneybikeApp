@@ -16,11 +16,17 @@ class MoneybikeController extends Controller
     public function mypage(User $user, Tweet $tweet, Follower $follower)
     {
         $user = auth()->user();
+        // dd($user->id);
         $mybikes = Bike::where('user_id', $user->id)->get();
-        
+        // 定義している箇所->定義関数
+        // フォローしているユーザーのID
+        $follow_ids = $follower->followingIds($user->id);
+        // followed_idだけ抜き出す　上のを
+        $following_ids = $follow_ids->pluck('followed_id')->toArray();
+        $timelines = $tweet->getOtherTimeLines($user->id, $following_ids);
+        // dd($timelines);
         $is_following = $user->isFollowing($user->id);
         $is_followed = $user->isFollowed($user->id);
-        $timelines = $tweet->getUserTimeLine($user->id);
         $tweet_count = $tweet->getTweetCount($user->id);
         $follow_count = $follower->getFollowCount($user->id);
         $follower_count = $follower->getFollowerCount($user->id);

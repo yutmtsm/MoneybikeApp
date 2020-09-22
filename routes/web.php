@@ -15,10 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 // ログイン状態
 Route::group(['middleware' => 'auth'], function() {
 
@@ -33,6 +29,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('mypage/posts', 'Admin\TweetsController@index');
     Route::get('mypage/posts/create', 'Admin\TweetsController@create');
     Route::post('mypage/posts/create', 'Admin\TweetsController@store');
+    // Route::post('mypage/posts/show{sightseeing_day}', 'Admin\TweetsController@store');
+    Route::get('mypage/posts/delete', 'Admin\TweetsController@delete');
     
     // コメント関連
     Route::resource('comments', 'Admin\CommentsController', ['only' => ['store']]);
@@ -50,8 +48,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('mypage/edit_bike', 'Admin\BikeController@edit');
     Route::post('mypage/edit_bike', 'Admin\BikeController@update');
     Route::get('/mypage/delete', 'Admin\BikeController@delete');
-
+    
+    Route::get('/', 'Admin\MoneybikeController@mypage');
 });
+    
 
 
 Auth::routes();

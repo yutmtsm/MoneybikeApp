@@ -20,16 +20,23 @@ class TweetsController extends Controller
      */
     public function index(Tweet $tweet, Follower $follower)
     {
-        $user = Auth::user();
-        $follow_ids = $follower->followingIds($user->id);
-        // followed_idだけ抜き出す
-        $following_ids = $follow_ids->pluck('followed_id')->toArray();
-
-        $timelines = $tweet->getTimelines($user->id, $following_ids);
+        $user = auth()->user();
+        $is_following = $user->isFollowing($user->id);
+        $is_followed = $user->isFollowed($user->id);
+        $timelines = $tweet->getUserTimeLine($user->id);
         // dd($timelines);
+        $tweet_count = $tweet->getTweetCount($user->id);
+        $follow_count = $follower->getFollowCount($user->id);
+        $follower_count = $follower->getFollowerCount($user->id);
+
         return view('admin.posts.index', [
-            'user'      => $user,
-            'timelines' => $timelines
+            'user'           => $user,
+            'is_following'   => $is_following,
+            'is_followed'    => $is_followed,
+            'timelines'      => $timelines,
+            'tweet_count'    => $tweet_count,
+            'follow_count'   => $follow_count,
+            'follower_count' => $follower_count
         ]);
     }
 
@@ -81,6 +88,7 @@ class TweetsController extends Controller
         unset($form['image']);
         unset($form['_token']);
         // dd($form);
+        $form['sightseeing_day'] = date('Y年m月d日 D',strtotime($form['sightseeing_day']));
         $tweet->fill($form);
         // dd($tweet);
         $tweet->save();
@@ -155,10 +163,10 @@ class TweetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tweet $tweet)
+    public function delete(Request $request)
     {
-        $user = auth()->user();
-        $tweet->tweetDestroy($user->id, $tweet->id);
+        $tweet = Tweet::find($request->id);
+        $tweet->delete();
 
         return back();
     }

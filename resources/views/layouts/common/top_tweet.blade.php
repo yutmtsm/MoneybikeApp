@@ -1,4 +1,3 @@
-<div class="container">
     <div class="row justify-content-center bg-light">
         <div class="col-md-12 mb-3 text-right bg-light">
             <a href="{{ action('Admin\TweetsController@create') }}" class="btn btn-md btn-primary mt-2">新規投稿</a>
@@ -30,13 +29,8 @@
                                         <i class="fas fa-ellipsis-v fa-fw"></i>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <form method="POST" action="{{ url('tweets/' .$timeline->id) }}" class="mb-0">
-                                            @csrf
-                                            @method('DELETE')
-
                                             <a href="{{ url('tweets/' .$timeline->id .'/edit') }}" class="dropdown-item">編集</a>
-                                            <button type="submit" class="dropdown-item del-btn">削除</button>
-                                        </form>
+                                            <a href="{{ action('Admin\TweetsController@delete', ['id' => $timeline->id]) }}" class="dropdown-item">削除</a>
                                     </div>
                                 </div>
                             @endif
@@ -71,10 +65,10 @@
                         </div>
                     </div>
                 </div>
+            </a>
             @endforeach
+            <div class="my-4 d-flex justify-content-center">
+                {{ $timelines->links() }}
+            </div>
         @endif
     </div>
-    <div class="my-4 d-flex justify-content-center">
-        {{ $timelines->links() }}
-    </div>
-</div>
