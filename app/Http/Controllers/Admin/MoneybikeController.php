@@ -93,26 +93,26 @@ class MoneybikeController extends Controller
         //検索⇨投稿記事
         if($cond_title != ''){
             // 検索されたら検索結果を取得する
-            $posts = DB::table('tweets')->where('title', 'like', "%$cond_title%")->orwhere('comment', 'like', "%$cond_title%")->orwhere('created_at', 'like', "%$cond_title%")->orwhere('spot', 'like', "%$cond_title%")->orwhere('pref', 'like', "%$cond_title%")->orderByDesc('created_at')->simplePaginate(4);
+            $timelines = DB::table('tweets')->where('title', 'like', "%$cond_title%")->orwhere('comment', 'like', "%$cond_title%")->orwhere('created_at', 'like', "%$cond_title%")->orwhere('spot', 'like', "%$cond_title%")->orwhere('pref', 'like', "%$cond_title%")->orderByDesc('created_at')->simplePaginate(4);
         } else {
-            $posts = DB::table('tweets')->orderByDesc('created_at')->simplePaginate(3);
+            $timelines = DB::table('tweets')->orderByDesc('created_at')->simplePaginate(3);
         }
         
-        foreach($posts as $post){
-            $users = User::find($post->user_id);
-            $post->user_name = $users->name;
-            $post->screen_name = $users->screen_name;
+        foreach($timelines as $timeline){
+            $users = User::find($timeline->user_id);
+            $timeline->user_name = $users->name;
+            $timeline->screen_name = $users->screen_name;
             if($users->image_path != null){
-                $post->image_icon = $users->image_path;
+                $timeline->image_icon = $users->image_path;
                 // dd($post->image_icon);
             } else {
-                $post->image_icon = null;
+                $timeline->image_icon = null;
             }
             
         }
         
         return view('admin.spot_search', [
-        'user' => $user, 'all_users' => $all_users, 'posts' => $posts,
+        'user' => $user, 'all_users' => $all_users, 'timelines' => $timelines,
         'cond_title' => $cond_title,
         ]);
     }
