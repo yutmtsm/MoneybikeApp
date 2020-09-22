@@ -84,10 +84,10 @@ class MoneybikeController extends Controller
             ]);
     }
     
-    public function search(Request $request, User $user)
+    public function search(Request $request)
     {
-        $user = Auth::user();
-        $all_users = $user->getAllUser($user->id);
+        $login_user = Auth::user();
+        $all_users = $login_user->getAllUser($login_user->id);
         
         $cond_title = $request->cond_title;
         //検索⇨投稿記事
@@ -112,7 +112,7 @@ class MoneybikeController extends Controller
         }
         
         return view('admin.spot_search', [
-        'user' => $user, 'all_users' => $all_users, 'timelines' => $timelines,
+        'login_user' => $login_user, 'all_users' => $all_users, 'timelines' => $timelines,
         'cond_title' => $cond_title,
         ]);
     }
