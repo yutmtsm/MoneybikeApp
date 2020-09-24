@@ -27,19 +27,36 @@
                             <h3>『{{ $post->title }}』</h3>
                         </div>
                    </div>
+                   <div class="d-flex align-items-center">
+                       <!--記事に対してのいいね-->
+                       @if (!in_array(Auth::user()->id, array_column($post->favorites->toArray(), 'user_id'), TRUE))
+                       <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
+                           @csrf
+                           <input type="hidden" name="tweet_id" value="{{ $post->id }}">
+                           <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
+                       </form>
+                       @else
+                       <form method="POST"action="{{ url('favorites/' .array_column($post->favorites->toArray(), 'id', 'user_id')[Auth::user()->id]) }}" class="mb-0">
+                           @csrf
+                           @method('DELETE')
+                           <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw text-light"></i></button>
+                       </form>
+                       @endif
+                       <p class="mb-0 text-light">{{ count($post->favorites) }}</p>
+                   </div>
                    <div class="col-md-4 text-right">
-                   @if($login_user->id == $post->user_id)
-                   <a class="btn btn-primary mr-1" href="{{ action('Admin\TweetsController@edit', ['id' => $post->id]) }}">編集</a>
-                   <a class="btn btn-danger" href="{{ action('Admin\TweetsController@delete', ['id' => $post->id]) }}">削除</a>
-                   @endif
-               </div>
+                       @if($login_user->id == $post->user_id)
+                       <a class="btn btn-primary mr-1" href="{{ action('Admin\TweetsController@edit', ['id' => $post->id]) }}">編集</a>
+                       <a class="btn btn-danger" href="{{ action('Admin\TweetsController@delete', ['id' => $post->id]) }}">削除</a>
+                       @endif
+                   </div>
                </div>
                
            </div>
             <!-- コメント -->
             <div class="post-content">
                 <label class="post-comment"></label>
-                <p style="color: white;">{{ $post->comment }}</p>
+                <p style="color: white;">{{ $post->text }}</p>
             </div>
             
             <div class="d-flex">
@@ -79,7 +96,11 @@
                     
                     <!-- 画像 -->
                     <div class="form-group">
-                        <img width="300px" height="auto" src="/storage/image/post/{{$post->image_path}}">
+                        @if(isset($timeline->image_path))
+                            <img width="300px" height="auto" src="/storage/image/posts/{{$post->image_path}}">
+                        @else
+                            <img width="300px" height="auto" src="/storage/noimage.png">
+                        @endif
                     </div>
                     <div class="col-md-6 comment-btn">
                     <!-- コメント表示モーダル -->
@@ -95,8 +116,8 @@
                                         <h5 class="modal-title" id="exampleModal3Label">
                                         <div class="col-md-12 d-flex no-gutters text-secondary">
                                             <div>
-                                                @if(isset($post->image_icon))
-                                               <img class="post-icon" src="/storage/image/user/{{ $post->image_icon }}">
+                                                @if(isset($post->profile_image_path))
+                                               <img class="post-icon" src="/storage/profile_image/{{ $post->profile_image_path }}">
                                                 @else
                                                 <img class="post-icon" src="/storage/image/noimage.png">
                                                 @endif

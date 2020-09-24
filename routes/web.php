@@ -21,11 +21,11 @@ Route::group(['middleware' => 'auth'], function() {
     // マイページの表示
     Route::get('mypage', 'Admin\MoneybikeController@mypage');
     Route::get('mypage/spot_search', 'Admin\MoneybikeController@spot_search');
-    Route::get('mypage/spot_search', 'Admin\MoneybikeController@search');
+    Route::get('mypage/search', 'Admin\MoneybikeController@search');
     
     
     // ユーザ関連
-    Route::resource('users', 'Admin\UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
+    Route::resource('mypage/users', 'Admin\UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
 
     // フォロー/フォロー解除を追加
     Route::post('users/{user}/follow', 'Admin\UsersController@follow')->name('follow');
@@ -55,6 +55,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('mypage/edit_bike', 'Admin\BikeController@edit');
     Route::post('mypage/edit_bike', 'Admin\BikeController@update');
     Route::get('/mypage/delete', 'Admin\BikeController@delete');
+    
+    // お金関連
+    Route::get('mypage/money', 'Admin\MoneyController@moneypage');
     
     Route::get('/', 'Admin\MoneybikeController@mypage');
 });

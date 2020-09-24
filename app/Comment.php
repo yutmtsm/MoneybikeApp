@@ -21,12 +21,12 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
+    // ユーザーに紐づいたコメントの取得
     public function getComments(Int $tweet_id)
     {
         return $this->with('user')->where('tweet_id', $tweet_id)->get();
     }
-    
+    // 受け取った投稿記事のID・テキストを$dataで受け取り処理
     public function commentStore(Int $user_id, Array $data)
     {
         // dd($data);

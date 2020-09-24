@@ -1,14 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.common.common')
+@section('css', 'top.css')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8 text-secondary">
             <div class="card">
                 <div class="card-header">Update</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ url('users/' .$user->id) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ url('mypage/users/' .$user->id .'/edit') }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -16,7 +17,7 @@
                             <label for="profile_image" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
 
                             <div class="col-md-6 d-flex align-items-center">
-                                <img src="{{ asset('storage/profile_image/' .$user->profile_image) }}" class="mr-2 rounded-circle" width="80" height="80" alt="profile_image">
+                                <img src="{{ asset('storage/profile_image/' .$user->profile_image) }}" class="mr-2 w-5 h-5 rounded-circle" width="80" height="80" alt="profile_image">
                                 <input type="file" name="profile_image" class="@error('profile_image') is-invalid @enderror" autocomplete="profile_image">
 
                                 @error('profile_image')
@@ -31,7 +32,7 @@
                             <label for="screen_name" class="col-md-4 col-form-label text-md-right">{{ __('Account Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="screen_name" type="text" class="form-control @error('screen_name') is-invalid @enderror" name="screen_name" value="{{ $user->screen_name }}" required autocomplete="screen_name" autofocus>
+                                <input id="screen_name" type="text" class="form-control @error('screen_name') is-invalid @enderror" name="screen_name" value="{{ $user->screen_name }}" required autocomplete="screen_name" autofocus readonly>
 
                                 @error('screen_name')
                                     <span class="invalid-feedback" role="alert">
@@ -62,6 +63,34 @@
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email">
 
                                 @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="gender" type="text" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ $user->gender }}" required autocomplete="gender" autofocus readonly>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="age" class="col-md-4 col-form-label text-md-right">{{ __('Age') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="age" type="text" class="form-control @error('age') is-invalid @enderror" name="age" value="{{ $user->age }}" required autocomplete="age" autofocus>
+
+                                @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

@@ -100,7 +100,7 @@
                 <!-- タイトル -->
                 <div class="form-group">
                     <label class="control-label">行った日</label>
-                    <input type="date" class="form-control" name="sightseeing_day" value="{{ old('sightseeing_day') }}">
+                    <input type="date" class="form-control" name="created_at" value="{{ old('created_at') }}">
                 </div>
                 {{ csrf_field() }}
                 <input type="submit" class="btn-primary add-btn" value="投稿">

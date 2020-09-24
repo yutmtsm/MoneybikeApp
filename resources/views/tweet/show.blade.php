@@ -29,8 +29,9 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <a href="{{ url('tweets/' .$tweet->id .'/edit') }}" class="dropdown-item">編集</a>
-                                    <button type="submit" class="dropdown-item del-btn">削除</button>
+                                    
+                                    <a href="{{ action('Admin\TweetsController@edit', ['id' => $timeline->id]) }}" class="btn btn-primary">編集</a>
+                                    <a href="{{ action('Admin\TweetsController@delete', ['id' => $timeline->id]) }}" class="btn btn-danger">削除</a>
                                 </form>
                             </div>
                         </div>

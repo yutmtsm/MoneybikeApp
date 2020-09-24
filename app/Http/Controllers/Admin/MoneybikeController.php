@@ -38,7 +38,7 @@ class MoneybikeController extends Controller
         
         
         //カレンダーのJSON
-        $url = public_path("/storage/json/202009.js");
+        $url = public_path("/storage/json/2020-09.js");
         $json = '[' . file_get_contents($url) . ']';
         $calendar_day = json_decode($json,false);
         // 他にいい方法があるか模索中
@@ -74,26 +74,33 @@ class MoneybikeController extends Controller
     {
         $login_user = Auth::user();
         $all_users = $user->getAllUser($login_user->id);
-        // dd($all_user);
-        $posts = $tweet->getAllTimeLines();
+        // dd($all_users);
+        $timelines = $tweet->getAllTimeLines();
+        $cond_title = "";
         // dd($posts);
         return view('admin.spot_search',[
-            'login_user' => $login_user, 'all_users' => $all_users, 'user' => $user,
-            'posts'      => $posts
+            'login_user' => $login_user, 'all_users' => $all_users, 'user' => $user, 'cond_title' => $cond_title,
+            'timelines'      => $timelines
             
             ]);
     }
     
-    public function search(Request $request)
+    public function search(Request $request, User $user, Tweet $tweet)
     {
         $login_user = Auth::user();
-        $all_users = $login_user->getAllUser($login_user->id);
+        $all_users = $user->getAllUser($login_user->id);
         
         $cond_title = $request->cond_title;
         //検索⇨投稿記事
         if($cond_title != ''){
             // 検索されたら検索結果を取得する
-            $timelines = DB::table('tweets')->where('title', 'like', "%$cond_title%")->orwhere('comment', 'like', "%$cond_title%")->orwhere('created_at', 'like', "%$cond_title%")->orwhere('spot', 'like', "%$cond_title%")->orwhere('pref', 'like', "%$cond_title%")->orderByDesc('created_at')->simplePaginate(4);
+            $timelines = DB::table('tweets')->where('title', 'like', "%$cond_title%")
+            ->orwhere('text', 'like', "%$cond_title%")
+            ->orwhere('created_at', 'like', "%$cond_title%")
+            ->orwhere('spot', 'like', "%$cond_title%")
+            ->orwhere('pref', 'like', "%$cond_title%")
+            ->orderByDesc('created_at')->simplePaginate(4);
+            // dd($timelines);
         } else {
             $timelines = DB::table('tweets')->orderByDesc('created_at')->simplePaginate(3);
         }
@@ -112,7 +119,8 @@ class MoneybikeController extends Controller
         }
         
         return view('admin.spot_search', [
-        'login_user' => $login_user, 'all_users' => $all_users, 'timelines' => $timelines,
+        'login_user' => $login_user, 'all_users' => $all_users, 'user' => $user, 'cond_title' => $cond_title,
+        'timelines' => $timelines,
         'cond_title' => $cond_title,
         ]);
     }

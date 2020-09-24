@@ -14,11 +14,7 @@ use Auth;
 
 class TweetsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // 一覧表示
     public function index(Tweet $tweet, Follower $follower)
     {
         $user = auth()->user();
@@ -43,98 +39,67 @@ class TweetsController extends Controller
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // 新規投稿画面
     public function create()
     {
         return view('admin.posts.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
+    // 新規投稿情報を処理
     public function store(Request $request)
     {
         $this->validate($request, Tweet::$rules);
-        // dd($request);
         $tweet = new Tweet;
         $user = Auth::user();
         //userと関連付け
         $tweet->user_id = $user->id;
-        //dd($tweet);
         $form = $request->all();
-        // dd($form);
-        
+        // 受け取った情報にimageがあれば処理を実施
         if(isset($form['image'])){
-            // dd($form);
-            //画像をStrange内に格納し、パスを代入
+            //画像をStrange内に格納し、パスを代入。なければnullを代入
             $path = $request->file('image')->store('public/image/posts');
             //画像のパス先を格納
-            // dd($path);
             $tweet->image_path = basename($path);
-            
-            // $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
-            // $news->image_path = Storage::disk('s3')->url($path);
         } else {
             $tweet->image_path = null;
         }
-        // dd($tweet);
-        // dd("ssssds");
-        
+        // 不要な情報を削除
         unset($form['image']);
         unset($form['_token']);
-        // dd($form);
+        
         $form['sightseeing_day'] = date('Y年m月d日 D',strtotime($form['sightseeing_day']));
         $tweet->fill($form);
-        // dd($tweet);
         $tweet->save();
-        // dd($tweet);
-
+        
         return redirect('mypage/posts');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Request $request, Tweet $tweet, Comment $comment)
     {
-        // dd($request);
         $login_user = auth()->user();
         $post = $tweet->getTweet($request->id);
         // ポストに紐づいたUser_idを持ってきて情報を代入
             $users = User::find($post->user_id);
-            // dd($post->image_path);
             $post->profile_name = $users->name;
             $post->profile_image_path = $users->image_path;
             $post->profile_created_at = $users->created_at;
-            // dd($post->profile_image_path);
-        
         
         $comments = $comment->getComments($post->id);
         $comment_count = $comments->count();
-        // dd($comment_count);
         
+        // 合計を産出
         $total_cost = $post->addmission_fee + $post->purchase_cost;
         
-        // dd($post_comments);
+        // 情報に紐づいたユーザー情報を取得
         foreach($comments as $comment)
         {
+            // dd($comment);
             $post_comment_user = User::find($comment->user_id);
-            // dd($post_comment_user->name);
+            // dd($post_comment_user);
             $comments->user_name = $post_comment_user->name;
             $comments->image_path = $post_comment_user->image_path;
         }
-        // dd($post->id);
-    
+
         return view('admin.posts.show', [
             'login_user' => $login_user, 'post' => $post,
             'total_cost' => $total_cost,
@@ -142,12 +107,6 @@ class TweetsController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Request $request)
     {
         //dd($request);
@@ -161,13 +120,6 @@ class TweetsController extends Controller
             ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request)
     {
         // dd($request);
@@ -178,7 +130,7 @@ class TweetsController extends Controller
         $post_form = $request->all();
         // dd($post_form);
         $total_cost = $post->addmission_fee + $post->purchase_cost;
-        
+        // 削除・画像をそのまま・変更によって切り分け
         if ($request->remove == 'true') {
             $post_form['image_path'] = null;
         } elseif ($request->file('image')) {
@@ -195,12 +147,10 @@ class TweetsController extends Controller
         unset($post_form['remove']);
         
         $post->fill($post_form)->save();
-        // dd($post);
-        
+
         $total_cost = $post->addmission_fee + $post->purchase_cost;
-        // dd($total_cost);
-        $users = DB::table('users')->get();
         
+        $users = DB::table('users')->get();
         //ポストに紐づいたUser_idを持ってきて情報を代入
             $users = User::find($post->user_id);
             $post->user_name = $users->name;
@@ -208,13 +158,8 @@ class TweetsController extends Controller
             $post->created_at = $users->created_at;
         
         $post_comments = Comment::where('post_id', $post->id)->orderByDesc('created_at')->get();
-        // dd($post_comments);
         $post_comment_count = Comment::where('post_id', $post->id)->count();
-        // dd($post_comment_count);
-        // $post_comment_user = User::find($$post_comments->user_id);
-        
         // コメントに紐づいたユーザーの取得
-        // dd($post_comments);
         foreach($post_comments as $post_comment)
         {
             $post_comment_user = User::find($post_comment->user_id);
@@ -230,12 +175,6 @@ class TweetsController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function delete(Request $request)
     {
         $tweet = Tweet::find($request->id);

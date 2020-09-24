@@ -76,10 +76,15 @@ class Tweet extends Model
         // 自身とフォローしているユーザIDを結合する
         return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
-    
+    // すべての投稿を取得
     public function getAllTimeLines()
     {
-        return $this->all();
+        return $this->simplePaginate(10);
+    }
+    
+    public function getMonthTimeLines($year, $month)
+    {
+        return $this->whereYear('created_at', $year)->whereMonth('created_at', $month)->get();
     }
     
     // 詳細画面
@@ -87,7 +92,7 @@ class Tweet extends Model
     {
         return $this->with('user')->where('id', $tweet_id)->first();
     }
-    
+    // 受け取った投稿記事のID・テキストを$dataで受け取り処理
     public function tweetStore(Int $user_id, Array $data)
     {
         $this->user_id = $user_id;

@@ -76,7 +76,7 @@ class UsersController extends Controller
     
     public function edit(User $user)
     {
-        return view('users.edit', ['user' => $user]);
+        return view('admin.users.edit', ['user' => $user]);
     }
 
     public function update(Request $request, User $user)
@@ -91,7 +91,7 @@ class UsersController extends Controller
         $validator->validate();
         $user->updateProfile($data);
 
-        return redirect('users/'.$user->id);
+        return redirect('mypage');
     }
 
 }
