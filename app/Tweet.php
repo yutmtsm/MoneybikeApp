@@ -86,10 +86,26 @@ class Tweet extends Model
     {
         return $this->whereYear('created_at', $year)->whereMonth('created_at', $month)->get();
     }
+    // 指定された期間の投稿を取得
+    public static function getDate($id, $from, $until)
+    {
+        //created_atが20xx/xx/xx ~ 20xx/xx/xxのデータを取得
+        $date = Tweet::whereBetween("created_at", [$from, $until])->where('user_id', $id)->get();
+
+        return $date;
+    }
     
     // 詳細画面
     public function getTweet(Int $tweet_id)
     {
+        return $this->with('user')->where('id', $tweet_id)->first();
+    }
+    // 特定の日付の投稿を取得
+    public function getDayTweet($user_id, $year, $month, $day)
+    {
+        return Tweet::whereYear("created_at", $year)->whereMonth("created_at", $month)
+        ->whereDay("created_at", $day)->where('user_id', $user_id)->get();
+        
         return $this->with('user')->where('id', $tweet_id)->first();
     }
     // 受け取った投稿記事のID・テキストを$dataで受け取り処理
@@ -119,5 +135,20 @@ class Tweet extends Model
     public function tweetDestroy(Int $user_id, Int $tweet_id)
     {
         return $this->where('user_id', $user_id)->where('id', $tweet_id)->delete();
+    }
+    
+    public function getYear($date)
+    {
+        return substr($date, 0, 4);
+    }
+    
+    public function getMonth($date)
+    {
+        return substr($date, 5, 2);
+    }
+    
+    public function getDay($date)
+    {
+        return substr($date, 8, 2);
     }
 }

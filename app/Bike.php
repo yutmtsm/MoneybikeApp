@@ -18,4 +18,8 @@ class Bike extends Model
     return $this->belongsTo('App\User');
         
     }
+    
+    public function getMybikeInfo(Int $user_id){
+        return $this->where('user_id', $user_id)->get();
+    }
 }

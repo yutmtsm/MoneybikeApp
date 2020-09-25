@@ -20,7 +20,7 @@
                     <div class="card-header d-flex">
                         <div class="search-totalmoney text-secondary">
                             <h4 class="card-title personal-title">旅費等を期間で検索</h4>
-                            <form action="{{ action('Admin\MoneyController@search') }}" method="GET">
+                            <form action="{{ action('Admin\MoneyController@moneypage') }}" method="GET">
                                 <input type="date" name="from" placeholder="from_date">
                                     <span class="mx-3 text-grey">~</span>
                                 <input type="date" name="until" placeholder="until_date">
@@ -43,8 +43,8 @@
                 <div class="card-body">
                     <div class="card-title">8月</div>
                     <div class="card-header d-flex">
-                        <a href="{{ action('Admin\MoneyController@moneypage', ['target' => $last_month]) }}">前の月</a>
-                        <a href="{{ action('Admin\MoneyController@moneypage', ['target' => $next_month]) }}">次の月</a>
+                        <a href="#">前の月</a>
+                        <a href="#">次の月</a>
                     </div>
                 </div>
                 
@@ -64,7 +64,7 @@
                             <td width=14%><font color="#0000ff"><b>土</b></font></td>
                         </tr>
                         <tr bgcolor="#ffffff" valign=top>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[0]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[0]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[0]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[0]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -79,7 +79,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[1]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[1]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[1]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[1]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -94,7 +94,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[2]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[2]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[2]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[2]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -109,7 +109,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[3]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[3]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[3]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[3]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -120,13 +120,11 @@
                                 @if($total_spending04 == 0)
                                 
                                 @else
-                                <a href="{{ action('Admin\PostController@day_details', ['created_at' => $post->created_at]) }}">
                                 {{ number_format($total_spending04) }}円
-                                </a>
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[4]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[4]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[4]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[4]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -141,7 +139,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[5]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[5]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[5]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[5]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -156,7 +154,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[6]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[6]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[6]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[6]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -173,7 +171,7 @@
                             </td>
                         </tr>
                         <tr bgcolor="#ffffff" valign=top>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[7]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[7]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[7]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[7]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -188,7 +186,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[8]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[8]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[8]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[8]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -203,7 +201,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[9]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[9]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[9]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[9]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -218,7 +216,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[10]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[10]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[10]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[10]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -233,7 +231,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[11]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[11]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[11]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[11]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -248,7 +246,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[12]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[12]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[12]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[12]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -263,7 +261,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[13]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[13]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[13]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[13]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -280,7 +278,7 @@
                             </td>
                         </tr>
                         <tr bgcolor="#ffffff" valign=top>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[14]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[14]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[14]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[14]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -295,7 +293,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[15]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[15]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[15]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[15]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -310,7 +308,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[16]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[16]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[16]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[16]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -325,7 +323,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[17]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[17]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[17]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[17]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -340,7 +338,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[18]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[18]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[18]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[18]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -355,7 +353,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[19]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[19]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[19]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[19]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -370,7 +368,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[20]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[20]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[20]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[20]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -387,7 +385,7 @@
                             </td>
                         </tr>
                         <tr bgcolor="#ffffff" valign=top>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[21]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[21]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[21]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[21]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -402,7 +400,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[22]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[22]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[22]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[22]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -417,7 +415,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[23]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[23]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[23]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[23]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -432,7 +430,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[24]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[24]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[24]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[24]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -447,7 +445,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[25]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[25]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[25]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[25]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -462,7 +460,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[26]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[26]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[26]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[26]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -477,7 +475,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[27]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[27]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[27]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[27]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -494,7 +492,7 @@
                             </td>
                         </tr>
                         <tr bgcolor="#ffffff" valign=top>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[28]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[28]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[28]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[28]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -509,7 +507,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[29]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[29]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[29]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[29]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -524,7 +522,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[30]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[30]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[30]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[30]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -539,7 +537,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[31]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[31]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[31]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[31]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -554,7 +552,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[32]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[32]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[32]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[32]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -569,7 +567,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[33]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[33]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[33]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[33]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -584,7 +582,7 @@
                                 @endif
                                 </font>
                             </td>
-                            <td height=90><font color="#000000"><font size="+1"><b>&nbsp;{{ $calendar_day[34]->jDay}}</b></font> <font size="-1">@if($today == $calendar_day[34]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
+                            <td height=90><font color="#000000"><font size="+1">@if(isset($post))<a href="{{ action('Admin\TweetsController@showDay', ['created_at' => $post->created_at]) }}">@endif<b>&nbsp;{{ $calendar_day[34]->jDay}}</b></font></a> <font size="-1">@if($today == $calendar_day[34]->jDay)<span style="color:red;"> 今日</span>@endif</font></font><br>
                                 <font size="-1">
                                 @foreach($posts as $post)
                                 <?php $post_day = substr($post->created_at, 8, 2); ?>
@@ -613,7 +611,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-header">
-                        <h4 class="card-title personal-title">旅費等 : {{ number_format($money->travel_expenses) }}円</h4>
+                        <h4 class="card-title personal-title">旅費等 : {{ number_format($money->total_travel_expenses) }}円</h4>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item text-dark">施設費　　：{{ number_format($money->total_addmission_fee) }}円</li>
@@ -626,13 +624,13 @@
             <div class="card" style="margin-top: 10px;">
                 <div class="card-body">
                     <div class="card-header">
-                        <h4 class="card-title personal-title">変動費 : {{ number_format($money->variable_cost) }}円</h4>
+                        <h4 class="card-title personal-title">変動費 : {{ number_format($money->total_variable_cost) }}円</h4>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item text-dark">任意保険　：{{ number_format($total_voluntary_insurance) }}円</li>
-                        <li class="list-group-item text-dark">車検　　　：{{ number_format($total_vehicle_inspection) }}円</li>
-                        <li class="list-group-item text-dark">駐車場代　：{{ number_format($total_parking_fee) }}円</li>
-                        <li class="list-group-item text-dark">消耗品費　：{{ number_format($total_consumables) }}円</li>
+                        <li class="list-group-item text-dark">任意保険　：{{ number_format($money->total_voluntary_insurance) }}円</li>
+                        <li class="list-group-item text-dark">車検　　　：{{ number_format($money->total_vehicle_inspection) }}円</li>
+                        <li class="list-group-item text-dark">駐車場代　：{{ number_format($money->total_parking_fee) }}円</li>
+                        <li class="list-group-item text-dark">消耗品費　：{{ number_format($money->total_consumables) }}円</li>
                         <li class="list-group-item text-dark">分割払い金：円</li>
                     </ul>
                 </div>
@@ -642,12 +640,12 @@
             <div class="card" style="margin-top: 10px;">
                 <div class="card-body">
                     <div class="card-header">
-                        <h4 class="card-title personal-title">固定費 : {{ number_format($money->fixed_cost) }}円</h4>
+                        <h4 class="card-title personal-title">固定費 : {{ number_format($money->total_fixed_cost) }}円</h4>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item text-dark">自賠責保険：{{ number_format($total_liability_insurance) }}円</li>
-                        <li class="list-group-item text-dark">重量税　　：{{ number_format($total_weight_tax) }}円</li>
-                        <li class="list-group-item text-dark">自動車税　：{{ number_format($total_light_vehicle_tax) }}円</li>
+                        <li class="list-group-item text-dark">自賠責保険：{{ number_format($money->total_liability_insurance) }}円</li>
+                        <li class="list-group-item text-dark">重量税　　：{{ number_format($money->total_weight_tax) }}円</li>
+                        <li class="list-group-item text-dark">自動車税　：{{ number_format($money->total_light_vehicle_tax) }}円</li>
                     </ul>
                 </div>
             </div>

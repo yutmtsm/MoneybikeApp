@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('mypage/posts/create', 'Admin\TweetsController@create');
     Route::post('mypage/posts/create', 'Admin\TweetsController@store');
     Route::get('mypage/posts/detail', 'Admin\TweetsController@show');
+    Route::get('mypage/posts/detail/day', 'Admin\TweetsController@showDay');
     Route::get('mypage/posts/detail/edit', 'Admin\TweetsController@edit');
     Route::post('mypage/posts/detail/edit', 'Admin\TweetsController@update');
     Route::get('mypage/posts/delete', 'Admin\TweetsController@delete');
@@ -58,6 +59,7 @@ Route::group(['middleware' => 'auth'], function() {
     
     // お金関連
     Route::get('mypage/money', 'Admin\MoneyController@moneypage');
+    // Route::get('mypage/money', 'Admin\MoneyController@search');
     
     Route::get('/', 'Admin\MoneybikeController@mypage');
 });

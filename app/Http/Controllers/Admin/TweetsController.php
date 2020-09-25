@@ -67,10 +67,11 @@ class TweetsController extends Controller
         unset($form['image']);
         unset($form['_token']);
         
-        $form['sightseeing_day'] = date('Y年m月d日 D',strtotime($form['sightseeing_day']));
+        // $form['sightseeing_day'] = date('Y年m月d日 D',strtotime($form['sightseeing_day']));
         $tweet->fill($form);
+        $tweet->created_at = $request->created_at;
         $tweet->save();
-        
+        // dd($tweet);
         return redirect('mypage/posts');
     }
 
@@ -93,9 +94,7 @@ class TweetsController extends Controller
         // 情報に紐づいたユーザー情報を取得
         foreach($comments as $comment)
         {
-            // dd($comment);
             $post_comment_user = User::find($comment->user_id);
-            // dd($post_comment_user);
             $comments->user_name = $post_comment_user->name;
             $comments->image_path = $post_comment_user->image_path;
         }
@@ -104,6 +103,28 @@ class TweetsController extends Controller
             'login_user' => $login_user, 'post' => $post,
             'total_cost' => $total_cost,
             'comments' => $comments, 'comment_count' => $comment_count
+        ]);
+    }
+    
+    public function showDay(Request $request, Tweet $tweet, Comment $comment)
+    {
+        $date = $request->created_at['date'];
+        $year = $tweet->getYear($date);
+        $month = $tweet->getMonth($date);
+        $day = $tweet->getDay($date);
+        // dd($day);
+        // $aa = $aaa->pluck('created_at')->toArray();
+        
+        $login_user = auth()->user();
+        $posts = $tweet->getDayTweet($login_user->id, $year, $month, $day);
+        // ポストに紐づいたUser_idを持ってきて情報を代入
+            // $users = User::find($post->user_id);
+            // $post->profile_name = $users->name;
+            // $post->profile_image_path = $users->image_path;
+            // $post->profile_created_at = $users->created_at;
+
+        return view('admin.posts.showDay', [
+            'login_user' => $login_user, 'posts' => $posts,
         ]);
     }
 
