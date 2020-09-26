@@ -1,7 +1,7 @@
 @extends('layouts.common.common')
 @section('css', 'post.css')
 
-@section('title', '投稿内容')
+@section('title', '投稿一覧')
 
 @section('content')
 <div class="container">
@@ -97,7 +97,7 @@
                     
                     <!-- 画像 -->
                     <div class="form-group">
-                        @if(isset($timeline->image_path))
+                        @if(isset($post->image_path))
                             <img width="300px" height="auto" src="/storage/image/posts/{{$post->image_path}}">
                         @else
                             <img width="300px" height="auto" src="/storage/noimage.png">

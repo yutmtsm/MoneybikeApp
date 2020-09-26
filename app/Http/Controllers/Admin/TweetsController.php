@@ -80,11 +80,8 @@ class TweetsController extends Controller
         $login_user = auth()->user();
         $post = $tweet->getTweet($request->id);
         // ポストに紐づいたUser_idを持ってきて情報を代入
-            $users = User::find($post->user_id);
-            $post->profile_name = $users->name;
-            $post->profile_image_path = $users->image_path;
-            $post->profile_created_at = $users->created_at;
-        
+            $post_user = User::find($post->user_id);
+        // dd($post->profile_image);
         $comments = $comment->getComments($post->id);
         $comment_count = $comments->count();
         
@@ -100,7 +97,7 @@ class TweetsController extends Controller
         }
 
         return view('admin.posts.show', [
-            'login_user' => $login_user, 'post' => $post,
+            'login_user' => $login_user, 'post' => $post, 'post_user' => $post_user,
             'total_cost' => $total_cost,
             'comments' => $comments, 'comment_count' => $comment_count
         ]);

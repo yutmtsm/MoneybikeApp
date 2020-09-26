@@ -1,6 +1,8 @@
 @extends('layouts.common.common')
 @section('css', 'post.css')
 
+@section('title', '投稿一覧')
+
 @section('content')
 <div class="container text-secondary">
     <div class="row justify-content-center">
@@ -18,7 +20,7 @@
                         <div class="d-flex">
                             <div>
                                 @if ($user->id === Auth::user()->id)
-                                    <a href="{{ url('mypage/users/' .$user->id .'/edit') }}" class="btn btn-primary">プロフィールを編集する</a>
+                                    <a href="{{ action('Admin\TweetsController@create') }}" class="btn btn-md btn-primary mt-2">新規投稿</a>
                                 @else
                                     @if ($is_following)
                                         <form action="{{ route('unfollow', ['id' => $user->id]) }}" method="POST" class="mb-2">

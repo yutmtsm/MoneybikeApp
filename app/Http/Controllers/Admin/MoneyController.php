@@ -41,10 +41,8 @@ class MoneyController extends Controller
         $json = '[' . file_get_contents($url) . ']';
         $calendar_day = json_decode($json,false);
         
-        // 今月の投稿記事を取得
-        $posts = $tweet->getMonthTimeLines($year, $month);
-        $ppppp = Tweet::where('user_id', $user->id)->get();
-        // dd($month);
+        // 自分の指定月の投稿記事を取得
+        $posts = Tweet::where('user_id', $user->id)->whereYear('created_at', $year)->whereMonth('created_at', $month)->get();
         // 投稿記事の合計金を算出
        foreach($posts as $post)
        {
@@ -67,6 +65,7 @@ class MoneyController extends Controller
         }
         $money->total_variable_cost = $money->total_voluntary_insurance + $money->total_vehicle_inspection + $money->total_parking_fee + $money->total_consumables;
         $money->total_fixed_cost = $money->total_liability_insurance + $money->total_weight_tax + $money->total_light_vehicle_tax;
+        $money->spending_month = $money->total_travel_expenses + $money->total_variable_cost/12 + $money->total_fixed_cost/12;
         // dd($money->total_light_vehicle_tax);
         // 他にいい方法があるか模索中
         $total_spending = null;

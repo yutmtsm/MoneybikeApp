@@ -1,6 +1,8 @@
 @extends('layouts.common.common')
 @section('css', 'post.css')
 
+@section('title', '友達一覧')
+
 @section('content')
 <div class="container text-secondary">
     <div class="row justify-content-center">
@@ -78,7 +80,11 @@
         			<div class="col-md-12 mb-3">
                         <div class="card">
                             <div class="card-haeder p-3 w-100 d-flex">
-                                <img src="{{ $following_User->profile_image }}" class="rounded-circle" width="50" height="50">
+                                @if(isset($following_User->profile_image))
+                                <img src="{{ asset('storage/profile_image/' .$following_User->profile_image) }}" class="rounded-circle" width="50" height="50">
+                                @else
+                                <img src="/storage/noimage.png" class="rounded-circle" width="50" height="50">
+                                @endif
                                 <div class="ml-2 d-flex flex-column">
                                     <p class="mb-0">{{ $following_User->name }}</p>
                                     <a href="{{ url('users/' .$user->id) }}" class="text-secondary">{{ $following_User->screen_name }}</a>

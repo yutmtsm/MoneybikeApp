@@ -33,7 +33,7 @@ class Tweet extends Model
         'pref' => 'required | max:50',
         'addmission-fee' => 'numeric',
         'purchase-cost' => 'numeric',
-        'text' => 'required | max:300',
+        'text' => 'required | max:400',
         'addmission-fee' => 'numeric',
     );
 

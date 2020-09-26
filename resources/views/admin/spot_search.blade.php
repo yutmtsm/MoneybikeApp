@@ -34,16 +34,18 @@
                     </div>
                     <div class="row">
                     @foreach ($timelines as $timeline)
-                    <a href="{{ action('Admin\TweetsController@show', ['id' => $timeline->id]) }}">
+             
                         <div class="col-md-12 mb-3">
                             <div class="card">
+                                <a href="{{ action('MoneybikeController@mypage', ['id' => $timeline->id]) }}">
                                 <div class="card-haeder p-2 w-100 d-flex">
-                                    <img src="{{ asset('public/storage/profile_image/' .$user->profile_image) }}" class="rounded-circle" width="50" height="50">
+                                    <img src="{{ asset('/storage/profile_image/' .$timeline->profile_image) }}" class="rounded-circle" width="50" height="50">
                                     <div class="ml-2 d-flex flex-column">
                                         <p class="mb-0">{{ $timeline->user->name }}</p>
                                         <a href="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->screen_name }}</a>
                                     </div>
                                 </div>
+                                </a>
                                 <div class="card-body">
                                     <div class="card-title">
                                         <p class="mb-0 text-secondary text-right">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
@@ -108,7 +110,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        
                         @endforeach
                         {{ $timelines->links() }}
                         </div>

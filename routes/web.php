@@ -22,9 +22,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('mypage', 'Admin\MoneybikeController@mypage');
     Route::get('mypage/myfollowers', 'Admin\UsersController@myfollowers');
     Route::get('mypage/spot_search', 'Admin\MoneybikeController@spot_search');
-    Route::get('mypage/search', 'Admin\MoneybikeController@search');
-    
-    
+    Route::get('mypage/spot_search/search', 'Admin\MoneybikeController@search');
+    // 他人のページ
+    Route::post('other_mypage', 'MoneybikeController@mypage');
     // ユーザ関連
     Route::resource('mypage/users', 'Admin\UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
 
