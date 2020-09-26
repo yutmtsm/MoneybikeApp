@@ -10,7 +10,11 @@
                 <h5 class="modal-title" id="exampleModal3Label">
                     <div class="col-md-12 d-flex no-gutters text-secondary">
                         <div>
+                            @if(isset($user->profile_image))
                             <img class="post-icon" src="{{ asset('storage/profile_image/' .$user->profile_image) }}">
+                            @else
+                            <img class="post-icon" src="/storage/noimage.png">
+                            @endif
                             <div class="v_line_fix" style="margin:5px 0 5px 25px;width: 2px;height: 50px;background-color: brown;margin:"></div>
                         </div>
                         <div class="post-top">

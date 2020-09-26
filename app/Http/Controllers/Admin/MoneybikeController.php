@@ -25,6 +25,10 @@ class MoneybikeController extends Controller
         // followed_idだけ抜き出す　上のを
         $following_ids = $follow_ids->pluck('followed_id')->toArray();
         $timelines = $tweet->getTimeLines($user->id, $following_ids);
+        foreach($follow_ids as $follow_id)
+        {
+            $post_user = User::find($follow_id->followed_id);
+        }
         // dd($timelines);
         $is_following = $user->isFollowing($user->id);
         $is_followed = $user->isFollowed($user->id);
@@ -53,7 +57,7 @@ class MoneybikeController extends Controller
         // dd($day_costs);
         
         return view('admin.mypage', [
-            'user'           => $user, 'mybikes' => $mybikes,
+            'user'           => $user, 'mybikes' => $mybikes, 'post_user' => $post_user,
             'is_following'   => $is_following,
             'is_followed'    => $is_followed,
             'timelines'      => $timelines,
@@ -83,13 +87,14 @@ class MoneybikeController extends Controller
             // dd($users);
             $timeline->user_name = $users->name;
             $timeline->screen_name = $users->screen_name;
+            $timeline->id = $users->id;
             if($users->profile_image != null){
                 $timeline->profile_image = $users->profile_image;
                 // dd($post->image_icon);
             } else {
                 $timeline->profile_image = null;
             }
-            // dd($timeline->profile_image);
+            // dd($timeline->id);
         }
         
         // dd($posts);

@@ -13,7 +13,7 @@
                 <!-- タイトル -->
                 <div class="col-md-12 d-flex no-gutters">
                     <!--他のユーザーページへ-->
-                    <a class="other-link" href="{{ action('MoneybikeController@mypage', ['id' => $post_user->id]) }}">
+                    <a class="other-link" href="{{ action('MoneybikeController@mypage', ['id' => $timeline->id]) }}">
                        <img src="{{ asset('storage/profile_image/' .$post_user->profile_image) }}" class="rounded-circle" width="50" height="50">
                         <div class="ml-2 d-flex flex-column">
                             <a class="mb-0">{{ $post_user->name }}</a>

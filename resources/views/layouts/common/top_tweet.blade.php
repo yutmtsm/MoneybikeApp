@@ -8,7 +8,11 @@
                     <div class="card">
                         <a href="{{ action('Admin\TweetsController@show', ['id' => $timeline->id]) }}">
                             <div class="card-haeder p-2 w-100 d-flex">
-                                <img src="{{ asset('storage/profile_image/' .$user->profile_image) }}" class="rounded-circle" width="50" height="50">
+                                @if(isset($post_user->profile_image))
+                                <img src="{{ asset('/storage/profile_image/' .$post_user->profile_image) }}" class="rounded-circle" width="50" height="50">
+                                @else
+                                <img src="/storage/noimage.png" class="rounded-circle" width="50" height="50">
+                                @endif
                                 <div class="ml-2 d-flex flex-column">
                                     <p class="mb-0">{{ $timeline->user->name }}</p>
                                     <a href="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->screen_name }}</a>
@@ -27,6 +31,7 @@
                                 {!! nl2br(e($timeline->text)) !!}
                             </div>
                         </a>
+                        <!--コメント・編集・削除関連-->
                         <div class="card-footer py-1 d-flex justify-content-end bg-white">
                             @if ($timeline->user->id === Auth::user()->id)
                                 <div class="dropdown mr-3 d-flex align-items-center">
@@ -65,6 +70,7 @@
                             </div>
                             <!-- ここまで -->
                         </div>
+                  
                     </div>
                 </div>
             </a>

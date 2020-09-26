@@ -76,6 +76,12 @@ class Tweet extends Model
         // 自身とフォローしているユーザIDを結合する
         return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
+    // 自分のは抜く
+    public function getOthersTimeLines(Int $user_id)
+    {
+        // 自身とフォローしているユーザIDを結合する
+        return $this->where('id', '<>', $user_id)->orderByDesc('created_at')->simplePaginate(10);
+    }
     // すべての投稿を取得
     public function getAllTimeLines()
     {

@@ -42,7 +42,7 @@
                                     <img src="{{ asset('/storage/profile_image/' .$timeline->profile_image) }}" class="rounded-circle" width="50" height="50">
                                     <div class="ml-2 d-flex flex-column">
                                         <p class="mb-0">{{ $timeline->user->name }}</p>
-                                        <a href="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->screen_name }}</a>
+                                        <p class="text-secondary">{{ $timeline->user->screen_name }}</p>
                                     </div>
                                 </div>
                                 </a>
@@ -64,7 +64,7 @@
                                                 <p>{{ str_limit($timeline->text, 1500) }}</p>
                                             </div>
                                             <div class="detail-btn">
-                                                <a href="{{ action('Admin\TweetsController@show', ['id' => $timeline->id]) }}">
+                                                <a href="{{ action('Admin\TweetsController@show', ['user_id' => $timeline->user_id]) }}">
                                                     <button type="button" class="btn btn-primary btn-xs active" data_but="btn-xs"><i class='fa fa-search'></i> 詳しく見る</button>
                                                 </a>
                                             </div>
