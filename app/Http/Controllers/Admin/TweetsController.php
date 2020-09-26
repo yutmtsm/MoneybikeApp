@@ -106,6 +106,7 @@ class TweetsController extends Controller
     
     public function showDay(Request $request, Tweet $tweet, Comment $comment)
     {
+        // dd($request);
         $date = $request->created_at['date'];
         $year = $tweet->getYear($date);
         $month = $tweet->getMonth($date);
