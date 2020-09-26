@@ -12,6 +12,10 @@
         
         <!-- asset(‘ファイルパス’)は、publicディレクトリのパスを返す関数 -->
         <!-- Scripts -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
          {{-- Laravel標準で用意されているJavascriptを読み込みます --}}
         <script src="{{ secure_asset('js/app.js') }}" defer></script>
         <!---->
@@ -47,6 +51,7 @@
                             <ul class="header-right navbar-nav ml-auto">
                                 @auth
                                 <li><a href="{{ action('Admin\MoneybikeController@mypage') }}">{{ __('messages.nav_mypage') }}</a></li>
+                                <li><a href="/mypage/myfollowers">{{ __('messages.nav_myfollower') }}</a></li>
                                 <li><a href="/mypage/posts">{{ __('messages.nav_mypost') }}</a></li>
                                 <li><a href="{{ url('mypage/money') }}">{{ __('messages.nav_moneyaccount') }}</a></li>
                                 <li><a href="{{ url('mypage/spot_search') }}">{{ __('messages.nav_spotsearch') }}</a></li>

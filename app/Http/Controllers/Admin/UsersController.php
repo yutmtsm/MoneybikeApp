@@ -93,5 +93,33 @@ class UsersController extends Controller
 
         return redirect('mypage');
     }
+    
+    public function myfollowers(Tweet $tweet, Follower $follower)
+    {
+        $user = auth()->user();
+        // dd($user);
+        $is_following = $user->isFollowing($user->id);
+        $is_followed = $user->isFollowed($user->id);
+        // フォローフォロワー情報の取得
+        $following_Users_Id = $follower->getFollowingUsersId($user->id);
+        $followed_Users_Id = $follower->getFollowedUsersId($user->id);
+        $following_Users = $user->find($following_Users_Id);
+        $followed_Users = $user->find($followed_Users_Id);
+        // カウント数
+        $tweet_count = $tweet->getTweetCount($user->id);
+        $follow_count = $follower->getFollowCount($user->id);
+        $follower_count = $follower->getFollowerCount($user->id);
+
+        return view('admin.users.myfollowers', [
+            'user'           => $user,
+            'is_following'   => $is_following,
+            'is_followed'    => $is_followed,
+            'following_Users'      => $following_Users,
+            'followed_Users'      => $followed_Users,
+            'tweet_count'    => $tweet_count,
+            'follow_count'   => $follow_count,
+            'follower_count' => $follower_count
+        ]);
+    }
 
 }

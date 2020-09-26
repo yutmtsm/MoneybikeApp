@@ -41,7 +41,7 @@
         
             <div class="card" style="margin-top: 10px;">
                 <div class="card-body">
-                    <div class="card-title">8月</div>
+                    <div class="card-title">{{ $month }}月</div>
                     <div class="card-header d-flex">
                         <a href="#">前の月</a>
                         <a href="#">次の月</a>

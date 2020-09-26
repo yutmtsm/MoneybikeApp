@@ -7,8 +7,8 @@
             <img src="/storage/image/noimage.png" class="" width="100%" height="auto">
             @endif
             <div class="content d-flex">
-                <a href="#" class="">フォロー数：{{ $follow_count }}</a>
-                <a href="#" class="">フォロワー数：{{ $follower_count }}</a>
+                <a href="{{ action('Admin\UsersController@myfollowers') }}" class="">フォロー数：{{ $follow_count }}</a>
+                <a href="{{ action('Admin\UsersController@myfollowers') }}" class="">フォロワー数：{{ $follower_count }}</a>
             </div>
             <!--プロフィール編集ボタン/フォロー・フォロー解除ボタン-->
             <div class="d-flex">

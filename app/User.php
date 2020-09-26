@@ -99,4 +99,16 @@ class User extends Authenticatable
     {
         return $this->where('id', '!=', $user_id)->orderByDesc('created_at')->simplePaginate(10);
     }
+    
+    // フォローしているユーザーの取得
+    public function getMyfollowingUser($following_Users_Id)
+    {
+        return $this->find($following_Users_Id);
+    }
+    
+    // フォローされているユーザーの取得
+    public function getMyfollowedUser($followed_Users_Id)
+    {
+        return $this->find($followed_Users_Id);
+    }
 }

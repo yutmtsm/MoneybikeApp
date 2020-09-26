@@ -114,11 +114,11 @@ table {
   display: block;
 }
 
-.post-name{
+.post-name {
   width: 150px;
 }
 
-.follow-btn{
+.follow-btn {
   margin: 0 0 0 auto;
 }
 
@@ -167,55 +167,60 @@ tstrap4 colの隙間（padding、margin）をを削除する（CSS）Default .no
 }
 
 /* spot_search内 */
-.spot-image{
+
+.spot-image {
   margin-left: 10px;
 }
 
-.spot-image img{
-  width:250px;
+.spot-image img {
+  width: 250px;
   height: auto;
 }
 
-.post-text{
+.post-text {
   width: 100%;
   padding: 15px;
   border: 1px solid black;
 }
-.spot-comment{
 
+.spot-comment {
   margin: 0 auto;
 }
 
-.detail-btn{
+.detail-btn {
   display: inline-block;
   width: 80%;
 }
+
 /* フォローボタン */
-.follow-button{
+
+.follow-button {
   border: 1px solid #0000FF;
-  border-radius: 10px 20px 30px 40px / 5px 10px 50px 100px;
+  border-radius: 10px 20px 30px 40px/5px 10px 50px 100px;
   text-decoration: none;
   padding: 5px 20px;
   background-color: #0000FF;
   color: white;
-
 }
-.follow-button:hover{
+
+.follow-button:hover {
   opacity: 0.8;
   text-decoration: none;
 }
-.follow-button:active{
+
+.follow-button:active {
   background-color: black;
 }
 
-.control-label{
-  margin-top: 3px;
-}
-.form-control{
+.control-label {
   margin-top: 3px;
 }
 
-.add-btn{
+.form-control {
+  margin-top: 3px;
+}
+
+.add-btn {
   font-size: 20px;
   margin-top: 20px;
 }
@@ -226,30 +231,32 @@ tstrap4 colの隙間（padding、margin）をを削除する（CSS）Default .no
   margin-left: 20px;
   border-radius: 50%;
 }
-.bike-text{
+
+.bike-text {
   margin-left: 5px;
 }
 
-.bike-detail-btn{
+.bike-detail-btn {
   margin-left: 10px;
 }
 
 /*バイク詳細画面*/
-.bike-detail{
+
+.bike-detail {
   width: 100%;
   border-collapse: collapse;
 }
 
-.bike-detail tr{
+.bike-detail tr {
   width: 200px;
   border-bottom: solid 2px white;
 }
 
-.bike-detail tr:last-child{
+.bike-detail tr:last-child {
   border-bottom: none;
 }
 
-.bike-detail th{
+.bike-detail th {
   width: 200px;
   position: relative;
   text-align: left;
@@ -260,20 +267,20 @@ tstrap4 colの隙間（padding、margin）をを削除する（CSS）Default .no
   padding: 10px 0;
 }
 
-.bike-detail th:after{
+.bike-detail th:after {
   display: block;
   content: "";
   width: 0px;
   height: 0px;
   position: absolute;
-  top:calc(50% - 10px);
-  right:-10px;
+  top: calc(50% - 10px);
+  right: -10px;
   border-left: 10px solid #0000FF;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
 }
 
-.bike-detail td{
+.bike-detail td {
   text-align: left;
   width: 200px;
   text-align: center;
@@ -281,19 +288,20 @@ tstrap4 colの隙間（padding、margin）をを削除する（CSS）Default .no
   padding: 10px 0;
 }
 
-.bike-detail-title{
+.bike-detail-title {
   font-size: 20px;
   font-weight: bold;
   background: linear-gradient(transparent 70%, #4CE0FF 70%);
 }
 
-.moneypage{
+.moneypage {
   border: 1px solid #C0C0C0;
   padding-bottom: 40px;
 }
 
 #gmap {
-    width:100%;
-   height:500px;
-   color:white;
+  width: 100%;
+  height: 500px;
+  color: white;
 }
+

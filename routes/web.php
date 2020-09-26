@@ -20,6 +20,7 @@ Route::group(['middleware' => 'auth'], function() {
     
     // マイページの表示
     Route::get('mypage', 'Admin\MoneybikeController@mypage');
+    Route::get('mypage/myfollowers', 'Admin\UsersController@myfollowers');
     Route::get('mypage/spot_search', 'Admin\MoneybikeController@spot_search');
     Route::get('mypage/search', 'Admin\MoneybikeController@search');
     
