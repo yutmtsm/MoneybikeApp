@@ -20,10 +20,12 @@ class Money extends Model
     {
         $year = substr( $year_month, 0, 4);
         $month = substr( $year_month, 5, 2);
-        $month += 1;
+        $month = (int)($month) + 1;
         if($month >= 12){
             $year += 1;
+            $month = 1;
         }
+        $month = str_pad($month, 2, 0, STR_PAD_LEFT);
         $year_month = $year . "-" . $month;
         return $year_month;
     }
@@ -32,10 +34,12 @@ class Money extends Model
     {
         $year = substr( $year_month, 0, 4);
         $month = substr( $year_month, 5, 2);
-        $month -= 1;
+        $month = (int)($month) - 1;
         if($month <= 1){
             $year -= 1;
+            $month = 12;
         }
+        $month = str_pad($month, 2, 0, STR_PAD_LEFT);
         $year_month = $year . "-" . $month;
         return $year_month;
     }

@@ -136,15 +136,16 @@ class MoneyController extends Controller
         } elseif($request->target == 'last_month') {
             $year_month = $money->getLastMonth($dt);
         }
-        dd($year_month);
+        // dd($year_month);
         $year = substr( $year_month, 0, 4);
         $month = substr( $year_month, 5, 2);
-        $today = $dt->day;
+        $today = Carbon::now('d');
         
          //カレンダーのJSON
         $url = public_path("/storage/json/".$year_month.".js");
         $json = '[' . file_get_contents($url) . ']';
         $calendar_day = json_decode($json,false);
+        
         
         // 自分の指定月の投稿記事を取得
         $posts = Tweet::where('user_id', $user->id)->whereYear('created_at', $year)->whereMonth('created_at', $month)->get();
