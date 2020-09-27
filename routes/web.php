@@ -26,8 +26,7 @@ Route::group(['middleware' => 'auth'], function() {
     // 他人のページ
     Route::get('other_mypage', 'MoneybikeController@mypage');
     // ユーザ関連
-    Route::resource('mypage/users', 'Admin\UsersController', ['only' => ['index', 'show', 'edit']]);
-    Route::post('mypage/users/edit', 'Admin\UsersController')
+    Route::resource('mypage/users', 'Admin\UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
 
     // フォロー/フォロー解除を追加
     Route::post('users/{user}/follow', 'Admin\UsersController@follow')->name('follow');
