@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <!-- カレンダー -->
-                    @include('layouts.common.calendar')
+                    @include('layouts.common.other_calendar')
                 </div>
             </div>
             
