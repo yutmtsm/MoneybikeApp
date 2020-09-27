@@ -17,7 +17,7 @@ class MoneybikeController extends Controller
     public function mypage(User $user, Tweet $tweet, Follower $follower)
     {
         $user = auth()->user();
-        // dd($user->id);
+        dd($user->id);
         $mybikes = Bike::where('user_id', $user->id)->get();
         // 定義している箇所->定義関数
         // フォローしているユーザーのID
