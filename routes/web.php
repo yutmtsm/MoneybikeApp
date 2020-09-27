@@ -26,7 +26,8 @@ Route::group(['middleware' => 'auth'], function() {
     // 他人のページ
     Route::get('other_mypage', 'MoneybikeController@mypage');
     // ユーザ関連
-    Route::resource('mypage/users', 'Admin\UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
+    Route::resource('mypage/users', 'Admin\UsersController', ['only' => ['index', 'show', 'edit']]);
+    Route::post('mypage/users/edit', 'Admin\UsersController')
 
     // フォロー/フォロー解除を追加
     Route::post('users/{user}/follow', 'Admin\UsersController@follow')->name('follow');
@@ -60,7 +61,7 @@ Route::group(['middleware' => 'auth'], function() {
     
     // お金関連
     Route::get('mypage/money', 'Admin\MoneyController@moneypage');
-    Route::get('mypage/other_money', 'Admin\MoneyController@other_moneypage');
+    // Route::get('mypage/other_money', 'Admin\MoneyController@other_moneypage');
     // Route::get('mypage/money', 'Admin\MoneyController@search');
     
     Route::get('/', 'Admin\MoneybikeController@mypage');

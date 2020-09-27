@@ -14,7 +14,7 @@ use DB;
 
 class MoneybikeController extends Controller
 {
-    public function mypage(User $user, Tweet $tweet, Follower $follower)
+    public function mypage(User $user, Bike $bike, Tweet $tweet, Follower $follower)
     {
         $user = auth()->user();
         // dd($user->id);
@@ -31,6 +31,23 @@ class MoneybikeController extends Controller
         $year = substr( $year_month, 0, 4);
         $month = substr( $year_month, 5, 2);
         $posts = Tweet::where('user_id', $user->id)->whereYear('created_at', $year)->whereMonth('created_at', $month)->get();
+        $yeartimelines = $tweet->getYearTimelines($user->id, $year);
+        $monthtimelines = $tweet->getMonthTimeLines($user->id, $year, $month);
+        $total_year_cost = 0;
+        $total_month_cost = 0;
+        // 年間総コストの抽出
+        foreach($yeartimelines as $yeartimeline)
+        {
+            $total_year_cost += ($yeartimeline->addmission_fee + $yeartimeline->purchase_cost);
+        }
+        $total_year_cost += $bike->getTotalCost($mybikes);
+        // 月間総コスト
+        foreach($monthtimelines as $monthtimeline)
+        {
+            $total_month_cost += ($monthtimeline->addmission_fee + $monthtimeline->purchase_cost);
+        }
+        $total_month_cost += $bike->getTotalCost($mybikes)/12;
+        
         $is_following = $user->isFollowing($user->id);
         $is_followed = $user->isFollowed($user->id);
         $tweet_count = $tweet->getTweetCount($user->id);
@@ -65,6 +82,7 @@ class MoneybikeController extends Controller
             'tweet_count'    => $tweet_count,
             'follow_count'   => $follow_count,
             'follower_count' => $follower_count,
+            'total_year_cost' => $total_year_cost, 'total_month_cost' => $total_month_cost,
             'total_spending' => $total_spending, 'calendar_day' => $calendar_day, 'today' => $today, 'day_costs' => $day_costs,
             'total_spending01' => $total_spending01, 'total_spending02' => $total_spending02, 'total_spending03' => $total_spending03, 'total_spending04' => $total_spending04, 'total_spending05' => $total_spending05, 'total_spending06' => $total_spending06, 'total_spending07' => $total_spending07, 
             'total_spending08' => $total_spending08, 'total_spending09' => $total_spending09, 'total_spending10' => $total_spending10, 'total_spending11' => $total_spending11, 'total_spending12' => $total_spending12, 'total_spending13' => $total_spending13, 'total_spending14' => $total_spending14, 
