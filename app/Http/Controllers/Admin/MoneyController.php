@@ -40,6 +40,7 @@ class MoneyController extends Controller
         $url = public_path("/json/".$year_month.".js");
         $json = '[' . file_get_contents($url) . ']';
         $calendar_day = json_decode($json,false);
+        // dd($calendar_day);
         
         // 自分の指定月の投稿記事を取得
         $posts = Tweet::where('user_id', $user->id)->whereYear('created_at', $year)->whereMonth('created_at', $month)->get();

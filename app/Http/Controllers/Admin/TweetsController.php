@@ -77,7 +77,7 @@ class TweetsController extends Controller
 
     public function show(Request $request, Tweet $tweet, Comment $comment)
     {
-        dd($request->id);
+        // dd($request->id);
         $login_user = auth()->user();
         $post = $tweet->getTweet($request->id);
         // ポストに紐づいたUser_idを持ってきて情報を代入
@@ -106,8 +106,7 @@ class TweetsController extends Controller
     
     public function showDay(Request $request, Tweet $tweet, Comment $comment)
     {
-        // dd($request);
-        $date = $request->created_at['date'];
+        $date = $request->created_at;
         $year = $tweet->getYear($date);
         $month = $tweet->getMonth($date);
         $day = $tweet->getDay($date);
