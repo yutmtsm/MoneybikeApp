@@ -129,6 +129,7 @@ class MoneyController extends Controller
         } else {
             $dt = $request->year_month;
         }
+        
         if($request->target == null){
             $year_month = substr( $dt, 0, 7); 
         } elseif($request->target == 'next_month') {
