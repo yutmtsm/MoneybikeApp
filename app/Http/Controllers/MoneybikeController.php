@@ -17,14 +17,14 @@ class MoneybikeController extends Controller
     public function mypage(Request $request, User $user, Tweet $tweet, Follower $follower)
     {
         $other_user = User::find($request->id);
-        
+        // dd($other_user);
         $mybikes = Bike::where('user_id', $other_user->id)->get();
         // 定義している箇所->定義関数
         // フォローしているユーザーのID
         $follow_ids = $follower->followingIds($other_user->id);
         // followed_idだけ抜き出す　上のを
         $following_ids = $follow_ids->pluck('followed_id')->toArray();
-        $timelines = $tweet->getTimeLines($other_user->id, $following_ids);
+        $timelines = $tweet->getOtherTimeLines($other_user->id, $following_ids);
         // 自分の指定月の投稿記事を取得
         $dt = Carbon::now('Asia/Tokyo');
         $year_month = substr( $dt, 0, 7); 
