@@ -42,7 +42,7 @@ class MoneybikeController extends Controller
         
         
         //カレンダーのJSON
-        $url = public_path("/storage/json/2020-09.js");
+        $url = public_path("/json/2020-09.js");
         $json = '[' . file_get_contents($url) . ']';
         $calendar_day = json_decode($json,false);
         // 他にいい方法があるか模索中

@@ -37,7 +37,7 @@ class MoneyController extends Controller
         $today = $dt->day;
         
          //カレンダーのJSON
-        $url = public_path("/storage/json/".$year_month.".js");
+        $url = public_path("/json/".$year_month.".js");
         $json = '[' . file_get_contents($url) . ']';
         $calendar_day = json_decode($json,false);
         
@@ -143,7 +143,7 @@ class MoneyController extends Controller
         $today = Carbon::now('d');
         
          //カレンダーのJSON
-        $url = public_path("/storage/json/".$year_month.".js");
+        $url = public_path("/json/".$year_month.".js");
         $json = '[' . file_get_contents($url) . ']';
         $calendar_day = json_decode($json,false);
         
