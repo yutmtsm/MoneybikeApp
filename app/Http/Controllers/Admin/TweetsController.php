@@ -77,7 +77,7 @@ class TweetsController extends Controller
 
     public function show(Request $request, Tweet $tweet, Comment $comment)
     {
-        dd($request->id);
+        // dd($request->id);
         $login_user = auth()->user();
         $post = $tweet->getTweet($request->id);
         // ポストに紐づいたUser_idを持ってきて情報を代入
@@ -107,7 +107,7 @@ class TweetsController extends Controller
     public function showDay(Request $request, Tweet $tweet, Comment $comment)
     {
         // dd($request);
-        $date = $request->created_at['date'];
+        $date = $request->created_at;
         $year = $tweet->getYear($date);
         $month = $tweet->getMonth($date);
         $day = $tweet->getDay($date);
@@ -115,7 +115,7 @@ class TweetsController extends Controller
         // $aa = $aaa->pluck('created_at')->toArray();
         
         $login_user = auth()->user();
-        $posts = $tweet->getDayTweet($login_user->id, $year, $month, $day);
+        $posts = $tweet->getDayTweet($request->id, $year, $month, $day);
         // ポストに紐づいたUser_idを持ってきて情報を代入
             // $users = User::find($post->user_id);
             // $post->profile_name = $users->name;

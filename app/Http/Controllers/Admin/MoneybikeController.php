@@ -14,22 +14,40 @@ use DB;
 
 class MoneybikeController extends Controller
 {
-    public function mypage(User $user, Tweet $tweet, Follower $follower)
+    public function mypage(User $user, Bike $bike, Tweet $tweet, Follower $follower)
     {
         $user = auth()->user();
-        dd($user->id);
+        // dd($user->id);
         $mybikes = Bike::where('user_id', $user->id)->get();
         // 定義している箇所->定義関数
         // フォローしているユーザーのID
         $follow_ids = $follower->followingIds($user->id);
         // followed_idだけ抜き出す　上のを
         $following_ids = $follow_ids->pluck('followed_id')->toArray();
-        $timelines = $tweet->getTimeLines($user->id, $following_ids);
-        foreach($follow_ids as $follow_id)
+        $timelines = $tweet->getOtherTimeLines($user->id, $following_ids);
+        // 自分の指定月の投稿記事を取得
+        $dt = Carbon::now('Asia/Tokyo');
+        $year_month = substr( $dt, 0, 7); 
+        $year = substr( $year_month, 0, 4);
+        $month = substr( $year_month, 5, 2);
+        $posts = Tweet::where('user_id', $user->id)->whereYear('created_at', $year)->whereMonth('created_at', $month)->get();
+        $yeartimelines = $tweet->getYearTimelines($user->id, $year);
+        $monthtimelines = $tweet->getMonthTimeLines($user->id, $year, $month);
+        $total_year_cost = 0;
+        $total_month_cost = 0;
+        // 年間総コストの抽出
+        foreach($yeartimelines as $yeartimeline)
         {
-            $post_user = User::find($follow_id->followed_id);
+            $total_year_cost += ($yeartimeline->addmission_fee + $yeartimeline->purchase_cost);
         }
-        // dd($timelines);
+        $total_year_cost += $bike->getTotalCost($mybikes);
+        // 月間総コスト
+        foreach($monthtimelines as $monthtimeline)
+        {
+            $total_month_cost += ($monthtimeline->addmission_fee + $monthtimeline->purchase_cost);
+        }
+        $total_month_cost += $bike->getTotalCost($mybikes)/12;
+        
         $is_following = $user->isFollowing($user->id);
         $is_followed = $user->isFollowed($user->id);
         $tweet_count = $tweet->getTweetCount($user->id);
@@ -57,13 +75,14 @@ class MoneybikeController extends Controller
         // dd($day_costs);
         
         return view('admin.mypage', [
-            'user'           => $user, 'mybikes' => $mybikes, 'post_user' => $post_user,
+            'user'           => $user, 'mybikes' => $mybikes,
             'is_following'   => $is_following,
             'is_followed'    => $is_followed,
-            'timelines'      => $timelines,
+            'timelines'      => $timelines, 'posts' => $posts,
             'tweet_count'    => $tweet_count,
             'follow_count'   => $follow_count,
             'follower_count' => $follower_count,
+            'total_year_cost' => $total_year_cost, 'total_month_cost' => $total_month_cost,
             'total_spending' => $total_spending, 'calendar_day' => $calendar_day, 'today' => $today, 'day_costs' => $day_costs,
             'total_spending01' => $total_spending01, 'total_spending02' => $total_spending02, 'total_spending03' => $total_spending03, 'total_spending04' => $total_spending04, 'total_spending05' => $total_spending05, 'total_spending06' => $total_spending06, 'total_spending07' => $total_spending07, 
             'total_spending08' => $total_spending08, 'total_spending09' => $total_spending09, 'total_spending10' => $total_spending10, 'total_spending11' => $total_spending11, 'total_spending12' => $total_spending12, 'total_spending13' => $total_spending13, 'total_spending14' => $total_spending14, 
