@@ -32,8 +32,8 @@
                                     <tbody>
                                         <tr>
                                             <th scope="row">1</th>
-                                            <td>120,000円</td>
-                                            <td>5,400円</td>
+                                            <td>{{ number_format($total_year_cost) }}円</td>
+                                            <td>{{ number_format($total_month_cost) }}円</td>
                                             <td>300円</td>
                                         </tr>
                                         <tr>

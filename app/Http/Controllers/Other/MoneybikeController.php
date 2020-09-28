@@ -16,8 +16,9 @@ class MoneybikeController extends Controller
     //
     public function mypage(Request $request, User $user, Tweet $tweet, Follower $follower)
     {
+        // dd($request);
         $other_user = User::find($request->id);
-        // dd($other_user);
+        
         $mybikes = Bike::where('user_id', $other_user->id)->get();
         // 定義している箇所->定義関数
         // フォローしているユーザーのID
@@ -25,12 +26,11 @@ class MoneybikeController extends Controller
         // followed_idだけ抜き出す　上のを
         $following_ids = $follow_ids->pluck('followed_id')->toArray();
         $timelines = $tweet->getTimeLines($other_user->id, $following_ids);
-        // 自分の指定月の投稿記事を取得
-        $dt = Carbon::now('Asia/Tokyo');
-        $year_month = substr( $dt, 0, 7); 
-        $year = substr( $year_month, 0, 4);
-        $month = substr( $year_month, 5, 2);
-        $posts = Tweet::where('user_id', $other_user->id)->whereYear('created_at', $year)->whereMonth('created_at', $month)->get();
+        foreach($follow_ids as $follow_id)
+        {
+            $post_user = User::find($follow_id->followed_id);
+        }
+        // dd($timelines);
         $is_following = $user->isFollowing($other_user->id);
         $is_followed = $user->isFollowed($other_user->id);
         $tweet_count = $tweet->getTweetCount($other_user->id);
@@ -58,10 +58,10 @@ class MoneybikeController extends Controller
         // dd($day_costs);
         
         return view('other.mypage', [
-            'other_user'     => $other_user, 'mybikes' => $mybikes,
+            'other_user'     => $other_user, 'mybikes' => $mybikes, 'post_user' => $post_user,
             'is_following'   => $is_following,
             'is_followed'    => $is_followed,
-            'timelines'      => $timelines, 'posts' => $posts,
+            'timelines'      => $timelines,
             'tweet_count'    => $tweet_count,
             'follow_count'   => $follow_count,
             'follower_count' => $follower_count,

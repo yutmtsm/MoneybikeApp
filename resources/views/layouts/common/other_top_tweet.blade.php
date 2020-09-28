@@ -8,8 +8,8 @@
                     <div class="card">
                         <a href="{{ action('Admin\TweetsController@show', ['id' => $timeline->id]) }}">
                             <div class="card-haeder p-2 w-100 d-flex">
-                                @if(isset($post_user->profile_image))
-                                <img src="{{ asset('/storage/profile_image/' .$post_user->profile_image) }}" class="rounded-circle" width="50" height="50">
+                                @if(isset($other_user->profile_image))
+                                <img src="{{ asset('/storage/profile_image/' .$other_user->profile_image) }}" class="rounded-circle" width="50" height="50">
                                 @else
                                 <img src="/storage/noimage.png" class="rounded-circle" width="50" height="50">
                                 @endif

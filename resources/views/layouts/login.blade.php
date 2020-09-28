@@ -13,16 +13,16 @@
         <!-- asset(‘ファイルパス’)は、publicディレクトリのパスを返す関数 -->
         <!-- Scripts -->
          {{-- Laravel標準で用意されているJavascriptを読み込みます --}}
-        <script src="{{ secure_asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/app.js') }}" defer></script>
 
         <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
-        <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ secure_asset('css/common.css') }}" rel="stylesheet">
-        <link href="{{ secure_asset('css/top.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/common.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/top.css') }}" rel="stylesheet">
     </head>
     <body>
         <div id="app">

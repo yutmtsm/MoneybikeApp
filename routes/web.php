@@ -60,7 +60,7 @@ Route::group(['middleware' => 'auth'], function() {
     
     // お金関連
     Route::get('mypage/money', 'Admin\MoneyController@moneypage');
-    Route::get('mypage/other_money', 'Admin\MoneyController@other_moneypage');
+    // Route::get('mypage/other_money', 'Admin\MoneyController@other_moneypage');
     // Route::get('mypage/money', 'Admin\MoneyController@search');
     
     Route::get('/', 'Admin\MoneybikeController@mypage');
