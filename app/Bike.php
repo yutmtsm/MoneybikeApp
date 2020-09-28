@@ -22,4 +22,17 @@ class Bike extends Model
     public function getMybikeInfo(Int $user_id){
         return $this->where('user_id', $user_id)->get();
     }
+    // バイクのそうコストを取得
+    public function getTotalCost($mybikes)
+    {
+        $total = 0;
+        foreach($mybikes as $mybike)
+        {
+            $total += ($mybike->light_vehicle_tax + $mybike->weight_tax + 
+            $mybike->liability_insurance + $mybike->voluntary_insurance + 
+            $mybike->vehicle_inspection + $mybike->parking_fee + $mybike->consumables);
+        }
+
+        return $total;
+    }
 }

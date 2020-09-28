@@ -73,7 +73,6 @@ class Tweet extends Model
     // 自分のは抜く
     public function getOtherTimeLines(Int $user_id, Array $follow_ids)
     {
-        // 自身とフォローしているユーザIDを結合する
         return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
     // 自分のは抜く
@@ -87,10 +86,15 @@ class Tweet extends Model
     {
         return $this->simplePaginate(10);
     }
-    
-    public function getMonthTimeLines($year, $month)
+    // 年間記事を取得い
+    public function getYearTimelines($user_id, $year)
     {
-        return $this->whereYear('created_at', $year)->whereMonth('created_at', $month)->get();
+        return $this->where('user_id', $user_id)->whereYear('created_at', $year)->get();
+    }
+    // 月の記事を算出
+    public function getMonthTimeLines($user_id, $year, $month)
+    {
+        return $this->where('user_id', $user_id)->whereYear('created_at', $year)->whereMonth('created_at', $month)->get();
     }
     // 指定された期間の投稿を取得
     public static function getDate($id, $from, $until)
