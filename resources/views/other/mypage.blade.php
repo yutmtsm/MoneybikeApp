@@ -1,7 +1,7 @@
 @extends('layouts.common.common')
 @section('css', 'mypage.css')
 
-@section('title', 'マイページ')
+@section('title', '他の人のマイページ')
 
 @section('content')
     <div class="container">
@@ -26,15 +26,14 @@
                                             <th scope="col">#</th>
                                             <th scope="col">年間支出</th>
                                             <th scope="col">当月支出</th>
-                                            <th scope="col">当日支出</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <th scope="row">1</th>
-                                            <td>120,000円</td>
-                                            <td>5,400円</td>
-                                            <td>300円</td>
+                                            <td>{{ number_format($total_year_cost) }}円</td>
+                                            <td>{{ number_format($total_month_cost) }}円</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">2</th>
@@ -48,7 +47,16 @@
                         </div>
                     </div>
                     <!-- カレンダー -->
-                    @include('layouts.common.other_calendar')
+                    <div class="item">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title text-center"><p>{{ $month }}月</p></div>
+                                <div class="d-flex">
+                                </div>
+                            </div>
+                            @include('layouts.common.other_calendar')
+                        </div>
+                    </div>
                 </div>
             </div>
             

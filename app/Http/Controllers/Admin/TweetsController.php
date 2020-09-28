@@ -106,6 +106,7 @@ class TweetsController extends Controller
     
     public function showDay(Request $request, Tweet $tweet, Comment $comment)
     {
+        // dd($request);
         $date = $request->created_at;
         $date = $request->created_at;
         $year = $tweet->getYear($date);
@@ -140,12 +141,14 @@ class TweetsController extends Controller
             ]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, Comment $comment)
     {
         // dd($request);
         $this->validate($request, Tweet::$rules);
         $post = Tweet::find($request->id);
-        $user = Auth::user();
+        // ポストに紐づいたUser_idを持ってきて情報を代入
+            $post_user = User::find($post->user_id);
+        $login_user = Auth::user();
         // dd($post);
         $post_form = $request->all();
         // dd($post_form);
@@ -167,7 +170,7 @@ class TweetsController extends Controller
         unset($post_form['remove']);
         
         $post->fill($post_form)->save();
-
+        // dd($post);
         $total_cost = $post->addmission_fee + $post->purchase_cost;
         
         $users = DB::table('users')->get();
@@ -177,21 +180,25 @@ class TweetsController extends Controller
             $post->image_icon = $users->image_path;
             $post->created_at = $users->created_at;
         
-        $post_comments = Comment::where('post_id', $post->id)->orderByDesc('created_at')->get();
-        $post_comment_count = Comment::where('post_id', $post->id)->count();
-        // コメントに紐づいたユーザーの取得
-        foreach($post_comments as $post_comment)
+        $comments = $comment->getComments($post->id);
+        $comment_count = $comments->count();
+        
+        // 合計を産出
+        $total_cost = $post->addmission_fee + $post->purchase_cost;
+        
+        // 情報に紐づいたユーザー情報を取得
+        foreach($comments as $comment)
         {
-            $post_comment_user = User::find($post_comment->user_id);
-            // dd($post_comment_user->name);
-            $post_comment->user_name = $post_comment_user->name;
-            $post_comment->image_path = $post_comment_user->image_path;
+            $post_comment_user = User::find($comment->user_id);
+            $comments->user_name = $post_comment_user->name;
+            $comments->image_path = $post_comment_user->image_path;
         }
         
         
-        return view('admin.post.detail', ['user' => $user, 'post' => $post, 'users' => $users,
-        'total_cost' => $total_cost,
-        'post_comments' => $post_comments, 'post_comment_count' => $post_comment_count
+        return view('admin.posts.show', [
+            'login_user' => $login_user, 'post' => $post, 'post_user' => $post_user,
+            'total_cost' => $total_cost,
+            'comments' => $comments, 'comment_count' => $comment_count
         ]);
     }
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Tweet;
 use App\Bike;
+use App\Money;
 use App\Follower;
 use Auth;
 use Carbon\Carbon;
@@ -14,7 +15,7 @@ use DB;
 
 class MoneybikeController extends Controller
 {
-    public function mypage(User $user, Bike $bike, Tweet $tweet, Follower $follower)
+    public function mypage(Request $request, User $user, Bike $bike, Money $money, Tweet $tweet, Follower $follower)
     {
         $user = auth()->user();
         // dd($user->id);
@@ -72,7 +73,32 @@ class MoneybikeController extends Controller
         $total_spending29 = null;$total_spending30 = null;$total_spending31 = null;$total_spending32 = null;$total_spending33 = null;$total_spending34 = null;$total_spending35 = null;
         
         $day_costs = Tweet::where('user_id', $user->id)->get();
-        // dd($day_costs);
+        
+        
+        if($request->year_month == null){
+            $dt = Carbon::now('Asia/Tokyo');
+        } else {
+            $dt = $request->year_month;
+        }
+        
+        if($request->target == null){
+            $year_month = substr( $dt, 0, 7); 
+        } elseif($request->target == 'next_month') {
+            $year_month = $money->getNextMonth($dt);
+        } elseif($request->target == 'last_month') {
+            $year_month = $money->getLastMonth($dt);
+        }
+        // dd($year_month);
+        $year = substr( $year_month, 0, 4);
+        $month = substr( $year_month, 5, 2);
+        $today = Carbon::now('d');
+        
+         //カレンダーのJSON
+        $url = public_path("/json/".$year_month.".js");
+        $json = '[' . file_get_contents($url) . ']';
+        $calendar_day = json_decode($json,false);
+        $last_month = "last_month";
+        $next_month = "next_month";
         
         return view('admin.mypage', [
             'user'           => $user, 'mybikes' => $mybikes,
@@ -89,6 +115,7 @@ class MoneybikeController extends Controller
             'total_spending15' => $total_spending15, 'total_spending16' => $total_spending16, 'total_spending17' => $total_spending17, 'total_spending18' => $total_spending18, 'total_spending19' => $total_spending19, 'total_spending20' => $total_spending20, 'total_spending21' => $total_spending21, 
             'total_spending22' => $total_spending22, 'total_spending23' => $total_spending23, 'total_spending24' => $total_spending24, 'total_spending25' => $total_spending25, 'total_spending26' => $total_spending26, 'total_spending27' => $total_spending27, 'total_spending28' => $total_spending28, 
             'total_spending29' => $total_spending29, 'total_spending30' => $total_spending30, 'total_spending31' => $total_spending31, 'total_spending32' => $total_spending32, 'total_spending33' => $total_spending33, 'total_spending34' => $total_spending34, 'total_spending35' => $total_spending35,
+            'year_month' => $year_month, 'year' => $year, 'month' => $month, 'today' => $today, 'last_month' => $last_month, 'next_month' => $next_month
 
         ]);
     }

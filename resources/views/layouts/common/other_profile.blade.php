@@ -154,9 +154,7 @@
                             @endforeach
             </div>
             <div class="content">
-                <div class="d-flex">
-                    <a class="add-bike" href="{{ action('Admin\BikeController@create') }}">バイク追加</a>
-                </div>
+                
             </div>
             
         </div>

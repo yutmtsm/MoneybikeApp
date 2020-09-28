@@ -1,13 +1,3 @@
-<div class="item">
-    <div class="card">
-        <div class="card-header">
-            <div class="card-title text-center"><p>月</p></div>
-            <div class="d-flex">
-                <a href="#">前の月</a>
-                <a class="ml-auto" href="#">次の月</a>
-            </div>
-        </div>
-        
         <table width=100% bgcolor="#aaaaaa" cellspacing=1 cellpadding=4>
             <tr bgcolor="#f0f8ff" align=center>
                 <td width=14%><font color="#ff0000"><b>日</b></font></td>
@@ -589,6 +579,3 @@
                 </td>
             </tr>
         </table>
-        
-    </div>
-</div>

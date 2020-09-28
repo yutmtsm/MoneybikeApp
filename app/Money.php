@@ -21,7 +21,7 @@ class Money extends Model
         $year = substr( $year_month, 0, 4);
         $month = substr( $year_month, 5, 2);
         $month = (int)($month) + 1;
-        if($month >= 12){
+        if($month > 12){
             $year += 1;
             $month = 1;
         }
@@ -35,7 +35,7 @@ class Money extends Model
         $year = substr( $year_month, 0, 4);
         $month = substr( $year_month, 5, 2);
         $month = (int)($month) - 1;
-        if($month <= 1){
+        if($month < 1){
             $year -= 1;
             $month = 12;
         }

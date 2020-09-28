@@ -6,7 +6,7 @@
             @foreach ($timelines as $timeline)
                 <div class="col-md-12 mb-3 text-secondary">
                     <div class="card">
-                        <a href="{{ action('Admin\TweetsController@show', ['id' => $timeline->id]) }}">
+                        <a href="{{ action('Other\MoneybikeController@mypage', ['user_id' => $timeline->user_id]) }}">
                             <div class="card-haeder p-2 w-100 d-flex">
                                 @if(isset($other_user->profile_image))
                                 <img src="{{ asset('/storage/profile_image/' .$other_user->profile_image) }}" class="rounded-circle" width="50" height="50">

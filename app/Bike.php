@@ -19,7 +19,7 @@ class Bike extends Model
         
     }
     
-    public function getMybikeInfo(Int $user_id){
+    public function getMybikeInfo($user_id){
         return $this->where('user_id', $user_id)->get();
     }
     // バイクのそうコストを取得

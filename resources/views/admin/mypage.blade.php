@@ -48,7 +48,16 @@
                         </div>
                     </div>
                     <!-- カレンダー -->
-                    @include('layouts.common.calendar')
+                    <div class="item">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title text-center"><p>{{ $month }}月</p></div>
+                                <div class="d-flex">
+                                </div>
+                            </div>
+                            @include('layouts.common.calendar')
+                        </div>
+                    </div>
                 </div>
             </div>
             

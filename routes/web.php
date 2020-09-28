@@ -23,8 +23,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('mypage/myfollowers', 'Admin\UsersController@myfollowers');
     Route::get('mypage/spot_search', 'Admin\MoneybikeController@spot_search');
     Route::get('mypage/spot_search/search', 'Admin\MoneybikeController@search');
-    // 他人のページ
-    Route::get('other_mypage', 'MoneybikeController@mypage');
+    
     // ユーザ関連
     Route::resource('mypage/users', 'Admin\UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
 
@@ -64,6 +63,10 @@ Route::group(['middleware' => 'auth'], function() {
     // Route::get('mypage/money', 'Admin\MoneyController@search');
     
     Route::get('/', 'Admin\MoneybikeController@mypage');
+    
+    // 他人のページ
+    Route::get('other_mypage', 'Other\MoneybikeController@mypage');
+    Route::get('other_mypage/money', 'Other\MoneyController@moneypage');
 });
     
 

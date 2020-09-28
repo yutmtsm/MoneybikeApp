@@ -37,7 +37,7 @@
              
                         <div class="col-md-12 mb-3">
                             <div class="card">
-                                <a href="{{ action('MoneybikeController@mypage', ['id' => $timeline->id]) }}">
+                                <a href="{{ action('Other\MoneybikeController@mypage', ['id' => $timeline->id]) }}">
                                 <div class="card-haeder p-2 w-100 d-flex">
                                     <img src="{{ asset('/storage/profile_image/' .$timeline->profile_image) }}" class="rounded-circle" width="50" height="50">
                                     <div class="ml-2 d-flex flex-column">
