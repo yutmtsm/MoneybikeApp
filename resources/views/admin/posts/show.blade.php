@@ -14,7 +14,7 @@
                 <div class="col-md-12 d-flex no-gutters">
                     <!--他のユーザーページへ-->
                     <a class="other-link" href="{{ action('Other\MoneybikeController@mypage', ['id' => $post->user_id]) }}">
-                       <img src="{{ asset('storage/profile_image/' .$post_user->profile_image) }}" class="rounded-circle" width="50" height="50">
+                       <img src="{{ $post_user->profile_image }}" class="rounded-circle" width="50" height="50">
                         <div class="ml-2 d-flex flex-column">
                             <a class="mb-0">{{ $post_user->name }}</a>
                             <a class="">{{ $post_user->screen_name }}</a>

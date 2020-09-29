@@ -2,7 +2,7 @@
     <div class="section">
         <div class="card">
             @if(isset($other_user->profile_image))
-            <img src="{{ asset('storage/profile_image/' .$other_user->profile_image) }}" class="" width="100%" height="auto">
+            <img src="{{ $other_user->profile_image }}" class="" width="100%" height="auto">
             @else
             <img src="/storage/image/noimage.png" class="" width="100%" height="auto">
             @endif
@@ -76,7 +76,7 @@
                               </div>
                               <div class="modal-body">
                                     <div class="d-flex">
-                                        <img class="bike-detail-icon w-50 h-auto" src="{{ asset('storage/image/bike/' .$mybike->image_path) }}" >
+                                        <img class="bike-detail-icon w-50 h-auto" src="{{ $mybike->image_path }}" >
                                         <div class="bike-detail">
                                             <table>
                                                 <div class="bike-detail-title">基本情報</div>

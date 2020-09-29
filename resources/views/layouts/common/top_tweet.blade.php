@@ -9,7 +9,7 @@
                         <a href="{{ action('Other\MoneybikeController@mypage', ['id' => $timeline->user_id]) }}">
                             <div class="card-haeder p-2 w-100 d-flex">
                                 @if(isset($timeline->user->profile_image))
-                                <img src="{{ asset('/storage/profile_image/' .$timeline->user->profile_image) }}" class="rounded-circle" width="50" height="50">
+                                <img src="{{ $timeline->user->profile_image }}" class="rounded-circle" width="50" height="50">
                                 @else
                                 <img src="/storage/noimage.png" class="rounded-circle" width="50" height="50">
                                 @endif

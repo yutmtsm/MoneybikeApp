@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="d-inline-flex">
                     <div class="p-3 d-flex flex-column">
-                        <img src="{{ asset('storage/profile_image/' .$user->profile_image) }}" class="rounded-circle" width="100" height="100">
+                        <img src="{{ $user->profile_image }}" class="rounded-circle" width="100" height="100">
                         <div class="mt-3 d-flex flex-column">
                             <h4 class="mb-0 font-weight-bold">{{ $user->name }} </h4>
                             <span class="text-secondary">{{ $user->screen_name }}</span>
@@ -81,7 +81,7 @@
                         <div class="card">
                             <div class="card-haeder p-3 w-100 d-flex">
                                 @if(isset($following_User->profile_image))
-                                <img src="{{ asset('storage/profile_image/' .$following_User->profile_image) }}" class="rounded-circle" width="50" height="50">
+                                <img src="{{ $following_User->profile_image }}" class="rounded-circle" width="50" height="50">
                                 @else
                                 <img src="/storage/noimage.png" class="rounded-circle" width="50" height="50">
                                 @endif

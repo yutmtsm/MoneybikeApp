@@ -91,9 +91,9 @@ class RegisterController extends Controller
         } else {
             $path = null;
         }
-        //dd($data);
+  
         unset($data['_token']);
-        // dd($data);
+
         $user =  User::create([
             // 追加
             'screen_name' => $data['screen_name'],

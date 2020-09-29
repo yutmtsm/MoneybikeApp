@@ -11,7 +11,7 @@
                     <div class="col-md-12 d-flex no-gutters text-secondary">
                         <div>
                             @if(isset($user->profile_image))
-                            <img class="post-icon" src="{{ asset('storage/profile_image/' .$user->profile_image) }}">
+                            <img class="post-icon" src="{{ $user->profile_image }}">
                             @else
                             <img class="post-icon" src="/storage/noimage.png">
                             @endif
@@ -29,7 +29,7 @@
                     </div>
                     <div class="col-md-12 d-flex no-gutters text-secondary">
                         <div>
-                            <img class="post-icon" src="{{ asset('storage/image/post/' .$timeline->image_path) }}">
+                            <img class="post-icon" src="{{ $timeline->image_path }}">
                         </div>
                         <form action="{{ action('Admin\CommentsController@store', ['tweet_id' => $timeline->id]) }}" method="post">
                             <div class="form-group">

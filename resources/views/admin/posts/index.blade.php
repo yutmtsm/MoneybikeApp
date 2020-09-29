@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="d-inline-flex">
                     <div class="p-3 d-flex flex-column">
-                        <img src="{{ asset('storage/profile_image/' .$user->profile_image) }}" class="rounded-circle" width="100" height="100">
+                        <img src="{{ $user->profile_image }}" class="rounded-circle" width="100" height="100">
                         <div class="mt-3 d-flex flex-column">
                             <h4 class="mb-0 font-weight-bold">{{ $user->name }} </h4>
                             <span class="text-secondary">{{ $user->screen_name }}</span>
@@ -67,7 +67,7 @@
                 <div class="col-md-8 mb-3">
                     <div class="card">
                         <div class="card-haeder p-2 w-100 d-flex">
-                            <img src="{{ asset('storage/profile_image/' .$user->profile_image) }}" class="rounded-circle" width="50" height="50">
+                            <img src="{{ $user->profile_image }}" class="rounded-circle" width="50" height="50">
                             <div class="ml-2 d-flex flex-column">
                                 <p class="mb-0">{{ $timeline->user->name }}</p>
                                 <a href="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->screen_name }}</a>

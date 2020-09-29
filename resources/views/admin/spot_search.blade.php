@@ -39,7 +39,7 @@
                             <div class="card">
                                 <a href="{{ action('Other\MoneybikeController@mypage', ['id' => $timeline->id]) }}">
                                 <div class="card-haeder p-2 w-100 d-flex">
-                                    <img src="{{ asset('/storage/profile_image/' .$timeline->profile_image) }}" class="rounded-circle" width="50" height="50">
+                                    <img src="{{ $timeline->profile_image }}" class="rounded-circle" width="50" height="50">
                                     <div class="ml-2 d-flex flex-column">
                                         <p class="mb-0">{{ $timeline->user->name }}</p>
                                         <p class="text-secondary">{{ $timeline->user->screen_name }}</p>
@@ -130,7 +130,7 @@
                     @foreach ($all_users as $user)
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
-                            <img src="{{ asset('storage/profile_image/' .$user->profile_image) }}" class="rounded-circle" width="50" height="50">
+                            <img src="{{ $user->profile_image }}" class="rounded-circle" width="50" height="50">
                             <div class="ml-2 d-flex flex-column">
                                 <p class="mb-0">{{ $user->name }}</p>
                                 <a href="{{ url('users/' .$user->id) }}" class="text-secondary">{{ $user->screen_name }}</a>

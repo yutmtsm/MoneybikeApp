@@ -14,7 +14,7 @@
                 <div class="col-md-12 d-flex no-gutters">
                     <!--他のユーザーページへ-->
                     <a class="other-link" href="#">
-                       <img class="post-icon" src="{{ asset('storage/profile_image/' .$login_user->profile_image) }}">
+                       <img class="post-icon" src="{{ $login_user->profile_image }}">
                     </a>
                    <div class="post-top">
                        <div class="form-inline">
