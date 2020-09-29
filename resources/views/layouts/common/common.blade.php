@@ -80,42 +80,42 @@
             </main>
             <footer>
                 {{-- ナビゲーションバー --}}
-            <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
-                <div class="container">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'MoneyBike') }}
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    
-                    <div class="callapse navbar-collapse" id="navbarSupportedContent">
-                        @if (Route::has('login'))
-                            <ul class="header-right navbar-nav ml-auto">
-                                @auth
-                                <li><a href="{{ action('Admin\MoneybikeController@mypage') }}">{{ __('messages.nav_mypage') }}</a></li>
-                                <li><a href="/mypage/posts">{{ __('messages.nav_mypost') }}</a></li>
-                                <li><a href="/mypage/money">{{ __('messages.nav_moneyaccount') }}</a></li>
-                                <li><a href="#">{{ __('messages.nav_spotsearch') }}</a></li>
-                                <li><a href="{{ route('logout') }}"　onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('messages.nav_logout') }}</a></li>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                                </form>
-                                @else
-                                <li><a href="/mypage/">{{ __('messages.nav_home') }}</a></li>
-                                <li><a href="#">{{ __('messages.nav_about') }}</a></li>
-                                <li><a href="#">{{ __('messages.nav_searvice') }}</a></li>
-                                @if (Route::has('register'))
-                                <li><a href="{{ route('register') }}">{{ __('messages.nav_register') }}</a></li>
-                                @endif
-                                <li><a href="{{ route('login') }}">{{ __('messages.nav_login') }}</a></li>
-                                @endauth
-                            </ul>
-                        @endif
+                <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
+                    <div class="container">
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            {{ config('app.name', 'MoneyBike') }}
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
                         
+                        <div class="callapse navbar-collapse" id="navbarSupportedContent">
+                            @if (Route::has('login'))
+                                <ul class="header-right navbar-nav ml-auto">
+                                    @auth
+                                    <li><a href="{{ action('Admin\MoneybikeController@mypage') }}">{{ __('messages.nav_mypage') }}</a></li>
+                                    <li><a href="/mypage/posts">{{ __('messages.nav_mypost') }}</a></li>
+                                    <li><a href="/mypage/money">{{ __('messages.nav_moneyaccount') }}</a></li>
+                                    <li><a href="#">{{ __('messages.nav_spotsearch') }}</a></li>
+                                    <li><a href="{{ route('logout') }}"　onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('messages.nav_logout') }}</a></li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                    </form>
+                                    @else
+                                    <li><a href="/mypage/">{{ __('messages.nav_home') }}</a></li>
+                                    <li><a href="#">{{ __('messages.nav_about') }}</a></li>
+                                    <li><a href="#">{{ __('messages.nav_searvice') }}</a></li>
+                                    @if (Route::has('register'))
+                                    <li><a href="{{ route('register') }}">{{ __('messages.nav_register') }}</a></li>
+                                    @endif
+                                    <li><a href="{{ route('login') }}">{{ __('messages.nav_login') }}</a></li>
+                                    @endauth
+                                </ul>
+                            @endif
+                            
+                        </div>
                     </div>
-                </div>
-            </nav>
+                </nav>
             </footer>
         </div>
     </body>
