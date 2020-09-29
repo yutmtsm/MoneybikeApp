@@ -26,11 +26,9 @@ class BikeController extends Controller
         
         if(isset($form['image'])){
             //画像をStrange内に格納し、パスを代入
-            $path = $request->file('image')->store('public/image/bike');
+            $path = Storage::disk('s3')->putFile('/bikes', $form['image'], 'public');
             //画像のパス先を格納
-            $mybike->image_path = basename($path);
-            // $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
-            // $news->image_path = Storage::disk('s3')->url($path);
+            $mybike->image_path = Storage::disk('s3')->url($path);
         } else {
             $mybike->image_path = "noimage.png";
         }
@@ -67,8 +65,10 @@ class BikeController extends Controller
             $mybike_form['image_path'] = null;
         } elseif($request->file('image')){
             // 画像を変更した場合
-            $path = $request->file('image')->store('public/image/bike');
-            $mybike->image_path = basename($path);
+            // $path = $request->file('image')->store('public/image/bike');
+            // $mybike->image_path = basename($path);
+            $path = Storage::disk('s3')->putFile('/bikes', $mybike_form['image'], 'public');
+            $mybike->image_path = Storage::disk('s3')->url($path);
         } else {
             // 変更しなかった場合
             $mybike_form['image_path'] = $mybike->image_path;

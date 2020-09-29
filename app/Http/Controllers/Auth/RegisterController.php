@@ -87,9 +87,7 @@ class RegisterController extends Controller
         
         // dd($money);
         if(isset($data['image'])){
-            $path = $request->file('image')->store('public/profile_image');
-            //dd($path);
-            //$data->image = basename($path);
+            $path = Storage::disk('s3')->putFie('/users', $data['image'], 'public');
         } else {
             $path = null;
         }
@@ -105,7 +103,7 @@ class RegisterController extends Controller
             'gender'      => $data['gender'],
             'age'         => $data['age'],
             'address'     => $data['address'],
-            'profile_image' => $data['image'] = basename($path),
+            'profile_image' => Storage::disk('s3')->url($path),
         ]);
         
         return $user;

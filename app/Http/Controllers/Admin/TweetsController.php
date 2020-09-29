@@ -57,9 +57,8 @@ class TweetsController extends Controller
         // 受け取った情報にimageがあれば処理を実施
         if(isset($form['image'])){
             //画像をStrange内に格納し、パスを代入。なければnullを代入
-            $path = $request->file('image')->store('public/image/posts');
-            //画像のパス先を格納
-            $tweet->image_path = basename($path);
+            $path = Storage::disk('s3')->putFile('/posts', $form['image'], 'public');
+            $tweet->image_path = Storage::disk('s3')->url($path);
         } else {
             $tweet->image_path = null;
         }
@@ -157,10 +156,8 @@ class TweetsController extends Controller
         if ($request->remove == 'true') {
             $post_form['image_path'] = null;
         } elseif ($request->file('image')) {
-            $path = $request->file('image')->store('public/image/post');
-            $post_form['image_path'] = basename($path);
-            // $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
-            // $news->image_path = Storage::disk('s3')->url($path);
+            $path = Storage::disk('s3')->putFile('/posts', $post_form['image'], 'public');
+            $post->image_path = Storage::disk('s3')->url($path);
         } else {
             $post_form['image_path'] = $post->image_path;
         }
