@@ -11,6 +11,7 @@ use App\Tweet;
 use App\Follower;
 use DB;
 use Auth;
+use Storage;
 
 class TweetsController extends Controller
 {
