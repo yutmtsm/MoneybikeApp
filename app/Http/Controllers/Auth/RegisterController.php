@@ -91,7 +91,7 @@ class RegisterController extends Controller
         if(isset($data['image'])){
             $path = Storage::disk('s3')->putFile('/users', $data['image'], 'public');
         } else {
-            $path = null;
+            $path = "noimage";
         }
         
         // dd($data);
