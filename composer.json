@@ -60,7 +60,21 @@
             "@php artisan key:generate --ansi"
         ],
         "compile": [
+<<<<<<< HEAD
             "@php -r \"file_exists('.env') || copy('.env.heroku', '.env');\""
         ]
     }
+=======
+            "@php -r \"file_exists('.env') || copy('.env.heroku', '.env');\""
+        ]
+    }
+<<<<<<< HEAD
+
+=======
+    
+    "compile": [
+            "@php -r \"file_exists('.env') || copy('.env.heroku', '.env');\""
+        ]
+>>>>>>> f2506e7291cdcdf601d904cb743c3cfcca35f7af
+>>>>>>> 8f9c6a8874c8f4161045f782b5d9515a800ee1fa
 }
