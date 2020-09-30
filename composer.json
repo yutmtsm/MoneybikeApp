@@ -63,12 +63,4 @@
             "@php -r \"file_exists('.env') || copy('.env.heroku', '.env');\""
         ]
     }
-<<<<<<< HEAD
-
-=======
-    
-    "compile": [
-            "@php -r \"file_exists('.env') || copy('.env.heroku', '.env');\""
-        ]
->>>>>>> f2506e7291cdcdf601d904cb743c3cfcca35f7af
 }
