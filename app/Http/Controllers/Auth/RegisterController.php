@@ -89,11 +89,12 @@ class RegisterController extends Controller
         
         // dd($money);
         if(isset($data['image'])){
-            $path = Storage::disk('s3')->putFie('/users', $data['image'], 'public');
+            $path = Storage::disk('s3')->putFile('/users', $data['image'], 'public');
         } else {
             $path = null;
         }
-  
+        
+        dd($data);
         unset($data['_token']);
 
         $user =  User::create([
