@@ -78,9 +78,9 @@ class TweetsController extends Controller
 
     public function show(Request $request, Tweet $tweet, Comment $comment)
     {
-        // dd($request->id);
         $login_user = auth()->user();
         $post = $tweet->getTweet($request->id);
+        dd($post);
         // ポストに紐づいたUser_idを持ってきて情報を代入
             $post_user = User::find($post->user_id);
         // dd($post->profile_image);

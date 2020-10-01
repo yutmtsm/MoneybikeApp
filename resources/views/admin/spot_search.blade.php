@@ -37,14 +37,14 @@
              
                         <div class="col-md-12 mb-3">
                             <div class="card">
-                                <a href="{{ action('Other\MoneybikeController@mypage', ['id' => $timeline->id]) }}">
-                                <div class="card-haeder p-2 w-100 d-flex">
-                                    <img src="{{ $timeline->profile_image }}" class="rounded-circle" width="50" height="50">
-                                    <div class="ml-2 d-flex flex-column">
-                                        <p class="mb-0">{{ $timeline->user->name }}</p>
-                                        <p class="text-secondary">{{ $timeline->user->screen_name }}</p>
+                                <a href="{{ action('Other\MoneybikeController@mypage', ['user_id' => $timeline->user_id]) }}">
+                                    <div class="card-haeder p-2 w-100 d-flex">
+                                        <img src="{{ $timeline->profile_image }}" class="rounded-circle" width="50" height="50">
+                                        <div class="ml-2 d-flex flex-column">
+                                            <p class="mb-0">{{ $timeline->user->name }}</p>
+                                            <p class="text-secondary">{{ $timeline->user->screen_name }}</p>
+                                        </div>
                                     </div>
-                                </div>
                                 </a>
                                 <div class="card-body">
                                     <div class="card-title">
@@ -64,14 +64,14 @@
                                                 <p>{{ str_limit($timeline->text, 1500) }}</p>
                                             </div>
                                             <div class="detail-btn">
-                                                <a href="{{ action('Admin\TweetsController@show', ['user_id' => $timeline->user_id]) }}">
+                                                <a href="{{ action('Admin\TweetsController@show', ['id' => $timeline->id]) }}">
                                                     <button type="button" class="btn btn-primary btn-xs active" data_but="btn-xs"><i class='fa fa-search'></i> 詳しく見る</button>
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            
+                                
                                 <div class="card-footer py-1 d-flex justify-content-end bg-white">
                                     <!--ログイン中のユーザーなら編集可能-->
                                     @if ($timeline->user->id === Auth::user()->id)

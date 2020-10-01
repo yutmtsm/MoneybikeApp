@@ -80,15 +80,17 @@
         			<div class="col-md-12 mb-3">
                         <div class="card">
                             <div class="card-haeder p-3 w-100 d-flex">
-                                @if(isset($following_User->profile_image))
-                                <img src="{{ $following_User->profile_image }}" class="rounded-circle" width="50" height="50">
-                                @else
-                                <img src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/z6L5P9QTOHolCDoQUx9s0bRY6LoeQfZgSho7StYu.png" class="rounded-circle" width="50" height="50">
-                                @endif
-                                <div class="ml-2 d-flex flex-column">
-                                    <p class="mb-0">{{ $following_User->name }}</p>
-                                    <a href="{{ url('users/' .$user->id) }}" class="text-secondary">{{ $following_User->screen_name }}</a>
-                                </div>
+                                <a href="{{ action('Other\MoneybikeController@mypage', ['id' => $following_User->id]) }}">
+                                    @if(isset($following_User->profile_image))
+                                    <img src="{{ $following_User->profile_image }}" class="rounded-circle" width="50" height="50">
+                                    @else
+                                    <img src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/z6L5P9QTOHolCDoQUx9s0bRY6LoeQfZgSho7StYu.png" class="rounded-circle" width="50" height="50">
+                                    @endif
+                                    <div class="ml-2 d-flex flex-column">
+                                        <p class="mb-0">{{ $following_User->name }}</p>
+                                        <a href="{{ url('users/' .$user->id) }}" class="text-secondary">{{ $following_User->screen_name }}</a>
+                                    </div>
+                                </a>
                                 @if (auth()->user()->isFollowed($following_User->id))
                                     <div class="px-2">
                                         <span class="px-1 bg-secondary text-light">フォローされています</span>
@@ -121,11 +123,13 @@
         			<div class="col-md-12 mb-3">
                         <div class="card">
                             <div class="card-haeder p-3 w-100 d-flex">
-                                <img src="{{ $followed_User->profile_image }}" class="rounded-circle" width="50" height="50">
-                                <div class="ml-2 d-flex flex-column">
-                                    <p class="mb-0">{{ $followed_User->name }}</p>
-                                    <a href="{{ url('other_users/' .$followed_User->id) }}" class="text-secondary">{{ $followed_User->screen_name }}</a>
-                                </div>
+                                <a href="{{ action('Other\MoneybikeController@mypage', ['id' => $followed_User->id]) }}">
+                                    <img src="{{ $followed_User->profile_image }}" class="rounded-circle" width="50" height="50">
+                                    <div class="ml-2 d-flex flex-column">
+                                        <p class="mb-0">{{ $followed_User->name }}</p>
+                                        <a href="{{ url('other_users/' .$followed_User->id) }}" class="text-secondary">{{ $followed_User->screen_name }}</a>
+                                    </div>
+                                </a>
                                 @if (auth()->user()->isFollowed($followed_User->id))
                                     <div class="px-2">
                                         <span class="px-1 bg-secondary text-light">フォローされています</span>

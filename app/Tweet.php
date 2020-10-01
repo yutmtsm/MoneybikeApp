@@ -71,10 +71,15 @@ class Tweet extends Model
         return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
     // 自分のは抜く
-    public function getOtherTimeLines(Int $user_id, Array $follow_ids)
+    public function getOtherTimeLines(Int $login_user_id, Int $other_user_id, Array $follow_ids)
     {
-        return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
+        return $this->where('user_id', '<>', $login_user_id)->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
+    // 予備
+    // public function getOtherTimeLiness(Int $user_id, Array $follow_ids)
+    // {
+    //     return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
+    // }
     // 自分のは抜く
     public function getOthersTimeLines(Int $user_id)
     {
@@ -106,7 +111,7 @@ class Tweet extends Model
     }
     
     // 詳細画面
-    public function getTweet(Int $tweet_id)
+    public function getTweet( $tweet_id)
     {
         return $this->with('user')->where('id', $tweet_id)->first();
     }
