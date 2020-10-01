@@ -91,7 +91,7 @@ class RegisterController extends Controller
         if(isset($data['image'])){
             $path = Storage::disk('s3')->putFile('/users', $data['image'], 'public');
         } else {
-            $path = "noimage";
+            $path = "https://yutmtsm.s3.ap-northeast-1.amazonaws.com/z6L5P9QTOHolCDoQUx9s0bRY6LoeQfZgSho7StYu.png";
         }
         
         // dd($data);

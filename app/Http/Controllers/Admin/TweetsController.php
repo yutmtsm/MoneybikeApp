@@ -61,7 +61,7 @@ class TweetsController extends Controller
             $path = Storage::disk('s3')->putFile('/posts', $form['image'], 'public');
             $tweet->image_path = Storage::disk('s3')->url($path);
         } else {
-            $tweet->image_path = "https://yutmtsm.s3-ap-northeast-1.amazonaws.com/noimage.png";
+            $tweet->image_path = "https://yutmtsm.s3.ap-northeast-1.amazonaws.com/z6L5P9QTOHolCDoQUx9s0bRY6LoeQfZgSho7StYu.png";
         }
         
         // 不要な情報を削除

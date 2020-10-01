@@ -31,7 +31,7 @@ class BikeController extends Controller
             //画像のパス先を格納
             $mybike->image_path = Storage::disk('s3')->url($path);
         } else {
-            $mybike->image_path = "https://yutmtsm.s3-ap-northeast-1.amazonaws.com/noimage.png";
+            $mybike->image_path = "https://yutmtsm.s3.ap-northeast-1.amazonaws.com/z6L5P9QTOHolCDoQUx9s0bRY6LoeQfZgSho7StYu.png";
         }
         unset($form['image']);
         unset($form['_token']);
@@ -62,7 +62,7 @@ class BikeController extends Controller
         
         if($request->remove == 'true'){
             // 削除にチェックを入れた場合
-            $mybike_form['image_path'] = null;
+            $mybike_form['image_path'] = "https://yutmtsm.s3.ap-northeast-1.amazonaws.com/z6L5P9QTOHolCDoQUx9s0bRY6LoeQfZgSho7StYu.png";
         } elseif($request->file('image')){
             // 画像を変更した場合
             // $path = $request->file('image')->store('public/image/bike');
