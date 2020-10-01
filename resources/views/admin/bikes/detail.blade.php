@@ -13,9 +13,9 @@
                <div class="col-md-8 d-flex no-gutters">
                    <a class="other-link" href="{{ action('MoneybikeController@otherpage', ['id' => $post->user_id]) }}">
                        @if(isset($post->image_icon))
-                       <img class="post-icon" src="/storage/image/post/{{ $post->image_icon }}">
+                       <img class="post-icon" src="{{ $post->image_icon }}">
                         @else
-                        <img class="post-icon" src="/storage/image/noimage.png">
+                        <img class="post-icon" src="<img class="post-icon" src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/z6L5P9QTOHolCDoQUx9s0bRY6LoeQfZgSho7StYu.png">">
                         @endif
                     </a>
                    <div class="post-top">

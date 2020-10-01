@@ -83,7 +83,7 @@
                                 @if(isset($following_User->profile_image))
                                 <img src="{{ $following_User->profile_image }}" class="rounded-circle" width="50" height="50">
                                 @else
-                                <img src="/storage/noimage.png" class="rounded-circle" width="50" height="50">
+                                <img src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/z6L5P9QTOHolCDoQUx9s0bRY6LoeQfZgSho7StYu.png" class="rounded-circle" width="50" height="50">
                                 @endif
                                 <div class="ml-2 d-flex flex-column">
                                     <p class="mb-0">{{ $following_User->name }}</p>

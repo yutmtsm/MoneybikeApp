@@ -98,9 +98,9 @@
                     <!-- 画像 -->
                     <div class="form-group">
                         @if(isset($post->image_path))
-                            <img width="300px" height="auto" src="/storage/image/posts/{{$post->image_path}}">
+                            <img width="300px" height="auto" src="{{$post->image_path}}">
                         @else
-                            <img width="300px" height="auto" src="/storage/noimage.png">
+                            <img width="300px" height="auto" src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/z6L5P9QTOHolCDoQUx9s0bRY6LoeQfZgSho7StYu.png">
                         @endif
                     </div>
                     <div class="col-md-6 comment-btn">
@@ -118,9 +118,9 @@
                                         <div class="col-md-12 d-flex no-gutters text-secondary">
                                             <div>
                                                 @if(isset($post->profile_image_path))
-                                               <img class="post-icon" src="/storage/profile_image/{{ $post->profile_image_path }}">
+                                               <img class="post-icon" src="{{ $post->profile_image_path }}">
                                                 @else
-                                                <img class="post-icon" src="/storage/image/noimage.png">
+                                                <img class="post-icon" src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/z6L5P9QTOHolCDoQUx9s0bRY6LoeQfZgSho7StYu.png">
                                                 @endif
                                                 <div class="v_line_fix" style="margin:5px 0 5px 25px;width: 2px;height: 50px;background-color: brown;margin:"></div>
                                             </div>
@@ -137,9 +137,9 @@
                                         <div class="col-md-12 d-flex no-gutters text-secondary">
                                             <div>
                                                 @if(isset($post->image_icon))
-                                               <img class="post-icon" src="/storage/image/user/{{ $login_user->image_path }}">
+                                               <img class="post-icon" src="{{ $login_user->image_path }}">
                                                 @else
-                                                <img class="post-icon" src="/storage/image/noimage.png">
+                                                <img class="post-icon" src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/z6L5P9QTOHolCDoQUx9s0bRY6LoeQfZgSho7StYu.png">
                                                 @endif
                                             </div>
                                             <form action="{{ action('Admin\CommentsController@store', ['tweet_id' => $post->id]) }}" method="post">
