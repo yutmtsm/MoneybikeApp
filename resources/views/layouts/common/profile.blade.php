@@ -53,7 +53,7 @@
                 <p class="personal-title text-bold text-large text-ornament">マイバイク情報</p>
                 @foreach($mybikes as $mybike)
                     <div class="d-flex">
-                        <img class="bike-icon" src="storage/image/bike/{{ $mybike->image_path }}">
+                        <img class="bike-icon" src="{{ $mybike->image_path }}">
                         <p class="bike-text"><p>{{ $mybike->manufacturer }}</p></p>
                         <p class="bike-text">『{{ $mybike->type }}』( {{ $mybike->engine_displacement }} )</p>
                         
