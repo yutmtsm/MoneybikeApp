@@ -70,8 +70,8 @@ class MoneybikeController extends Controller
         $total_spending22 = null;$total_spending23 = null;$total_spending24 = null;$total_spending25 = null;$total_spending26 = null;$total_spending27 = null;$total_spending28 = null;
         $total_spending29 = null;$total_spending30 = null;$total_spending31 = null;$total_spending32 = null;$total_spending33 = null;$total_spending34 = null;$total_spending35 = null;
         
-        $yeartimelines = $tweet->getYearTimelines($user->id, $year);
-        $monthtimelines = $tweet->getMonthTimeLines($user->id, $year, $month);
+        $yeartimelines = $tweet->getYearTimelines($other_user->id, $year);
+        $monthtimelines = $tweet->getMonthTimeLines($other_user->id, $year, $month);
         $total_year_cost = 0;
         $total_month_cost = 0;
         // 年間総コストの抽出
