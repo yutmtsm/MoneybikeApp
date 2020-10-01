@@ -84,7 +84,7 @@ class Tweet extends Model
     // すべての投稿を取得
     public function getAllTimeLines()
     {
-        return $this->simplePaginate(10);
+        return $this->orderByDesc('created_at')->simplePaginate(10);
     }
     // 年間記事を取得い
     public function getYearTimelines($user_id, $year)
