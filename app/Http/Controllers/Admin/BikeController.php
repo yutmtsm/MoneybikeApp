@@ -49,7 +49,6 @@ class BikeController extends Controller
         if(empty($mybike)){
             abort(404);
         }
-        dd($mybike);
         return view('admin.bikes.edit', ['mybike_form' => $mybike]);
     }
     
