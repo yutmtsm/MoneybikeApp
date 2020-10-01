@@ -45,7 +45,7 @@ class BikeController extends Controller
     public function edit(Request $request)
     {
         $mybike = Bike::find($request->id);
-        // dd($mybike);
+        
         if(empty($mybike)){
             abort(404);
         }
@@ -56,10 +56,10 @@ class BikeController extends Controller
     {
         // dd($request->manufacturer);
         $mybike = Bike::find($request->id);
-        // dd($mybike);
+        
         
         $mybike_form = $request->all();
-        // dd($mybike_form);
+        
         if($request->remove == 'true'){
             // 削除にチェックを入れた場合
             $mybike_form['image_path'] = null;
@@ -79,9 +79,9 @@ class BikeController extends Controller
         unset($mybike_form['remove']);
         
         $mybike->fill($mybike_form);
-        // dd($mybike);
+        
         $mybike->save;
-        // dd($mybike);
+        
         
         return redirect('mypage');
     }
