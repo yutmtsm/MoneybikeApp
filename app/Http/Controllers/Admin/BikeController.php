@@ -31,7 +31,7 @@ class BikeController extends Controller
             //画像のパス先を格納
             $mybike->image_path = Storage::disk('s3')->url($path);
         } else {
-            $mybike->image_path = "noimage.png";
+            $mybike->image_path = null;
         }
         unset($form['image']);
         unset($form['_token']);

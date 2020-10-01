@@ -63,6 +63,7 @@ class TweetsController extends Controller
         } else {
             $tweet->image_path = null;
         }
+        
         // 不要な情報を削除
         unset($form['image']);
         unset($form['_token']);
