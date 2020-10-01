@@ -54,9 +54,9 @@
                                     <div class="d-flex">
                                         <div class="spot-image">
                                             @if(isset($timeline->image_path))
-                                                <img src="/storage/image/posts/{{ $timeline->image_path }}">
+                                                <img src="{{ $timeline->image_path }}">
                                             @else
-                                                <img src="/storage/noimage.png">
+                                                <img src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/z6L5P9QTOHolCDoQUx9s0bRY6LoeQfZgSho7StYu.png">
                                             @endif
                                         </div>
                                         <div class="post-text">
