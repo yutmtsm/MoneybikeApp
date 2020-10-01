@@ -5,13 +5,13 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
 use App\Comment;
 use App\User;
 use App\Tweet;
 use App\Follower;
 use DB;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 
 class TweetsController extends Controller
 {
