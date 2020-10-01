@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Bike;
 use Auth;
 
@@ -48,7 +49,7 @@ class BikeController extends Controller
         if(empty($mybike)){
             abort(404);
         }
-        
+        dd($mybike);
         return view('admin.bikes.edit', ['mybike_form' => $mybike]);
     }
     
