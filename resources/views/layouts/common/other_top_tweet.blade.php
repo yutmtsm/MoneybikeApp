@@ -1,6 +1,8 @@
     <div class="row justify-content-center bg-light">
         <div class="col-md-12 mb-3 text-right bg-light">
-            <a href="{{ action('Admin\TweetsController@create') }}" class="btn btn-md btn-primary mt-2">新規投稿</a>
+            @auth
+            <button class="btn btn-md btn-primary mt-2">{{ $other->name }}さんの関連投稿一覧</button>
+            @endauth
         </div>
         @if (isset($timelines))
             @foreach ($timelines as $timeline)
