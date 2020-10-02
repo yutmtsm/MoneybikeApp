@@ -25,7 +25,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('mypage/spot_search/search', 'Admin\MoneybikeController@search');
     
     // ユーザ関連
-    Route::resource('mypage/users', 'Admin\UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
+    Route::resource('mypage/users', 'Admin\UsersController', ['only' => ['index', 'show', 'edit']]);
+    Route::get('mynews/users/edit', 'Admin\UsersController@edit');
+    Route::post('mynews/users/edit', 'Admin\UsersController@update');
 
     // フォロー/フォロー解除を追加
     Route::post('users/{user}/follow', 'Admin\UsersController@follow')->name('follow');

@@ -75,24 +75,38 @@ class UsersController extends Controller
         ]);
     }
     
-    public function edit(User $user)
+    public function edit(Request $request)
     {
+        $user = User::find($request->id);
         return view('admin.users.edit', ['user' => $user]);
     }
 
     public function update(Request $request, User $user)
     {
-        dd($request);
-        $data = $request->all();
-        $validator = Validator::make($data, [
+        $user = User::find($request->id);
+        $form = $request->all();
+        
+        $validator = Validator::make($form, [
             'screen_name'   => ['required', 'string', 'max:50', Rule::unique('users')->ignore($user->id)],
             'name'          => ['required', 'string', 'max:255'],
-            'profile_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            'image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
             'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)]
         ]);
         $validator->validate();
-        $user->updateProfile($data);
-
+        
+        // 画像の判定処理
+        if(isset($form['image'])){
+            $path = Storage::disk('s3')->putFile('/users',$form['image'],'public');
+            $user->profile_image = Storage::disk('s3')->url($path);
+        } else {
+            $user->profile_image = "https://yutmtsm.s3.ap-northeast-1.amazonaws.com/users/siiRse9NafrvwM6Te9scdx4yh7osd7SEQMcsDqzq.jpeg";
+        }
+        
+        unset($form['_token']);
+        unset($form['image']);
+        
+        $user->fill($form)->save();
+        
         return redirect('mypage');
     }
     

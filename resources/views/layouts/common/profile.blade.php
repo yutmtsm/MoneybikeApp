@@ -18,7 +18,7 @@
                 </div>
                 <div class="mb-1">
                     @if ($user->id === Auth::user()->id)
-                        <a href="{{ url('mypage/users/' .$user->id .'/edit') }}" class="btn btn-primary">プロフィール編集</a>
+                        <a href="{{ action('Admin\UsersController@edit', ['id' => $user->id]) }}" class="btn btn-primary">プロフィール編集</a>
                     @else
                         @if ($is_following)
                             <form action="{{ route('unfollow', ['id' => $user->id]) }}" method="POST" class="mb-2">

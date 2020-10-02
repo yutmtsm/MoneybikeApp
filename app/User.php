@@ -70,29 +70,29 @@ class User extends Authenticatable
         return (boolean) $this->followers()->where('following_id', $user_id)->first(['id']);
     }
     // プロフィールの更新
-    public function updateProfile(Array $params)
-    {
-        if (isset($params['profile_image'])) {
-            $file_name = $params['profile_image']->store('public/profile_image/');
+    // public function updateProfile(Array $params)
+    // {
+    //     if (isset($params['profile_image'])) {
+    //         $file_name = $params['profile_image']->store('public/profile_image/');
 
-            $this::where('id', $this->id)
-                ->update([
-                    'screen_name'   => $params['screen_name'],
-                    'name'          => $params['name'],
-                    'profile_image' => basename($file_name),
-                    'email'         => $params['email'],
-                ]);
-        } else {
-            $this::where('id', $this->id)
-                ->update([
-                    'screen_name'   => $params['screen_name'],
-                    'name'          => $params['name'],
-                    'email'         => $params['email'],
-                ]); 
-        }
+    //         $this::where('id', $this->id)
+    //             ->update([
+    //                 'screen_name'   => $params['screen_name'],
+    //                 'name'          => $params['name'],
+    //                 'profile_image' => basename($file_name),
+    //                 'email'         => $params['email'],
+    //             ]);
+    //     } else {
+    //         $this::where('id', $this->id)
+    //             ->update([
+    //                 'screen_name'   => $params['screen_name'],
+    //                 'name'          => $params['name'],
+    //                 'email'         => $params['email'],
+    //             ]); 
+    //     }
 
-        return;
-    }
+    //     return;
+    // }
     
     // ログイン以外のユーザー取得
     public function getAllUser($user_id)

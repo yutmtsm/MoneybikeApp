@@ -9,18 +9,17 @@
                 <div class="card-header">Update</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ url('mypage/users/' .$user->id .'/edit') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ action('Admin\UsersController@update') }}" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
 
                         <div class="form-group row align-items-center">
-                            <label for="profile_image" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
+                            <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
 
                             <div class="col-md-6 d-flex align-items-center">
                                 <img src="{{ $user->profile_image }}" class="mr-2 w-5 h-5 rounded-circle" width="80" height="80" alt="profile_image">
-                                <input type="file" name="profile_image" class="@error('profile_image') is-invalid @enderror" autocomplete="profile_image">
+                                <input type="file" name="image" class="@error('image') is-invalid @enderror" autocomplete="image">
 
-                                @error('profile_image')
+                                @error('image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -100,6 +99,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
+                                <input type="hidden" name="id" value="{{ $user->id }}">
                                 <button type="submit" class="btn btn-primary">更新する</button>
                             </div>
                         </div>
