@@ -12,6 +12,7 @@ use App\Follower;
 use Auth;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Facades\Storage;
 
 class MoneybikeController extends Controller
 {
