@@ -40,13 +40,13 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(self::class, 'followers', 'following_id', 'followed_id');
     }
-    
+    // 全てのユーザー情報を取得
     public function getAllUsers(Int $user_id)
     {
         return $this->Where('id', '<>', $user_id)->paginate(5);
     }
     
-        // フォローする
+    // フォローする
     public function follow(Int $user_id) 
     {
         return $this->follows()->attach($user_id);
@@ -69,7 +69,7 @@ class User extends Authenticatable
     {
         return (boolean) $this->followers()->where('following_id', $user_id)->first(['id']);
     }
-    
+    // プロフィールの更新
     public function updateProfile(Array $params)
     {
         if (isset($params['profile_image'])) {
