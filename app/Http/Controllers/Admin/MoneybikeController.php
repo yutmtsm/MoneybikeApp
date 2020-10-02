@@ -129,20 +129,7 @@ class MoneybikeController extends Controller
         $timelines = $tweet->getAllTimeLines();
         $cond_title = "";
         
-        foreach($timelines as $timeline){
-            $users = User::find($timeline->user_id);
-            // dd($users);
-            $timeline->user_name = $users->name;
-            $timeline->screen_name = $users->screen_name;
-            $timeline->id = $users->id;
-            if($users->profile_image != null){
-                $timeline->profile_image = $users->profile_image;
-                // dd($post->image_icon);
-            } else {
-                $timeline->profile_image = null;
-            }
-            // dd($timeline->id);
-        }
+        
         
         // dd($posts);
         return view('admin.spot_search',[
