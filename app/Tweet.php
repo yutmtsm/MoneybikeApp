@@ -63,24 +63,18 @@ class Tweet extends Model
         return $this->where('user_id', $user_id)->count();
     }
     
-    // 一覧画面
+    // 自分の投稿を含む全てを取得
     public function getTimeLines(Int $user_id, Array $follow_ids)
     {
-        // 自身とフォローしているユーザIDを結合する
         $follow_ids[] = $user_id;
         return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
-    // 自分のは抜く
+    // 自分のは抜く＆フォローしているユーザーの投稿
     public function getOtherTimeLines(Int $login_user_id, Int $other_user_id, Array $follow_ids)
     {
         return $this->where('user_id', '<>', $login_user_id)->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
-    // 予備
-    // public function getOtherTimeLiness(Int $user_id, Array $follow_ids)
-    // {
-    //     return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
-    // }
-    // 自分のは抜く
+    // 自分のは抜く全ての投稿を取得
     public function getOthersTimeLines(Int $user_id)
     {
         // 自身とフォローしているユーザIDを結合する
@@ -132,7 +126,7 @@ class Tweet extends Model
 
         return;
     }
-    
+    // 対象記事を取得
     public function getEditTweet(Int $user_id, Int $tweet_id)
     {
         return $this->where('user_id', $user_id)->where('id', $tweet_id)->first();
@@ -146,7 +140,7 @@ class Tweet extends Model
 
         return;
     }
-    
+    // 投稿記事の削除
     public function tweetDestroy(Int $user_id, Int $tweet_id)
     {
         return $this->where('user_id', $user_id)->where('id', $tweet_id)->delete();

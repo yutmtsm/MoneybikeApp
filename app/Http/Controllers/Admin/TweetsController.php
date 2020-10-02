@@ -19,11 +19,10 @@ class TweetsController extends Controller
     public function index(Tweet $tweet, Follower $follower)
     {
         $user = auth()->user();
-        // dd($user);
+
         $is_following = $user->isFollowing($user->id);
         $is_followed = $user->isFollowed($user->id);
         $timelines = $tweet->getUserTimeLine($user->id);
-        // dd($timelines);
         $tweet_count = $tweet->getTweetCount($user->id);
         $follow_count = $follower->getFollowCount($user->id);
         $follower_count = $follower->getFollowerCount($user->id);
@@ -80,7 +79,6 @@ class TweetsController extends Controller
     {
         $login_user = auth()->user();
         $post = $tweet->getTweet($request->id);
-        dd($post);
         // ポストに紐づいたUser_idを持ってきて情報を代入
             $post_user = User::find($post->user_id);
         // dd($post->profile_image);
@@ -107,13 +105,11 @@ class TweetsController extends Controller
     
     public function showDay(Request $request, Tweet $tweet, Comment $comment)
     {
-        // dd($request);
         $date = $request->created_at;
         $date = $request->created_at;
         $year = $tweet->getYear($date);
         $month = $tweet->getMonth($date);
         $day = $tweet->getDay($date);
-        // dd($day);
         // $aa = $aaa->pluck('created_at')->toArray();
         
         $login_user = auth()->user();
@@ -131,9 +127,7 @@ class TweetsController extends Controller
 
     public function edit(Request $request)
     {
-        //dd($request);
         $post = Tweet::find($request->id);
-        //dd($post);
         if(empty($post)){
             abort(404);
         }
@@ -144,15 +138,14 @@ class TweetsController extends Controller
 
     public function update(Request $request, Comment $comment)
     {
-        // dd($request);
         $this->validate($request, Tweet::$rules);
         $post = Tweet::find($request->id);
         // ポストに紐づいたUser_idを持ってきて情報を代入
             $post_user = User::find($post->user_id);
         $login_user = Auth::user();
-        // dd($post);
+
         $post_form = $request->all();
-        // dd($post_form);
+
         $total_cost = $post->addmission_fee + $post->purchase_cost;
         // 削除・画像をそのまま・変更によって切り分け
         if ($request->remove == 'true') {
@@ -169,7 +162,7 @@ class TweetsController extends Controller
         unset($post_form['remove']);
         
         $post->fill($post_form)->save();
-        // dd($post);
+
         $total_cost = $post->addmission_fee + $post->purchase_cost;
         
         $users = DB::table('users')->get();
