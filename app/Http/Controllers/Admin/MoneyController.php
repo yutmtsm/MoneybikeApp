@@ -9,6 +9,7 @@ use App\Money;
 use App\Tweet;
 use App\Bike;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 
 class MoneyController extends Controller
 {

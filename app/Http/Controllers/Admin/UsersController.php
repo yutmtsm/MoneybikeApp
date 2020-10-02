@@ -10,6 +10,7 @@ use App\User;
 use App\Tweet;
 use App\Follower;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
