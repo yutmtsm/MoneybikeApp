@@ -119,8 +119,8 @@
                                         <h5 class="modal-title" id="exampleModal3Label">
                                         <div class="col-md-12 d-flex no-gutters text-secondary">
                                             <div>
-                                                @if(isset($post->user->profile_image_path))
-                                               <img class="post-icon" src="{{ $post->user->profile_image_path }}">
+                                                @if(isset($post_user->profile_image))
+                                               <img class="post-icon" src="{{ $post_user->profile_image }}">
                                                 @else
                                                 <img class="post-icon" src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/z6L5P9QTOHolCDoQUx9s0bRY6LoeQfZgSho7StYu.png">
                                                 @endif
