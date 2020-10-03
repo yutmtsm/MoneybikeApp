@@ -103,6 +103,16 @@ class Tweet extends Model
 
         return $date;
     }
+    // 条件検索
+    public function getSerach($cond_title)
+    {
+        return $this->where('title', 'like', "%$cond_title%")
+            ->orwhere('text', 'like', "%$cond_title%")
+            ->orwhere('created_at', 'like', "%$cond_title%")
+            ->orwhere('spot', 'like', "%$cond_title%")
+            ->orwhere('pref', 'like', "%$cond_title%")
+            ->orderByDesc('created_at')->simplePaginate(4);
+    }
     
     // 詳細画面
     public function getTweet( $tweet_id)

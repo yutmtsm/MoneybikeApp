@@ -80,7 +80,7 @@
                                                 <i class="fas fa-ellipsis-v fa-fw"></i>
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <a href="{{ url('tweets/' .$timeline->id .'/edit') }}" class="dropdown-item">編集</a>
+                                                <a href="{{ action('Admin\TweetsController@edit', ['id' => $timeline->id]) }}" class="dropdown-item">編集</a>
                                                 <a href="{{ action('Admin\TweetsController@delete', ['id' => $timeline->id]) }}" class="dropdown-item">削除</a>
                                             </div>
                                         </div>

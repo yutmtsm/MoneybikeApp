@@ -142,37 +142,18 @@ class MoneybikeController extends Controller
     public function search(Request $request, Tweet $tweet)
     {
         $login_user = Auth::user();
-        $all_users = User::Where('id', '<>', $login_user->id)->paginate(5);
-        
+        $all_users = $login_user->getAllUser($login_user->id);
+        $cond_title = "";
         $cond_title = $request->cond_title;
         
         //検索⇨投稿記事
         if($cond_title != ''){
             // 検索されたら検索結果を取得する
-            $timelines = DB::table('tweets')->where('title', 'like', "%$cond_title%")
-            ->orwhere('text', 'like', "%$cond_title%")
-            ->orwhere('created_at', 'like', "%$cond_title%")
-            ->orwhere('spot', 'like', "%$cond_title%")
-            ->orwhere('pref', 'like', "%$cond_title%")
-            ->orderByDesc('created_at')->simplePaginate(4);
+            $timelines = $tweet->getSerach($cond_title);
             // dd($timelines);
         } else {
             $timelines = DB::table('tweets')->orderByDesc('created_at')->simplePaginate(3);
         }
-        
-        // foreach($timelines as $timeline){
-        //     $users = User::find($timeline->user_id);
-        //     // dd($users);
-        //     $timeline->user_name = $users->name;
-        //     $timeline->screen_name = $users->screen_name;
-        //     if($users->profile_image != null){
-        //         $timeline->profile_image = $users->profile_image;
-        //         // dd($post->image_icon);
-        //     } else {
-        //         $timeline->profile_image = null;
-        //     }
-        //     // dd($timeline->profile_image);
-        // }
         
         unset($request['_token']);
         return view('admin.spot_search', [
