@@ -159,7 +159,7 @@ class MoneybikeController extends Controller
         } else {
             $timelines = DB::table('tweets')->orderByDesc('created_at')->simplePaginate(3);
         }
-        // dd($timelines);
+        
         // foreach($timelines as $timeline){
         //     $users = User::find($timeline->user_id);
         //     // dd($users);
