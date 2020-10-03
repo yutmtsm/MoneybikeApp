@@ -93,8 +93,8 @@ class TweetsController extends Controller
         // 情報に紐づいたユーザー情報を取得
         foreach($comments as $comment)
         {
+            dd($comment->user->image_path);
             $post_comment_user = User::find($comment->user_id);
-            dd($post_comment_user);
             $comments->user_name = $post_comment_user->name;
             $comments->image_path = $post_comment_user->profile_image;
         }
