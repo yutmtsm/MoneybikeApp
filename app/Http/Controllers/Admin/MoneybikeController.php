@@ -141,7 +141,6 @@ class MoneybikeController extends Controller
     
     public function search(Request $request, Tweet $tweet)
     {
-        // dd($request);
         $login_user = Auth::user();
         $all_users = User::Where('id', '<>', $login_user->id)->paginate(5);
         
