@@ -91,13 +91,13 @@ class TweetsController extends Controller
         
         
         // 情報に紐づいたユーザー情報を取得
-        foreach($comments as $comment)
-        {
-            dd($comment->user->image_path);
-            $post_comment_user = User::find($comment->user_id);
-            $comments->user_name = $post_comment_user->name;
-            $comments->image_path = $post_comment_user->profile_image;
-        }
+        // foreach($comments as $comment)
+        // {
+        //     dd($comment->user->profile_image);
+        //     $post_comment_user = User::find($comment->user_id);
+        //     $comments->user_name = $post_comment_user->name;
+        //     $comments->image_path = $post_comment_user->profile_image;
+        // }
 
         return view('admin.posts.show', [
             'login_user' => $login_user, 'post' => $post, 'post_user' => $post_user,

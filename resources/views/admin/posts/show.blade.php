@@ -194,13 +194,16 @@
                 <div class="card-body">
                     
                     <h5 class="card-title d-flex no-gutters" style="margin-top:3px;">
-                        <a class="other-link" href="#">
-                            @if(isset($comment->image_path))
-                            <img  class="post-comment-icon" src="{{ $comment->image_path }}">
+                        <a class="other-link d-flex" href="{{ action('Other\MoneybikeController@mypage', ['id' => $comment->user_id]) }}">
+                            @if(isset($comment->user->profile_image))
+                            <img  class="post-comment-icon" src="{{ $comment->user->profile_image }}">
                             @else
                             <img class="post-comment-icon" src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/z6L5P9QTOHolCDoQUx9s0bRY6LoeQfZgSho7StYu.png">
                             @endif
-                            <div class="post-name" style="padding-top:5px;">{{ $comment->user_name }}</div>
+                            <div>
+                                <div class="text-primary" style="font-size:5px;">{{ $comment->user->name }}</div>
+                                <div class="text-primary" style="font-size:5px;">{{ $comment->user->screen_name }}</div>
+                            </div>
                         </a>
                     </h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{ $comment->created_at }}</h6>
