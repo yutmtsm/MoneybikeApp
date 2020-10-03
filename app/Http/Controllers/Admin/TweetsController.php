@@ -94,6 +94,7 @@ class TweetsController extends Controller
         foreach($comments as $comment)
         {
             $post_comment_user = User::find($comment->user_id);
+            dd($post_comment_user);
             $comments->user_name = $post_comment_user->name;
             $comments->image_path = $post_comment_user->profile_image;
         }
