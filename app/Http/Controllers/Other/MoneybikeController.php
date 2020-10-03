@@ -27,7 +27,7 @@ class MoneybikeController extends Controller
         $follow_ids = $follower->followingIds($other_user->id);
         // followed_idだけ抜き出す　上のを
         $following_ids = $follow_ids->pluck('followed_id')->toArray();
-        $timelines = $tweet->getOtherTimeLines($login_user->id, $other_user->id, $following_ids);
+        $timelines = $tweet->getTimeLines($login_user->id, $following_ids);
         // 自分の指定月の投稿記事を取得
         $dt = Carbon::now('Asia/Tokyo');
         $year_month = substr( $dt, 0, 7); 

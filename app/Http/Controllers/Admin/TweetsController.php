@@ -89,12 +89,13 @@ class TweetsController extends Controller
         // 合計を産出
         $total_cost = $post->addmission_fee + $post->purchase_cost;
         
+        
         // 情報に紐づいたユーザー情報を取得
         foreach($comments as $comment)
         {
             $post_comment_user = User::find($comment->user_id);
             $comments->user_name = $post_comment_user->name;
-            $comments->image_path = $post_comment_user->image_path;
+            $comments->image_path = $post_comment_user->profile_image;
         }
 
         return view('admin.posts.show', [

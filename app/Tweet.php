@@ -70,7 +70,7 @@ class Tweet extends Model
         return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
     // 自分のは抜く＆フォローしているユーザーの投稿
-    public function getOtherTimeLines(Int $login_user_id, Int $other_user_id, Array $follow_ids)
+    public function getOtherTimeLines(Int $login_user_id, Array $follow_ids)
     {
         return $this->where('user_id', '<>', $login_user_id)->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate(50);
     }
