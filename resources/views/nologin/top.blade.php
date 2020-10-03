@@ -32,8 +32,8 @@
         <h2 class="heading text-center">バイクのお金周りに関するアプリ</h2>
     	<div class="projects row pt-4">
         	<div class="projectsItem col-md-4"><a href="#purpose"><img src="{{ asset('/images/top1.jpeg') }}"><p>ツーリングスポットの検索＆使途金</p></a></div>
-        	<div class="projectsItem col-md-4"><a href="#task"><img src="cmn/img/index/concept.3.jpg"><p>他ユーザーの維持費情報</p></a></div>
-        	<div class="projectsItem col-md-4"><a href="#market"><img src="cmn/img/index/concept.4.jpg"><p>マイバイクのお金管理</p></a></div>
+        	<div class="projectsItem col-md-4"><a href="#task"><img src="{{ asset('/images/top2.jpeg') }}"><p>他ユーザーの維持費情報</p></a></div>
+        	<div class="projectsItem col-md-4"><a href="#market"><img src="{{ asset('/images/top1.jpeg') }}"><p>マイバイクのお金管理</p></a></div>
         </div>
     </div>
 </div>
