@@ -4,7 +4,7 @@
 @section('title', '新規投稿')
 
 @section('content')
-<div class="top-wrapper">
+<div id="top-wrapper">
     <div class="container">
         <div class="top-comment">
             <div class="inner-container">
@@ -24,6 +24,17 @@
                 </div><!-- /map_search -->   
             </div>
         </div><!--top-comment-->
+    </div>
+</div><!--top-wrapper-->
+<div id="service-wrapper" class="mt-5">
+    <div class="container">
+        <a href="#timeline"><div  class="mainVisual"></div></a>
+        <h2 class="heading text-center">バイクのお金周りに関するアプリ</h2>
+    	<div class="projects row pt-4">
+        	<div class="projectsItem col-md-4"><a href="#purpose"><img src="{{ asset('/images/top1.jpeg') }}"><p>ツーリングスポットの検索＆使途金</p></a></div>
+        	<div class="projectsItem col-md-4"><a href="#task"><img src="cmn/img/index/concept.3.jpg"><p>他ユーザーの維持費情報</p></a></div>
+        	<div class="projectsItem col-md-4"><a href="#market"><img src="cmn/img/index/concept.4.jpg"><p>マイバイクのお金管理</p></a></div>
+        </div>
     </div>
 </div>
 

@@ -64,9 +64,9 @@
                                 @csrf
                                 </form>
                                 @else
-                                <li><a href="#">{{ __('messages.nav_home') }}</a></li>
+                                <li><a href="#top-wrapper">{{ __('messages.nav_home') }}</a></li>
+                                <li><a href="#service-wrapper">{{ __('messages.nav_searvice') }}</a></li>
                                 <li><a href="#">{{ __('messages.nav_about') }}</a></li>
-                                <li><a href="#">{{ __('messages.nav_searvice') }}</a></li>
                                 @if (Route::has('register'))
                                 <li><a href="{{ route('register') }}">{{ __('messages.nav_register') }}</a></li>
                                 @endif
