@@ -1,7 +1,7 @@
 .top-wrapper {
   padding: 180px 0 100px 0;
   height: 600px;
-  background-image: url("/storage/images/topimage.jpeg");
+  background-image: url("/images/topimage.jpeg");
   background-size: cover;
   color: white;
   text-align: center;
@@ -11,6 +11,21 @@
   opacity: 0.7;
   font-size: 45px;
   letter-spacing: 5px;
+}
+
+.top-comment{
+  height: 90%;
+  width: 40%;
+  margin: 0 auto 0.1%;
+  background-color: rgba(0,0,0,0.42);
+  z-index: 0;
+  color: white;
+  text-align: center;
+}
+
+.inner-container{
+  width: 80%;
+  margin: 0 auto;
 }
 
 .add-btn {

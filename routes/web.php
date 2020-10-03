@@ -75,4 +75,6 @@ Route::group(['middleware' => 'auth'], function() {
 
 Auth::routes();
 
+Route::get('/', 'MoneybikeController@top');
+
 Route::get('/home', 'HomeController@index')->name('home');
