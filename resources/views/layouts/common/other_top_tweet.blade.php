@@ -1,7 +1,7 @@
     <div class="row justify-content-center bg-light">
         <div class="col-md-12 mb-3 text-right bg-light">
             @auth
-            <button class="btn btn-md btn-primary mt-2">{{ $other->name }}さんの関連投稿一覧</button>
+            <button class="btn btn-md btn-primary mt-2">{{ $other_user->name }}さんの関連投稿一覧</button>
             @endauth
         </div>
         @if (isset($timelines))

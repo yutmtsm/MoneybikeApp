@@ -121,10 +121,10 @@ class MoneybikeController extends Controller
         ]);
     }
     
-    public function spot_search(User $user, Tweet $tweet)
+    public function spot_search(Tweet $tweet)
     {
         $login_user = Auth::user();
-        $all_users = $user->getAllUser($login_user->id);
+        $all_users = $login_user->getAllUser($login_user->id);
         // dd($all_users);
         $timelines = $tweet->getAllTimeLines();
         $cond_title = "";
@@ -133,7 +133,7 @@ class MoneybikeController extends Controller
         
         // dd($posts);
         return view('admin.spot_search',[
-            'login_user' => $login_user, 'all_users' => $all_users, 'user' => $user, 'cond_title' => $cond_title,
+            'login_user' => $login_user, 'all_users' => $all_users, 'cond_title' => $cond_title,
             'timelines'      => $timelines
             
             ]);
@@ -146,6 +146,7 @@ class MoneybikeController extends Controller
         $all_users = User::Where('id', '<>', $login_user->id)->paginate(5);
         
         $cond_title = $request->cond_title;
+        
         //検索⇨投稿記事
         if($cond_title != ''){
             // 検索されたら検索結果を取得する
@@ -159,26 +160,25 @@ class MoneybikeController extends Controller
         } else {
             $timelines = DB::table('tweets')->orderByDesc('created_at')->simplePaginate(3);
         }
-        
-        foreach($timelines as $timeline){
-            $users = User::find($timeline->user_id);
-            // dd($users);
-            $timeline->user_name = $users->name;
-            $timeline->screen_name = $users->screen_name;
-            if($users->profile_image != null){
-                $timeline->profile_image = $users->profile_image;
-                // dd($post->image_icon);
-            } else {
-                $timeline->profile_image = null;
-            }
-            // dd($timeline->profile_image);
-        }
+        // dd($timelines);
+        // foreach($timelines as $timeline){
+        //     $users = User::find($timeline->user_id);
+        //     // dd($users);
+        //     $timeline->user_name = $users->name;
+        //     $timeline->screen_name = $users->screen_name;
+        //     if($users->profile_image != null){
+        //         $timeline->profile_image = $users->profile_image;
+        //         // dd($post->image_icon);
+        //     } else {
+        //         $timeline->profile_image = null;
+        //     }
+        //     // dd($timeline->profile_image);
+        // }
         
         unset($request['_token']);
         return view('admin.spot_search', [
         'login_user' => $login_user, 'all_users' => $all_users, 'cond_title' => $cond_title,
-        'timelines' => $timelines,
-        'cond_title' => $cond_title,
+        'timelines' => $timelines
         ]);
     }
 }

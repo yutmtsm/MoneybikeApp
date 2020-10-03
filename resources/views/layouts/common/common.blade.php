@@ -17,6 +17,9 @@
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>-->
         <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
         <!--下のapp.jsで読み込んでいる為上３つはいらない-->
+        <script src='https://api.tiles.mapbox.com/mapbox.js/v2.0.0/mapbox.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox.js/v2.0.0/mapbox.css' rel='stylesheet' />
+        <script src="{{ asset('js/ktsn.lf.canvas.js') }}" defer></script>
          {{-- Laravel標準で用意されているJavascriptを読み込みます --}}
         <script src="{{ asset('js/app.js') }}" defer></script>
         <!---->
