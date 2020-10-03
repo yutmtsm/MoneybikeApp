@@ -129,7 +129,7 @@
                     
                     @foreach ($all_users as $user)
                     <div class="card">
-                        <div class="card-haeder p-3 w-100 d-flex">
+                        <div class="card-haeder p-3 w-100">
                             <a class="d-flex" href="{{ action('Other\MoneybikeController@mypage', ['id' => $user->id]) }}">
                                 <img src="{{ $user->profile_image }}" class="rounded-circle" width="50" height="50">
                                 <div class="ml-2 d-flex flex-column">
