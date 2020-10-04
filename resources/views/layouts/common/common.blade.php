@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -34,6 +34,7 @@
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/common.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
         <link href="{{ asset('css/' . $__env->yieldContent('css') ) }}" rel="stylesheet">
         
         <!-- Font Awesome -->
@@ -53,41 +54,44 @@
                     <ul class="navbar-nav">
                         @auth
                         <li class="nav-item active bg-dark">
-                            <a class="nav-link text-light" href="{{ url('mypage/') }}">{{ __('messages.nav_mypage') }} <span class="sr-only">(current)</span></a>
+                            <a class="nav-link nav-link text-light" href="{{ url('mypage/') }}">{{ __('messages.nav_mypage') }} <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="{{ url('mypage/myfollowers') }}">{{ __('messages.nav_myfollower') }}</a>
+                            <a class="nav-link nav-link text-light" href="{{ url('mypage/myfollowers') }}">{{ __('messages.nav_myfollower') }}</a>
                         </li>
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="{{ url('mypage/posts') }}">{{ __('messages.nav_mypost') }}</a>
+                            <a class="nav-link nav-link text-light" href="{{ url('mypage/posts') }}">{{ __('messages.nav_mypost') }}</a>
                         </li>
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="{{ url('mypage/money') }}">{{ __('messages.nav_moneyaccount') }}</a>
+                            <a class="nav-link nav-link text-light" href="{{ url('mypage/money') }}">{{ __('messages.nav_moneyaccount') }}</a>
                         </li>
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="{{ url('mypage/spot_search') }}">{{ __('messages.nav_spotsearch') }}</a>
+                            <a class="nav-link nav-link text-light" href="{{ url('mypage/spot_search') }}">{{ __('messages.nav_spotsearch') }}</a>
                         </li>
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('messages.nav_logout') }}</a>
+                            <a class="nav-link nav-link text-light" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('messages.nav_logout') }}</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                            </form>
+                                
                         </li>
                         @else
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="#top-wrapper">{{ __('messages.nav_home') }}</a>
+                            <a class="nav-link nav-link text-light" href="#top-wrapper">{{ __('messages.nav_home') }}</a>
                         </li>
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="#service-wrappe">{{ __('messages.nav_searvice') }}</a>
+                            <a class="nav-link nav-link text-light" href="#service-wrapper">{{ __('messages.nav_searvice') }}</a>
                         </li>
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="#about-wrapper">{{ __('messages.nav_about') }}</a>
+                            <a class="nav-link nav-link text-light" href="#about-wrapper">{{ __('messages.nav_about') }}</a>
                         </li>
                         @if (Route::has('register'))
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="{{ route('register') }}">{{ __('messages.nav_register') }}</a>
+                            <a class="nav-link nav-link text-light" href="{{ route('register') }}">{{ __('messages.nav_register') }}</a>
                         </li>
                         @endif
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="{{ route('login') }}">{{ __('messages.nav_login') }}</a>
+                            <a class="nav-link nav-link text-light" href="{{ route('login') }}">{{ __('messages.nav_login') }}</a>
                         </li>
                         @endauth
                     </ul>
@@ -111,41 +115,44 @@
                     <ul class="navbar-nav">
                         @auth
                         <li class="nav-item active bg-dark">
-                            <a class="nav-link text-light" href="{{ url('mypage/') }}">{{ __('messages.nav_mypage') }} <span class="sr-only">(current)</span></a>
+                            <a class="nav-link nav-link text-light" href="{{ url('mypage/') }}">{{ __('messages.nav_mypage') }} <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="{{ url('mypage/myfollowers') }}">{{ __('messages.nav_myfollower') }}</a>
+                            <a class="nav-link nav-link text-light" href="{{ url('mypage/myfollowers') }}">{{ __('messages.nav_myfollower') }}</a>
                         </li>
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="{{ url('mypage/posts') }}">{{ __('messages.nav_mypost') }}</a>
+                            <a class="nav-link nav-link text-light" href="{{ url('mypage/posts') }}">{{ __('messages.nav_mypost') }}</a>
                         </li>
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="{{ url('mypage/money') }}">{{ __('messages.nav_moneyaccount') }}</a>
+                            <a class="nav-link nav-link text-light" href="{{ url('mypage/money') }}">{{ __('messages.nav_moneyaccount') }}</a>
                         </li>
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="{{ url('mypage/spot_search') }}">{{ __('messages.nav_spotsearch') }}</a>
+                            <a class="nav-link nav-link text-light" href="{{ url('mypage/spot_search') }}">{{ __('messages.nav_spotsearch') }}</a>
                         </li>
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('messages.nav_logout') }}</a>
+                            <a class="nav-link nav-link text-light" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('messages.nav_logout') }}</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                            </form>
+                                
                         </li>
                         @else
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="#top-wrapper">{{ __('messages.nav_home') }}</a>
+                            <a class="nav-link nav-link text-light" href="#top-wrapper">{{ __('messages.nav_home') }}</a>
                         </li>
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="#service-wrappe">{{ __('messages.nav_searvice') }}</a>
+                            <a class="nav-link nav-link text-light" href="#service-wrapper">{{ __('messages.nav_searvice') }}</a>
                         </li>
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="#about-wrapper">{{ __('messages.nav_about') }}</a>
+                            <a class="nav-link nav-link text-light" href="#about-wrapper">{{ __('messages.nav_about') }}</a>
                         </li>
                         @if (Route::has('register'))
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="{{ route('register') }}">{{ __('messages.nav_register') }}</a>
+                            <a class="nav-link nav-link text-light" href="{{ route('register') }}">{{ __('messages.nav_register') }}</a>
                         </li>
                         @endif
                         <li class="nav-item bg-dark">
-                            <a class="nav-link text-light" href="{{ route('login') }}">{{ __('messages.nav_login') }}</a>
+                            <a class="nav-link nav-link text-light" href="{{ route('login') }}">{{ __('messages.nav_login') }}</a>
                         </li>
                         @endauth
                     </ul>

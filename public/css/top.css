@@ -19,13 +19,20 @@
 
 .top-comment{
   height: 90%;
-  width: 40%;
+  width: 100%;
   margin: 0 auto 0.1%;
   background-color: rgba(0,0,0,0.42);
   z-index: 0;
   color: white;
   text-align: center;
   border-radius: 10px;
+}
+@media screen and (max-width: 480px) {
+	/* 480px以下に適用されるCSS（スマホ用） */
+	/*トップ画面*/
+	.top-comment{
+	    width: 50%;
+	}
 }
 
 .inner-container{
@@ -44,6 +51,7 @@
 }
 
 .projectsItem p{
+  color: white;
   font-size: 25px;
 }
 
