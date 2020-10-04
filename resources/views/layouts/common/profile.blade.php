@@ -43,7 +43,12 @@
             </div>
            <div class="content">
                 <p class="personal-title text-bold text-large text-ornament">性別</p>
-                <p class="personal-text">{{ $user->gender}}</p>
+                <p class="personal-text">{{ $user->gender}} 
+                @if($user->gender === "男性")<i class="fa fa-mars text-primary" aria-hidden="true"></i>
+                @elseif($user->gender === "女性")<i class="fa fa-venus text-danger" aria-hidden="true"></i>
+                @else <i class="fa fa-transgender text-success" aria-hidden="true"></i>
+                @endif
+                </p>
             </div>
             <div class="content">
                 <p class="personal-title text-bold text-large text-ornament">年齢</p>

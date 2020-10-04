@@ -35,12 +35,12 @@
                     <div class="row">
                     @foreach ($timelines as $timeline)
              
-                        <div class="col-md-12 mb-3">
-                            <div class="card">
+                        <div class="col-md-12 ">
+                            <div class="card p-3">
                                 <a href="{{ action('Other\MoneybikeController@mypage', ['id' => $timeline->user_id]) }}">
                                     <div class="card-haeder p-2 w-100 d-flex">
                                         <img src="{{ $timeline->user->profile_image }}" class="rounded-circle" width="50" height="50">
-                                        <div class="ml-2 d-flex flex-column">
+                                        <div class=" d-flex flex-column">
                                             <p class="mb-0">{{ $timeline->user->name }}</p>
                                             <p class="text-secondary">{{ $timeline->user->screen_name }}</p>
                                         </div>
@@ -48,7 +48,8 @@
                                 </a>
                                 <div class="card-body">
                                     <div class="card-title">
-                                        <p class="mb-0 text-secondary text-right">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
+                                            <p class="mb-0"><i class="fa fa-motorcycle "></i> スポット : {{ $timeline->pref }} 「 {{ $timeline->spot }}」</p>
+                                            <p class="mb-0 text-secondary text-right"><i class="fa fa-calculator text-danger"></i> {{ $timeline->created_at->format('Y-m-d') }}</p>
                                         <h3>『{{ $timeline->title }}』</h3>
                                     </div>
                                     <div class="d-flex">

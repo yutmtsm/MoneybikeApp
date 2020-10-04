@@ -87,7 +87,12 @@
                                     <img src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/z6L5P9QTOHolCDoQUx9s0bRY6LoeQfZgSho7StYu.png" class="rounded-circle" width="50" height="50">
                                     @endif
                                     <div class="ml-2 d-flex flex-column">
-                                        <p class="mb-0">{{ $following_User->name }}</p>
+                                        <p class="mb-0">{{ $following_User->name }} 
+                                        @if($following_User->gender === "男性")<i class="fa fa-mars text-primary" aria-hidden="true"></i>
+                                        @elseif($following_User->gender === "女性")<i class="fa fa-venus text-danger" aria-hidden="true"></i>
+                                        @else <i class="fa fa-transgender text-success" aria-hidden="true"></i>
+                                        @endif
+                                        </p>
                                         <a href="{{ url('users/' .$user->id) }}" class="text-secondary">{{ $following_User->screen_name }}</a>
                                     </div>
                                 </a>
@@ -126,7 +131,12 @@
                                 <a href="{{ action('Other\MoneybikeController@mypage', ['id' => $followed_User->id]) }}">
                                     <img src="{{ $followed_User->profile_image }}" class="rounded-circle" width="50" height="50">
                                     <div class="ml-2 d-flex flex-column">
-                                        <p class="mb-0">{{ $followed_User->name }}</p>
+                                        <p class="mb-0">{{ $followed_User->name }} 
+                                        @if($following_User->gender === "男性")<i class="fa fa-mars text-primary" aria-hidden="true"></i>
+                                        @elseif($following_User->gender === "女性")<i class="fa fa-venus text-danger" aria-hidden="true"></i>
+                                        @else <i class="fa fa-transgender text-success" aria-hidden="true"></i>
+                                        @endif
+                                        </p>
                                         <a href="{{ url('other_users/' .$followed_User->id) }}" class="text-secondary">{{ $followed_User->screen_name }}</a>
                                     </div>
                                 </a>
