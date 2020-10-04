@@ -17,6 +17,7 @@ nav {
   height: 140px;
   width: 100%;
   background-color: rgba(34, 49, 52, 0.9);
+  z-index: 99;
 }
 
 .nav-item{
