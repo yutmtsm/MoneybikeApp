@@ -57,12 +57,7 @@ nav {
   font-weight: bold;/*太字*/
 }
 
-.breadcrumb li:after {
-  /* >を表示*/
-  content: '>';
-  padding: 0 0.2em;
-  color: #555;
-}
+
 
 
 .breadcrumb li a {
