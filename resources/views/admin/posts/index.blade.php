@@ -12,7 +12,12 @@
                     <div class="p-3 d-flex flex-column">
                         <img src="{{ $user->profile_image }}" class="rounded-circle" width="100" height="100">
                         <div class="mt-3 d-flex flex-column">
-                            <h4 class="mb-0 font-weight-bold">{{ $user->name }} </h4>
+                            <h4 class="mb-0 font-weight-bold">{{ $user->name }} 
+                            @if($user->gender === "男性")<i class="fa fa-mars text-primary" aria-hidden="true"></i>
+                            @elseif($user->gender === "女性")<i class="fa fa-venus text-danger" aria-hidden="true"></i>
+                            @else <i class="fa fa-transgender text-success" aria-hidden="true"></i>
+                            @endif
+                            </h4>
                             <span class="text-secondary">{{ $user->screen_name }}</span>
                         </div>
                     </div>
@@ -69,7 +74,12 @@
                         <div class="card-haeder p-2 w-100 d-flex">
                             <img src="{{ $user->profile_image }}" class="rounded-circle" width="50" height="50">
                             <div class="ml-2 d-flex flex-column">
-                                <p class="mb-0">{{ $timeline->user->name }}</p>
+                                <p class="mb-0">{{ $timeline->user->name }} 
+                                @if($timeline->user->gender === "男性")<i class="fa fa-mars text-primary" aria-hidden="true"></i>
+                                @elseif($timeline->user->gender === "女性")<i class="fa fa-venus text-danger" aria-hidden="true"></i>
+                                @else <i class="fa fa-transgender text-success" aria-hidden="true"></i>
+                                @endif
+                                </p>
                                 <a href="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->screen_name }}</a>
                             </div>
                             <div class="m-10">

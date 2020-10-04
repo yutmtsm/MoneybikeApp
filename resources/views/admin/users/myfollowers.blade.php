@@ -12,7 +12,12 @@
                     <div class="p-3 d-flex flex-column">
                         <img src="{{ $user->profile_image }}" class="rounded-circle" width="100" height="100">
                         <div class="mt-3 d-flex flex-column">
-                            <h4 class="mb-0 font-weight-bold">{{ $user->name }} </h4>
+                            <h4 class="mb-0 font-weight-bold">{{ $user->name }} 
+                            @if($user->gender === "男性")<i class="fa fa-mars text-primary" aria-hidden="true"></i>
+                            @elseif($user->gender === "女性")<i class="fa fa-venus text-danger" aria-hidden="true"></i>
+                            @else <i class="fa fa-transgender text-success" aria-hidden="true"></i>
+                            @endif
+                            </h4>
                             <span class="text-secondary">{{ $user->screen_name }}</span>
                         </div>
                     </div>
