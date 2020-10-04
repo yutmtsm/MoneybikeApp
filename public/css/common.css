@@ -28,6 +28,10 @@ nav {
   display: block;
 }
 
+.nav-items{
+  width: 100%;
+}
+
 .nav-item:hover{
   opacity: 0.8;
   background-color: white;
@@ -40,6 +44,40 @@ nav {
   float: left;
   transition: all 0.5s;
 }
+
+/*ぱんくずりすと*/
+.breadcrumb{
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb li {
+  display: inline;/*横に並ぶように*/
+  list-style: none;
+  font-weight: bold;/*太字*/
+}
+
+.breadcrumb li:after {
+  /* >を表示*/
+  content: '>';
+  padding: 0 0.2em;
+  color: #555;
+}
+
+
+.breadcrumb li a {
+  text-decoration: none;
+
+}
+
+.breadcrumb li a:hover {
+  text-decoration: underline;
+}
+
+.current-nav{
+  font-size: 20px;
+}
+
 footer {
   bottom: 0;
   width: 100%;

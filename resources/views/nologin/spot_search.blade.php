@@ -5,7 +5,21 @@
 
 @section('content')
 <div class="container">
-    <h1>スポット検索</h1>
+    <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscopeitemtype="https://schema.org/ListItem">
+            <i class="fa fa-home text-dark" aria-hidden="true"></i>
+            <a itemprop="item" href="{{ url('/') }}">
+                <span itemprop="name">ホーム</span>
+            </a>
+            <meta itemprop="position" content="1" />
+        </li>
+        <li class=" text-dark current-nav" itemprop="itemListElement" itemscopeitemtype="https://schema.org/ListItem">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <span itemprop="name">投稿記事</span>
+            <meta itemprop="position" content="1" />
+        </li>
+    </ol>
+
     <!-- スポット検索 -->
     <div class="row">
         <!-- スポット検索 -->

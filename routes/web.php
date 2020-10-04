@@ -77,6 +77,6 @@ Auth::routes();
 
 Route::get('/', 'MoneybikeController@top');
 Route::get('/search', 'MoneybikeController@search');
-Route::get('/detail', 'MoneybikeController@show');
+Route::get('/search/detail', 'MoneybikeController@show');
 
 Route::get('/home', 'HomeController@index')->name('home');

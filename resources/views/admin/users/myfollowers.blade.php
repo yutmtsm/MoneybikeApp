@@ -69,10 +69,10 @@
         <!--フォロワーの表示-->
         <div class="tab_wrap col-md-8 mb-3% mt-0">
             <ul class="nav nav-tabs">
-                <li class="nav-item follow-bar">
+                <li class="nav-items follow-bar">
                     <a href="#following" class="nav-link aabb active" data-toggle="tab">フォロー</a>
                 </li>
-                <li class="nav-item col-md-6">
+                <li class="nav-items col-md-6">
                     <a href="#followed" class="nav-link aabb" data-toggle="tab">フォロワー</a>
                 </li>
             </ul>
