@@ -17,6 +17,7 @@
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>-->
         <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
         <!--下のapp.jsで読み込んでいる為上３つはいらない-->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src='https://api.tiles.mapbox.com/mapbox.js/v2.0.0/mapbox.js'></script>
         <link href='https://api.tiles.mapbox.com/mapbox.js/v2.0.0/mapbox.css' rel='stylesheet' />
         <script src="{{ asset('js/ktsn.lf.canvas.js') }}" defer></script>
@@ -41,41 +42,56 @@
     <body>
         <div id="app">
             {{-- ナビゲーションバー --}}
-            <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
-                <div class="container">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/UoFaPWcB4lzTlRVQWzQBCqwcMWwZ8IAljmGSXDeW.gif">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    
-                    <div class="callapse navbar-collapse" id="navbarSupportedContent">
-                        @if (Route::has('login'))
-                            <ul class="header-right navbar-nav ml-auto">
-                                @auth
-                                <li><a href="{{ action('Admin\MoneybikeController@mypage') }}">{{ __('messages.nav_mypage') }}</a></li>
-                                <li><a href="/mypage/myfollowers">{{ __('messages.nav_myfollower') }}</a></li>
-                                <li><a href="/mypage/posts">{{ __('messages.nav_mypost') }}</a></li>
-                                <li><a href="{{ url('mypage/money') }}">{{ __('messages.nav_moneyaccount') }}</a></li>
-                                <li><a href="{{ url('mypage/spot_search') }}">{{ __('messages.nav_spotsearch') }}</a></li>
-                                <li><a href="{{ route('logout') }}"　onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('messages.nav_logout') }}</a></li>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                                </form>
-                                @else
-                                <li><a href="#top-wrapper">{{ __('messages.nav_home') }}</a></li>
-                                <li><a href="#service-wrapper">{{ __('messages.nav_searvice') }}</a></li>
-                                <li><a href="#">{{ __('messages.nav_about') }}</a></li>
-                                @if (Route::has('register'))
-                                <li><a href="{{ route('register') }}">{{ __('messages.nav_register') }}</a></li>
-                                @endif
-                                <li><a href="{{ route('login') }}">{{ __('messages.nav_login') }}</a></li>
-                                @endauth
-                            </ul>
+            
+            <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+                <a class="navbar-brand" href="{{ url('/') }}"><img src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/UoFaPWcB4lzTlRVQWzQBCqwcMWwZ8IAljmGSXDeW.gif"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse w-100" id="navbarNav">
+                    @if (Route::has('login'))
+                    <ul class="navbar-nav">
+                        @auth
+                        <li class="nav-item active bg-dark">
+                            <a class="nav-link text-light" href="{{ url('mypage/') }}">{{ __('messages.nav_mypage') }} <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="{{ url('mypage/myfollowers') }}">{{ __('messages.nav_myfollower') }}</a>
+                        </li>
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="{{ url('mypage/posts') }}">{{ __('messages.nav_mypost') }}</a>
+                        </li>
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="{{ url('mypage/money') }}">{{ __('messages.nav_moneyaccount') }}</a>
+                        </li>
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="{{ url('mypage/spot_search') }}">{{ __('messages.nav_spotsearch') }}</a>
+                        </li>
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('messages.nav_logout') }}</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        </li>
+                        @else
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="#top-wrapper">{{ __('messages.nav_home') }}</a>
+                        </li>
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="#service-wrappe">{{ __('messages.nav_searvice') }}</a>
+                        </li>
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="#about-wrapper">{{ __('messages.nav_about') }}</a>
+                        </li>
+                        @if (Route::has('register'))
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="{{ route('register') }}">{{ __('messages.nav_register') }}</a>
+                        </li>
                         @endif
-                        
-                    </div>
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="{{ route('login') }}">{{ __('messages.nav_login') }}</a>
+                        </li>
+                        @endauth
+                    </ul>
+                    @endif
                 </div>
             </nav>
 
@@ -84,42 +100,59 @@
             </main>
             <footer>
                 {{-- ナビゲーションバー --}}
-                <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
-                    <div class="container">
-                        <a class="navbar-brand" href="{{ url('/') }}">
-                            {{ config('app.name', 'MoneyBike') }}
-                        </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        
-                        <div class="callapse navbar-collapse" id="navbarSupportedContent">
-                            @if (Route::has('login'))
-                                <ul class="header-right navbar-nav ml-auto">
-                                    @auth
-                                    <li><a href="{{ action('Admin\MoneybikeController@mypage') }}">{{ __('messages.nav_mypage') }}</a></li>
-                                    <li><a href="/mypage/posts">{{ __('messages.nav_mypost') }}</a></li>
-                                    <li><a href="/mypage/money">{{ __('messages.nav_moneyaccount') }}</a></li>
-                                    <li><a href="#">{{ __('messages.nav_spotsearch') }}</a></li>
-                                    <li><a href="{{ route('logout') }}"　onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('messages.nav_logout') }}</a></li>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                    </form>
-                                    @else
-                                    <li><a href="/mypage/">{{ __('messages.nav_home') }}</a></li>
-                                    <li><a href="#">{{ __('messages.nav_about') }}</a></li>
-                                    <li><a href="#">{{ __('messages.nav_searvice') }}</a></li>
-                                    @if (Route::has('register'))
-                                    <li><a href="{{ route('register') }}">{{ __('messages.nav_register') }}</a></li>
-                                    @endif
-                                    <li><a href="{{ route('login') }}">{{ __('messages.nav_login') }}</a></li>
-                                    @endauth
-                                </ul>
-                            @endif
-                            
-                        </div>
-                    </div>
-                </nav>
+            
+            <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+                <a class="navbar-brand" href="{{ url('/') }}"><img src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/UoFaPWcB4lzTlRVQWzQBCqwcMWwZ8IAljmGSXDeW.gif"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse w-100" id="navbarNav">
+                    @if (Route::has('login'))
+                    <ul class="navbar-nav">
+                        @auth
+                        <li class="nav-item active bg-dark">
+                            <a class="nav-link text-light" href="{{ url('mypage/') }}">{{ __('messages.nav_mypage') }} <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="{{ url('mypage/myfollowers') }}">{{ __('messages.nav_myfollower') }}</a>
+                        </li>
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="{{ url('mypage/posts') }}">{{ __('messages.nav_mypost') }}</a>
+                        </li>
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="{{ url('mypage/money') }}">{{ __('messages.nav_moneyaccount') }}</a>
+                        </li>
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="{{ url('mypage/spot_search') }}">{{ __('messages.nav_spotsearch') }}</a>
+                        </li>
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('messages.nav_logout') }}</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        </li>
+                        @else
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="#top-wrapper">{{ __('messages.nav_home') }}</a>
+                        </li>
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="#service-wrappe">{{ __('messages.nav_searvice') }}</a>
+                        </li>
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="#about-wrapper">{{ __('messages.nav_about') }}</a>
+                        </li>
+                        @if (Route::has('register'))
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="{{ route('register') }}">{{ __('messages.nav_register') }}</a>
+                        </li>
+                        @endif
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link text-light" href="{{ route('login') }}">{{ __('messages.nav_login') }}</a>
+                        </li>
+                        @endauth
+                    </ul>
+                    @endif
+                </div>
+            </nav>
+            
             </footer>
         </div>
     </body>

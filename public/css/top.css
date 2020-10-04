@@ -38,6 +38,15 @@
   text-align: center;
 }
 
+.projectsItem img{
+  width: 100%;
+  height: auto;
+}
+
+.projectsItem p{
+  font-size: 25px;
+}
+
 .add-btn {
   font-size: 20px;
   margin-top: 20px;

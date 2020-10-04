@@ -13,8 +13,8 @@
             </div>
             <!-- 真ん中コンテンツ -->
             <div class="col-md-4"  style="padding: 0 7px;">
-                <div class="col-md-12">
-                    <div class="item" style="margin-bottom: 20px;">
+                <div class="section">
+                    <div class="card">
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-title">支出一覧</div>
