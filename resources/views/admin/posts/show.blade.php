@@ -16,7 +16,12 @@
                     <a class="other-link" href="{{ action('Other\MoneybikeController@mypage', ['id' => $post->user_id]) }}">
                        <img src="{{ $post_user->profile_image }}" class="rounded-circle" width="50" height="50">
                         <div class="ml-2 d-flex flex-column">
-                            <a class="mb-0">{{ $post_user->name }}</a>
+                            <a class="mb-0">{{ $post_user->name }}
+                            @if($post_user->gender === "男性")<i class="fa fa-mars text-primary" aria-hidden="true"></i>
+                            @elseif($post_user->gender === "女性")<i class="fa fa-venus text-danger" aria-hidden="true"></i>
+                            @else <i class="fa fa-transgender text-success" aria-hidden="true"></i>
+                            @endif
+                            </a>
                             <a class="">{{ $post_user->screen_name }}</a>
                         </div>
                     </a>

@@ -77,7 +77,7 @@
                         </li>
                         @else
                         <li class="nav-item bg-dark">
-                            <a class="nav-link nav-link text-light" href="#top-wrapper">{{ __('messages.nav_home') }}</a>
+                            <a class="nav-link nav-link text-light" href="{{ url('/') }}">{{ __('messages.nav_home') }}</a>
                         </li>
                         <li class="nav-item bg-dark">
                             <a class="nav-link nav-link text-light" href="#service-wrapper">{{ __('messages.nav_searvice') }}</a>

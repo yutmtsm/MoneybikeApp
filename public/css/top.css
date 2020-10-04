@@ -55,6 +55,26 @@
   font-size: 25px;
 }
 
+.signup-wrapper {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 80px;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.signup {
+  padding: 15px 40px;
+  background-color: #5dca88;
+  cursor: pointer;
+  box-shadow: 0 7px #1a7940;
+}
+
+.signup:active {
+  position: relative;
+  top: 7px;
+  box-shadow: none;
+}
+
 .add-btn {
   font-size: 20px;
   margin-top: 20px;
