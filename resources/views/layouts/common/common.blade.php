@@ -24,6 +24,9 @@
          {{-- Laravel標準で用意されているJavascriptを読み込みます --}}
         <script src="{{ asset('js/app.js') }}" defer></script>
         <!---->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js"></script>
+
         <script src="{{ asset('js/jquery.min.js') }}"></script>
         <script src="{{ asset('js/infinite-scroll.pkgd.min.js') }}"></script>
 

@@ -53,4 +53,38 @@
     </div>
 </div><!--message-wrapper-->
 
+<!-- Slider main container -->
+<div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide">Slide 1</div>
+        <div class="swiper-slide">Slide 2</div>
+        <div class="swiper-slide">Slide 3</div>
+        ...
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+    
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>
+<script type="text/javascript" src="">
+    var mySwiper = new Swiper ('.swiper-container', {
+  loop: true,
+  slidesPerView: 2,
+  spaceBetween: 10,
+  centeredSlides : true,
+  pagination: '.swiper-pagination',
+  nextButton: '.swiper-button-next',
+  prevButton: '.swiper-button-prev',
+  breakpoints: {
+    767: {
+      slidesPerView: 1,
+      spaceBetween: 0
+    }
+  }
+})
+</script>
 @endsection
