@@ -14,44 +14,63 @@ main {
 }
 
 nav {
-  height: 65px;
+  height: 140px;
   width: 100%;
   background-color: rgba(34, 49, 52, 0.9);
+  z-index: 99;
 }
 
-.header-left {
-  float: left;
-}
-
-.header-left h2 {
-  line-height: 65px;
-}
-
-.header-right {
-  float: right;
-}
-
-.header-right ul {
-  padding: 0;
-  margin: 0;
-  float: left;
-}
-
-.header-right li {
-  float: left;
-  list-style: none;
-  transition: all 0.8s;
-}
-
-.header-right li:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-}
-
-.header-right a {
-  line-height: 65px;
-  padding: 0 24px;
+.nav-item{
+  line-height: 120px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom: 0px;
   display: block;
+}
+
+.nav-items{
+  width: 100%;
+}
+
+.nav-item:hover{
+  opacity: 0.8;
+  background-color: white;
+}
+
+.nav-links{
+  line-height: 65px;
   color: white;
+  display: block;
+  float: left;
+  transition: all 0.5s;
+}
+
+/*ぱんくずりすと*/
+.breadcrumb{
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb li {
+  display: inline;/*横に並ぶように*/
+  list-style: none;
+  font-weight: bold;/*太字*/
+}
+
+
+
+
+.breadcrumb li a {
+  text-decoration: none;
+
+}
+
+.breadcrumb li a:hover {
+  text-decoration: underline;
+}
+
+.current-nav{
+  font-size: 20px;
 }
 
 footer {
