@@ -30,16 +30,10 @@
   border-radius: 10px;
 }
 
-@media screen and (max-width: 480px) {
-  /* 480px以下に適用されるCSS（スマホ用） */
-
-  /*トップ画面*/
-
-  .top-comment {
-    width: 50%;
-  }
-}
-
+#map_search_other{
+		display: none;
+	}
+	
 .inner-container {
   width: 80%;
   margin: 0 auto;

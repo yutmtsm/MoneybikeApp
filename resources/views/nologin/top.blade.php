@@ -17,6 +17,12 @@
                         <button class="btn btn-outline-success col-md-3" type="submit">スポット検索</button>
                      </form>
                 </div><!-- /map_search -->   
+                <div id="map_search_other" style="padding-bottom: 30px;">
+                    <form action="{{ action('MoneybikeController@search') }}" class="form-search" method="get" >
+                        <input class="form-control col-md-9" type="search" placeholder="例：東京都、愛知県、空で全表示" aria-label="Search"　name="cond_title">
+                        <button class="btn btn-outline-success col-md-3" type="submit">スポット検索</button>
+                     </form>
+                </div><!-- /map_search_other --> 
             </div>
         </div><!--top-comment-->
     </div>
