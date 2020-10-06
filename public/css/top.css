@@ -145,17 +145,17 @@
   margin-right: 5px;
 }
 
-.contact-wrapper {
+#contact-wrapper {
   padding-top: 100px;
 }
 
 /* inputとtextareaのCSSを指定してください */
-.contact-wrapper p{
+#contact-wrapper p{
   color: white;
   
 }
 
-.contact-wrapper input, textarea{
+#contact-wrapper input, textarea{
   width: 400px;
   margin: 10px 0 30px 0;
   padding: 20px;

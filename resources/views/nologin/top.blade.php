@@ -70,7 +70,7 @@
 </div><!--message-wrapper-->
 
 <div class="container">
-    <div class="contact-wrapper">
+    <div id="contact-wrapper">
         <h3 class="section-title">お問い合わせ</h3>
         <form action="{{ action('MoneybikeController@contact_form') }}" method="post" enctype="multipart/form-data">
             @if (count($errors) > 0)
