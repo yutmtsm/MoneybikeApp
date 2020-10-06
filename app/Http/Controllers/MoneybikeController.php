@@ -60,4 +60,9 @@ class MoneybikeController extends Controller
             'total_cost' => $total_cost
         ]);
     }
+    
+    public function contact_form(Request $request)
+    {
+        dd($request);
+    }
 }

@@ -46,7 +46,11 @@
             {{-- ナビゲーションバー --}}
             
             <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+                @auth
+                <a class="navbar-brand" href="{{ url('/mypage') }}"><img src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/UoFaPWcB4lzTlRVQWzQBCqwcMWwZ8IAljmGSXDeW.gif"></a>
+                @else
                 <a class="navbar-brand" href="{{ url('/') }}"><img src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/UoFaPWcB4lzTlRVQWzQBCqwcMWwZ8IAljmGSXDeW.gif"></a>
+                @endauth
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -86,6 +90,9 @@
                         <li class="nav-item bg-dark">
                             <a class="nav-link nav-link text-light" href="#about-wrapper">{{ __('messages.nav_about') }}</a>
                         </li>
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link nav-link text-light" href="#contact-wrapper">{{ __('messages.nav_contact') }}</a>
+                        </li>
                         @if (Route::has('register'))
                         <li class="nav-item bg-dark">
                             <a class="nav-link nav-link text-light" href="{{ route('register') }}">{{ __('messages.nav_register') }}</a>
@@ -94,7 +101,34 @@
                         <li class="nav-item bg-dark">
                             <a class="nav-link nav-link text-light" href="{{ route('login') }}">{{ __('messages.nav_login') }}</a>
                         </li>
+                        <!--<li class="nav-item bg-dark" data-toggle="modal" data-target="#exampleModal">-->
+                        <!--    <a class="nav-link nav-link text-light">{{ __('messages.nav_login') }}</a>-->
+                        <!--</li>-->
+                        <!-- Modal -->
+                        <!--<div class="modal login-modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+                        <!--    <div class="modal-dialog" role="document">-->
+                        <!--        <div class="modal-content">-->
+                        <!--            <div class="modal-header">-->
+                        <!--                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
+                        <!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                        <!--                    <span aria-hidden="true">&times;</span>-->
+                        <!--                </button>-->
+                        <!--            </div>-->
+                        <!--            <div class="modal-body">-->
+                        <!--            ...-->
+                        <!--            </div>-->
+                        <!--            <div class="modal-footer">-->
+                        <!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                        <!--                <button type="button" class="btn btn-primary">Save changes</button>-->
+                        <!--            </div>-->
+                        <!--        </div>-->
+                        <!--    </div>-->
+                        <!--</div>-->
                         @endauth
+                        
+                        
+                        
+                        
                     </ul>
                     @endif
                 </div>

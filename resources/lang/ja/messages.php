@@ -17,6 +17,7 @@ return [
     'nav_home' => 'ホーム',
     'nav_about' => '作成者',
     'nav_searvice' => 'サービス',
+    'nav_contact' => 'お問い合わせ',
     'nav_register' => '新規登録',
     'nav_login' => 'ログイン',
     'Login' => 'ログイン',
@@ -33,5 +34,6 @@ return [
     'age' => '年齢',
     'address' => '居住エリア',
     'profile-image' => 'プロフィール画像',
+    'contact_content' => 'お問い合わせ内容',
     
 ];

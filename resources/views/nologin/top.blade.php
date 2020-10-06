@@ -69,4 +69,46 @@
     </div>
 </div><!--message-wrapper-->
 
+<div class="container">
+    <div class="contact-wrapper">
+        <h3 class="section-title">お問い合わせ</h3>
+        <form action="{{ action('MoneybikeController@contact_form') }}" method="post" enctype="multipart/form-data">
+            @if (count($errors) > 0)
+                <ul>
+                    @foreach($errors->all() as $e)
+                        <li>{{ $e }}</li>
+                    @endforeach
+                </ul>
+            @endif
+            <!-- 名前 -->
+            <div class="">
+                <div class="form-group">
+                    <label class="control-label">{{ __('messages.Name') }}</label>
+                    <input type="text" class="form-control" name="contact_name" value="{{ old('contact_name') }}">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">{{ __('messages.E-Mail Address') }}</label>
+                    <input type="text" class="form-control" name="contact_address" value="{{ old('contact_address') }}">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">問い合わせ項目</label>
+                    <select name="model_year" class="form-control mdoel-year">
+                        <option value="">項目を選択してください</option>
+                        <option value="機能について">機能について</option>
+                        <option value="バグ報告">バグ報告</option>
+                        <option value="その他">その他</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">{{ __('messages.contact_content') }}</label>
+                    <textarea class="form-control" name="contact_content" value="{{ old('contact_content') }}" style="height: 150px;">{{ old('contact_content') }}</textarea>
+                </div>
+                {{ csrf_field() }}
+                <input type="submit" class="btn-primary" value="投稿">
+            </div>
+        </form>
+        
+    </div>
+</div>
+
 @endsection

@@ -76,6 +76,7 @@ Route::group(['middleware' => 'auth'], function() {
 Auth::routes();
 
 Route::get('/', 'MoneybikeController@top');
+Route::post('/contact_form', 'MoneybikeController@contact_form');
 Route::get('/search', 'MoneybikeController@search');
 Route::get('/search/detail', 'MoneybikeController@show');
 
