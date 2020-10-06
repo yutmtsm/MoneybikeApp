@@ -5,7 +5,13 @@
 
 @section('content')
     <div class="container">
-        <h1>マイページ</h1>
+        <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li class=" text-dark current-nav" itemprop="itemListElement" itemscopeitemtype="https://schema.org/ListItem">
+                <i class="fa fa-home text-dark" aria-hidden="true"></i>
+                <span itemprop="name">ホーム</span>
+                <meta itemprop="position" content="1" />
+            </li>
+        </ol>
         <div class="row  no-gutters">
             <!-- 左コンテンツ -->
             <div class="col-md-4" style="padding: 0 7px;">

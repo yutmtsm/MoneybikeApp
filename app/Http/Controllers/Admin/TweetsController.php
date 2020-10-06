@@ -109,7 +109,6 @@ class TweetsController extends Controller
     public function showDay(Request $request, Tweet $tweet, Comment $comment)
     {
         $date = $request->created_at;
-        $date = $request->created_at;
         $year = $tweet->getYear($date);
         $month = $tweet->getMonth($date);
         $day = $tweet->getDay($date);
@@ -124,7 +123,7 @@ class TweetsController extends Controller
             // $post->profile_created_at = $users->created_at;
 
         return view('admin.posts.showDay', [
-            'login_user' => $login_user, 'posts' => $posts,
+            'login_user' => $login_user, 'posts' => $posts, 'date' => $date
         ]);
     }
 

@@ -5,7 +5,29 @@
 
 @section('content')
 <div class="container">
-    <h1>新規投稿</h1>
+    <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscopeitemtype="https://schema.org/ListItem">
+            <i class="fa fa-home text-dark" aria-hidden="true"></i>
+            <a itemprop="item" href="{{ url('/mypage') }}">
+                <span itemprop="name">ホーム</span>
+            </a>
+            <i class="fa fa-caret-right text-dark ml-2 mr-2" aria-hidden="true"></i>
+            <meta itemprop="position" content="1" />
+        </li>
+        <li itemprop="itemListElement" itemscopeitemtype="https://schema.org/ListItem">
+            <i class="fa fa-file text-dark" aria-hidden="true"></i>
+            <a itemprop="item" href="{{ url('/mypage/posts') }}">
+                <span itemprop="name">自分の投稿一覧</span>
+            </a>
+            <i class="fa fa-caret-right text-dark ml-2 mr-2" aria-hidden="true"></i>
+            <meta itemprop="position" content="1" />
+        </li>
+        <li class=" text-dark current-nav" itemprop="itemListElement" itemscopeitemtype="https://schema.org/ListItem">
+            <i class="fa fa-file " aria-hidden="true"></i>
+            <span itemprop="name">新規投稿</span>
+            <meta itemprop="position" content="1" />
+        </li>
+    </ol>
     <div class="row" style="width: 100%;">
         <div class="col-md-6 mx-auto" >
             <form action="{{ action('Admin\TweetsController@create') }}" method="post" enctype="multipart/form-data">

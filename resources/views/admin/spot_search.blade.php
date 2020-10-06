@@ -5,7 +5,21 @@
 
 @section('content')
 <div class="container">
-    <h1>スポット検索</h1>
+    <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscopeitemtype="https://schema.org/ListItem">
+            <i class="fa fa-home text-dark" aria-hidden="true"></i>
+            <a itemprop="item" href="{{ url('/mypage') }}">
+                <span itemprop="name">ホーム</span>
+            </a>
+            <i class="fa fa-caret-right text-dark ml-2 mr-2" aria-hidden="true"></i>
+            <meta itemprop="position" content="1" />
+        </li>
+        <li class=" text-dark current-nav" itemprop="itemListElement" itemscopeitemtype="https://schema.org/ListItem">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <span itemprop="name">スポット検索</span>
+            <meta itemprop="position" content="1" />
+        </li>
+    </ol>
     <!-- スポット検索 -->
     <div class="row">
         <!-- スポット検索 -->
@@ -57,7 +71,7 @@
                                             <p class="mb-0 text-secondary text-right"><i class="fa fa-calculator text-danger"></i> {{ $timeline->created_at->format('Y-m-d') }}</p>
                                         <h3>『{{ $timeline->title }}』</h3>
                                     </div>
-                                    <div class="d-flex">
+                                    <div class="d-md-flex">
                                         <div class="spot-image">
                                             @if(isset($timeline->image_path))
                                                 <img src="{{ $timeline->image_path }}">

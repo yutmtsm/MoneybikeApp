@@ -5,7 +5,21 @@
 
 @section('content')
 <div class="container">
-    <h1>新規バイク追加</h1>
+    <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscopeitemtype="https://schema.org/ListItem">
+            <i class="fa fa-home text-dark" aria-hidden="true"></i>
+            <a itemprop="item" href="{{ url('/mypage') }}">
+                <span itemprop="name">ホーム</span>
+            </a>
+            <i class="fa fa-caret-right text-dark ml-2 mr-2" aria-hidden="true"></i>
+            <meta itemprop="position" content="1" />
+        </li>
+        <li class=" text-dark current-nav" itemprop="itemListElement" itemscopeitemtype="https://schema.org/ListItem">
+            <i class="fa fa-motorcycle" aria-hidden="true"></i>
+            <span itemprop="name">バイク追加</span>
+            <meta itemprop="position" content="1" />
+        </li>
+    </ol>
     <div class="row" style="width: 100%;">
         <div class="col-md-6 mx-auto" >
             <form action="{{ action('Admin\BikeController@store') }}" method="post" enctype="multipart/form-data">
@@ -136,14 +150,14 @@
                     </select>
                 </div>
                 <!-- 車種年式 -->
-                <div class="d-flex align-items-center">
+                <div class="align-items-center">
                     <div class="form-group">
                         <label class="control-label">車種</label>
                         <input type="text" class="form-control" name="type" value="{{ old('type') }}">
                     </div>
-                    <div class="form-group" style="margin-left: 100px;">
+                    <div class="form-group">
                         <label class="control-label">年式</label>
-                        <select name="model_year" class="form-control">
+                        <select name="model_year" class="form-control mdoel-year">
                             <option value="">年式を選択してください</option>
                             <option value="2020">R2(2020)</option>
                             <option value="2019">R1/H31(2019)</option>
@@ -191,7 +205,7 @@
                 </div>
                 <h2 class="personal-title">その他情報</h2>
                 <!-- その他情報 -->
-                <div class="d-flex align-items-start">
+                <div class="align-items-start">
                     <div class="form-group">
                         <label class="control-label">軽自動車税 ※年額</label>
                         <select name="light_vehicle_tax" class="form-control">
@@ -225,7 +239,7 @@
                             <option value="0">払ってない？？？</option>
                         </select>
                     </div>
-                    <div class="form-group" style="margin-left: 100px;">
+                    <div class="form-group">
                         <label class="control-label">任意保険</label>
                         <input type="text" class="form-control" name="voluntary_insurance" value="{{ old('voluntary_insurance') }}">
                         <label class="control-label">車検</label>

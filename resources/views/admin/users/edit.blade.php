@@ -1,8 +1,25 @@
 @extends('layouts.common.common')
 @section('css', 'top.css')
 
+@section('title', 'プロフィール編集')
+
 @section('content')
 <div class="container">
+    <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscopeitemtype="https://schema.org/ListItem">
+            <i class="fa fa-home text-dark" aria-hidden="true"></i>
+            <a itemprop="item" href="{{ url('/mypage') }}">
+                <span itemprop="name">ホーム</span>
+            </a>
+            <i class="fa fa-caret-right text-dark ml-2 mr-2" aria-hidden="true"></i>
+            <meta itemprop="position" content="1" />
+        </li>
+        <li class=" text-dark current-nav" itemprop="itemListElement" itemscopeitemtype="https://schema.org/ListItem">
+            <i class="fa fa-user-edit" aria-hidden="true"></i>
+            <span itemprop="name">プロフィール編集</span>
+            <meta itemprop="position" content="1" />
+        </li>
+    </ol>
     <div class="row justify-content-center">
         <div class="col-md-8 text-secondary">
             <div class="card">

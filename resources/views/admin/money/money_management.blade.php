@@ -1,11 +1,25 @@
 @extends('layouts.common.common')
 @section('css', 'mypage.css')
 
-@section('title', 'お金管理')
+@section('title', 'MoneyManegement')
 
 @section('content')
 <div class="container">
-    <h1>支出一覧</h1>
+    <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscopeitemtype="https://schema.org/ListItem">
+            <i class="fa fa-home text-dark" aria-hidden="true"></i>
+            <a itemprop="item" href="{{ url('/') }}">
+                <span itemprop="name">ホーム</span>
+            </a>
+            <i class="fa fa-caret-right text-dark ml-2 mr-2" aria-hidden="true"></i>
+            <meta itemprop="position" content="1" />
+        </li>
+        <li class=" text-dark current-nav" itemprop="itemListElement" itemscopeitemtype="https://schema.org/ListItem">
+            <i class="fa fa-yen-sign text-warning" aria-hidden="true"></i>
+            <span itemprop="name">お金管理</span>
+            <meta itemprop="position" content="1" />
+        </li>
+    </ol>
     <!-- スポット検索 -->
     <div class="row">
         
