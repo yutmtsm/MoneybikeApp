@@ -70,7 +70,7 @@
                 <p style="color: white;">{{ $post->text }}</p>
             </div>
             
-            <div class="d-flex">
+            <div class="d-md-flex">
                 <div class="col-md-7">
                     <!-- スポット -->
                     <div class="form-group">

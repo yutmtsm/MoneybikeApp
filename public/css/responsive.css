@@ -1,35 +1,23 @@
+@media screen and (max-width: 10000px) {
+
+	
+}
+
 @media screen and (max-width: 959px) {
 	/* 959px以下に適用されるCSS（タブレット用） */
 	
 	/*TOPページ*/
-	.top-comment{
-	    width: 100%;
-	}
+
+
 	
-	#map_search{
-		width: 100%!important;
-		display: none;
-	}
-	#map_search_other{
-		width: 100%;
-		display: block!important;
-	}
+	/*投稿検索結果画面*/
+
 }
 @media screen and (max-width: 480px) {
 	/* 480px以下に適用されるCSS（スマホ用） */
 	
 	/*TOPページ*/
-	.top-comment{
-	    width: 100%;
-	}
-	#map_search{
-		width: 100%;
-		display: none;
-	}
-	#map_search_other{
-		width: 100%;
-		display: block!important;
-	}
+
 	
 	/*投稿検索結果画面*/
 	

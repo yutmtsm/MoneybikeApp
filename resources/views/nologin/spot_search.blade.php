@@ -49,7 +49,7 @@
                                             <p class="mb-0 text-secondary text-right"><i class="fa fa-calculator text-danger"></i> {{ $timeline->created_at->format('Y-m-d') }}</p>
                                         <h3>『{{ $timeline->title }}』</h3>
                                     </div>
-                                    <div class="d-flex">
+                                    <div class="d-md-flex">
                                         <div class="spot-image">
                                             @if(isset($timeline->image_path))
                                                 <img src="{{ $timeline->image_path }}">

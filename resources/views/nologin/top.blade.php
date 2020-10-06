@@ -7,22 +7,16 @@
 <div id="top-wrapper">
     <div class="container">
         <div class="top-comment">
-            <div class="inner-container">
+            <div class="inner-container ">
                 <img src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/UoFaPWcB4lzTlRVQWzQBCqwcMWwZ8IAljmGSXDeW.gif" class="mt-5">
                 <p class="text-light">ツーリングの目的地とお金の使途や他ユーザーの実際のバイク維持費を調べられます。<br>
                 以下からスポットの使途金を調べる</p>
                 <div id="map_search" style="padding-bottom: 30px;">
-                    <form action="{{ action('MoneybikeController@search') }}" class="form-search d-flex" method="get" >
+                    <form action="{{ action('MoneybikeController@search') }}" class="form-search d-md-flex" method="get" >
                         <input class="form-control col-md-9" type="search" placeholder="例：東京都、愛知県、空で全表示" aria-label="Search"　name="cond_title">
                         <button class="btn btn-outline-success col-md-3" type="submit">スポット検索</button>
                      </form>
                 </div><!-- /map_search -->   
-                <div id="map_search_other" style="padding-bottom: 30px;">
-                    <form action="{{ action('MoneybikeController@search') }}" class="form-search" method="get" >
-                        <input class="form-control col-md-9" type="search" placeholder="例：東京都、愛知県、空で全表示" aria-label="Search"　name="cond_title">
-                        <button class="btn btn-outline-success col-md-3" type="submit">スポット検索</button>
-                     </form>
-                </div><!-- /map_search_other --> 
             </div>
         </div><!--top-comment-->
     </div>
