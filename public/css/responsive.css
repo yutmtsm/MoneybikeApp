@@ -1,48 +1,52 @@
+@charset "UTF-8";
+
 @media screen and (max-width: 10000px) {
-	#map_search input{
-		margin-right: 5px;
-	}
-	
-	.spot_map2{
-		display: none;
-	}
+  #map_search input {
+    margin-right: 5px;
+  }
+
+  .spot_map2 {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 959px) {
-	/* 959px以下に適用されるCSS（タブレット用） */
-	
-	.model_year{
-		width: 100%;
-	}
-	
-	#map_search input{
-		margin-bottom: 5px;
-	}
-	
-	.spot_map1{
-		display: none;
-	}
-	
-	.spot_map2{
-		display: block;
-	}
+  /* 959px以下に適用されるCSS（タブレット用） */
+
+  .model_year {
+    width: 100%;
+  }
+
+  #map_search input {
+    margin-bottom: 5px;
+  }
+
+  .spot_map1 {
+    display: none;
+  }
+
+  .spot_map2 {
+    display: block;
+  }
 }
+
 @media screen and (max-width: 480px) {
-	/* 480px以下に適用されるCSS（スマホ用） */
-	
-	.model_year{
-		width: 100%;
-	}
-	
-	#map_search input{
-		margin-bottom: 5px;
-	}
-	
-	.spot_map1{
-		display: none;
-	}
-	
-	.spot_map2{
-		display: block;
-	}
+  /* 480px以下に適用されるCSS（スマホ用） */
+
+  .model_year {
+    width: 100%;
+  }
+
+  #map_search input {
+    margin-bottom: 5px;
+  }
+
+  .spot_map1 {
+    display: none;
+  }
+
+  .spot_map2 {
+    display: block;
+  }
 }
+

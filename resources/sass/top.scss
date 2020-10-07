@@ -1,4 +1,6 @@
-.wrapper{
+@charset "UTF-8";
+
+.wrapper {
   margin: 0 auto;
 }
 
@@ -17,40 +19,33 @@
   letter-spacing: 5px;
 }
 
-.top-comment{
+.top-comment {
   height: 90%;
   width: 100%;
   margin: 0 auto 0.1%;
-  background-color: rgba(0,0,0,0.42);
+  background-color: rgba(0, 0, 0, 0.42);
   z-index: 0;
   color: white;
   text-align: center;
   border-radius: 10px;
 }
-@media screen and (max-width: 480px) {
-	/* 480px以下に適用されるCSS（スマホ用） */
-	/*トップ画面*/
-	.top-comment{
-	    width: 50%;
-	}
-}
-
-.inner-container{
+	
+.inner-container {
   width: 80%;
   margin: 0 auto;
 }
 
-#service-wrapper{
+#service-wrapper {
   margin: 0 auto;
   text-align: center;
 }
 
-.projectsItem img{
+.projectsItem img {
   width: 100%;
   height: auto;
 }
 
-.projectsItem p{
+.projectsItem p {
   color: white;
   font-size: 25px;
 }
@@ -76,14 +71,17 @@
 }
 
 /* menu-list */
-.accordion ul{
+
+.accordion ul {
   display: none;
   position: fixed;
 }
-.accordion a{
+
+.accordion a {
   display: block;
 }
-.accordion span{
+
+.accordion span {
   display: block;
 }
 
@@ -147,3 +145,26 @@
   margin-right: 5px;
 }
 
+#contact-wrapper {
+  padding-top: 100px;
+}
+
+/* inputとtextareaのCSSを指定してください */
+#contact-wrapper p{
+  color: white;
+  
+}
+
+#contact-wrapper input, textarea{
+  width: 400px;
+  margin: 10px 0 30px 0;
+  padding: 20px;
+  font-size: 18px;
+  border: 1px solid #dee7ec;
+}
+
+/* contact-submitのCSSを指定してください */
+.contact-submit{
+  background-color: #dee7ec;
+  color: #889eab;
+}
