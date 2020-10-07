@@ -41,9 +41,9 @@
                     <a href="#timeline"><div  class="mainVisual"></div></a>
                     <h2 class="heading text-center">ログインして記事の投稿やバイク関連のお金管理</h2>
                 	<div class="projects row pt-4">
-                    	<div class="projectsItem col-md-4"><img src="{{ asset('/images/top1.jpg') }}"><p>行った場所・使ったお金を投稿</p></div>
+                    	<div class="projectsItem col-md-4"><img src="{{ asset('/images/top1.jpg') }}"><p>行った場所とお金を投稿</p></div>
                     	<div class="projectsItem col-md-4"><img src="{{ asset('/images/top2.jpg') }}"><p>使ったお金が一目でわかる</p></div>
-                    	<div class="projectsItem col-md-4"><img src="{{ asset('/images/top2.jpg') }}"><p>ユーザーのバイク情報が見れる</p></div>
+                    	<div class="projectsItem col-md-4"><img src="{{ asset('/images/top2.jpg') }}"><p>ユーザーのバイク情報共有</p></div>
                     	<div class="projectsItem col-md-4"><img src=""><p></p></div>
                     </div>
                 </div><!--service-wrapper-->
