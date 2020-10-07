@@ -1,5 +1,7 @@
 @media screen and (max-width: 10000px) {
-	
+	#map_search input{
+		margin-right: 5px;
+	}
 }
 
 @media screen and (max-width: 959px) {
@@ -8,11 +10,19 @@
 	.model_year{
 		width: 100%;
 	}
+	
+	#map_search input{
+		margin-bottom: 5px;
+	}
 }
 @media screen and (max-width: 480px) {
 	/* 480px以下に適用されるCSS（スマホ用） */
 	
 	.model_year{
 		width: 100%;
+	}
+	
+	#map_search input{
+		margin-bottom: 5px;
 	}
 }
