@@ -103,6 +103,12 @@
                                 <p style="color: white;">　{{ $post->spot }}</p>
                             </div>
                         </div>
+                        <div class="spot_map2">
+                            <iframe style="border: 0;" 
+                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPv-uNVityorhO-YUuKfYxg7F5ab-NumM&q={{ $post->pref}}{{ $post->spot }}" 
+                            width="300" height="300" frameborder="0" allowfullscreen="allowfullscreen">
+                            </iframe>
+                        </div>
                     </div>
             
                     <!-- 使用金 -->
@@ -198,7 +204,7 @@
                     
                     <!-- Modalここまで -->
                     </div>
-                <div class="col-md-6">
+                <div class="spot_map1 col-md-6">
                     <iframe style="border: 0;" 
                     src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPv-uNVityorhO-YUuKfYxg7F5ab-NumM&q={{ $post->pref}}{{ $post->spot }}" 
                     width="300" height="300" frameborder="0" allowfullscreen="allowfullscreen">

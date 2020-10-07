@@ -81,7 +81,7 @@
                 <p style="color: white;">{{ $post->text }}</p>
             </div>
             
-            <div class="d-flex">
+            <div class="d-md-flex">
                 <div class="col-md-7">
                     <!-- スポット -->
                     <div class="form-group">
@@ -94,6 +94,12 @@
                                 <label class="control-label">スポット名</label>
                                 <p style="color: white;">　{{ $post->spot }}</p>
                             </div>
+                        </div>
+                        <div class="spot_map2">
+                            <iframe style="border: 0;" 
+                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPv-uNVityorhO-YUuKfYxg7F5ab-NumM&q={{ $post->pref}}{{ $post->spot }}" 
+                            width="300" height="300" frameborder="0" allowfullscreen="allowfullscreen">
+                            </iframe>
                         </div>
                     </div>
             
@@ -190,8 +196,8 @@
                     </div>
                     
                     <!-- Modalここまで -->
-                    </div>
-                <div class="col-md-6">
+                </div>
+                <div class="spot_map1 col-md-6">
                     <iframe style="border: 0;" 
                     src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPv-uNVityorhO-YUuKfYxg7F5ab-NumM&q={{ $post->pref}}{{ $post->spot }}" 
                     width="300" height="300" frameborder="0" allowfullscreen="allowfullscreen">

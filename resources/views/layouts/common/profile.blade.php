@@ -80,7 +80,7 @@
                                 </button>
                               </div>
                               <div class="modal-body">
-                                    <div class="d-flex">
+                                    <div class="d-md-flex">
                                         <img class="bike-detail-icon w-50 h-auto" src="{{ $mybike->image_path }}" >
                                         <div class="bike-detail">
                                             <table>
@@ -105,7 +105,7 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="d-flex">
+                                    <div class="d-md-flex">
                                         <div class="bike-detail">
                                             <table>
                                                 <div class="bike-detail-title">固定費</div>
