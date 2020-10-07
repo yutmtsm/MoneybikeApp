@@ -102,6 +102,7 @@ class UsersController extends Controller
             $user->profile_image = "https://yutmtsm.s3.ap-northeast-1.amazonaws.com/users/siiRse9NafrvwM6Te9scdx4yh7osd7SEQMcsDqzq.jpeg";
         }
         
+        
         unset($form['_token']);
         unset($form['image']);
         
