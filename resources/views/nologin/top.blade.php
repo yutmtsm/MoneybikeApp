@@ -10,7 +10,7 @@
             <div class="inner-container ">
                 <img src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/UoFaPWcB4lzTlRVQWzQBCqwcMWwZ8IAljmGSXDeW.gif" class="mt-5">
                 <p class="text-light">ツーリングの目的地とお金の使途や他ユーザーの実際のバイク維持費を調べられます。<br>
-                以下からスポットの使途金を調べる</p>
+                以下からスポットや使ったお金を調べる。</p>
                 <div id="map_search" style="padding-bottom: 30px;">
                     <form action="{{ action('MoneybikeController@search') }}" class="form-search d-md-flex" method="get" >
                         <input class="form-control col-md-9" type="search" placeholder="例：東京都、愛知県、空で全表示" aria-label="Search"　name="cond_title">
@@ -43,7 +43,7 @@
                 	<div class="projects row pt-4">
                     	<div class="projectsItem col-md-4"><img src="{{ asset('/images/top1.jpg') }}"><p>行った場所・使ったお金を投稿</p></div>
                     	<div class="projectsItem col-md-4"><img src="{{ asset('/images/top2.jpg') }}"><p>使ったお金が一目でわかる</p></div>
-                    	<div class="projectsItem col-md-4"><img src="{{ asset('/images/top3.jpg') }}"><p></p></div>
+                    	
                     </div>
                 </div><!--service-wrapper-->
             </div>
@@ -71,7 +71,7 @@
 
 <div class="container">
     <div id="contact-wrapper">
-        <h3 class="section-title">お問い合わせ</h3>
+        <h3 class="section-title mt-5">お問い合わせ</h3>
         <form action="{{ action('MoneybikeController@contact_form') }}" method="post" enctype="multipart/form-data">
             @if (count($errors) > 0)
                 <ul>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">問い合わせ項目</label>
-                    <select name="model_year" class="form-control mdoel-year">
+                    <select name="contact_item" class="form-control mdoel-year">
                         <option value="">項目を選択してください</option>
                         <option value="機能について">機能について</option>
                         <option value="バグ報告">バグ報告</option>
@@ -104,7 +104,7 @@
                     <textarea class="form-control" name="contact_content" value="{{ old('contact_content') }}" style="height: 150px;">{{ old('contact_content') }}</textarea>
                 </div>
                 {{ csrf_field() }}
-                <input type="submit" class="btn-primary" value="投稿">
+                <input type="submit" class="btn-primary" value="送信">
             </div>
         </form>
         
