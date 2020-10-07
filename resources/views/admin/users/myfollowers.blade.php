@@ -8,7 +8,7 @@
     <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
         <li itemprop="itemListElement" itemscopeitemtype="https://schema.org/ListItem">
             <i class="fa fa-home text-dark" aria-hidden="true"></i>
-            <a itemprop="item" href="{{ url('/') }}">
+            <a itemprop="item" href="{{ url('/mypage') }}">
                 <span itemprop="name">ホーム</span>
             </a>
             <i class="fa fa-caret-right text-dark ml-2 mr-2" aria-hidden="true"></i>
