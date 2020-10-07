@@ -61,8 +61,5 @@ class MoneybikeController extends Controller
         ]);
     }
     
-    public function contact_form(Request $request)
-    {
-        dd($request);
-    }
+    
 }

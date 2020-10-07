@@ -73,7 +73,12 @@
 <div class="container">
     <div id="contact-wrapper">
         <h3 class="section-title mt-5">お問い合わせ</h3>
-        <form action="{{ action('MoneybikeController@contact_form') }}" method="post" enctype="multipart/form-data">
+        @if (Session::has('success'))
+        <div id="sample">
+            <p>{{ Session::get('success') }}</p>
+        </div>
+        @endif
+        <form action="{{ action('ContactController@send') }}" method="post" enctype="multipart/form-data">
             @if (count($errors) > 0)
                 <ul>
                     @foreach($errors->all() as $e)
@@ -86,10 +91,16 @@
                 <div class="form-group">
                     <label class="control-label">{{ __('messages.Name') }}</label>
                     <input type="text" class="form-control" name="contact_name" value="{{ old('contact_name') }}">
+                    @if ($errors->has('contact_name'))
+                    <p>{{$errors->first('contact_name')}}</p>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label class="control-label">{{ __('messages.E-Mail Address') }}</label>
-                    <input type="text" class="form-control" name="contact_address" value="{{ old('contact_address') }}">
+                    <input type="text" class="form-control" name="contact_email" value="{{ old('contact_email') }}">
+                    @if ($errors->has('contact_email'))
+                    <p>{{$errors->first('contact_email')}}</p>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label class="control-label">問い合わせ項目</label>
@@ -99,10 +110,16 @@
                         <option value="バグ報告">バグ報告</option>
                         <option value="その他">その他</option>
                     </select>
+                    @if ($errors->has('contact_item'))
+                    <p>{{$errors->first('contact_item')}}</p>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label class="control-label">{{ __('messages.contact_content') }}</label>
-                    <textarea class="form-control" name="contact_content" value="{{ old('contact_content') }}" style="height: 150px;">{{ old('contact_content') }}</textarea>
+                    <textarea class="form-control" name="contact_message" value="{{ old('contact_message') }}" style="height: 150px;">{{ old('contact_content') }}</textarea>
+                    @if ($errors->has('contact_message'))
+                    <p>{{$errors->first('contact_message')}}</p>
+                    @endif
                 </div>
                 {{ csrf_field() }}
                 <input type="submit" class="btn-primary" value="送信">
