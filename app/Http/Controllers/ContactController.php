@@ -44,12 +44,12 @@ class ContactController extends Controller
         }
  
         $data = $validator->validate();
-        // dd($date);
+        
         // Mailファザードを利用してメールを送信
         Mail::to('yutmtsm@gmail.com')->send(new HelloEmail($data));
         
         // フラッシュデータを保存
-        session()->flash('success', '送信いたしました！');
+        session()->flash('success', '送信いたしました！ありがとうございました。');
         return back();
     }
 }

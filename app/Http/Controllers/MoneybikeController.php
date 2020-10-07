@@ -60,6 +60,4 @@ class MoneybikeController extends Controller
             'total_cost' => $total_cost
         ]);
     }
-    
-    
 }

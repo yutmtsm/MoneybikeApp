@@ -4,6 +4,11 @@
 @section('title', 'Moneybike')
 
 @section('content')
+@if (Session::has('success'))
+    <div id="sample">
+        <p class="">{{ Session::get('success') }}</p>
+    </div>
+@endif
 <div id="top-wrapper">
     <div class="container">
         <div class="top-comment">
@@ -75,6 +80,11 @@
         <h3 class="section-title mt-5">お問い合わせ</h3>
         @if (Session::has('success'))
         <div id="sample">
+            <style>
+                body{
+                    background-color: black;
+                }
+            </style>
             <p>{{ Session::get('success') }}</p>
         </div>
         @endif
