@@ -1,4 +1,3 @@
-
     <div class="section">
         <div class="card">
             @if(isset($user->profile_image))
@@ -155,8 +154,8 @@
                           </div>
                         </div>
                         <!-- Modalここまで -->
-                    </div>
-                            @endforeach
+                        </div>
+                        @endforeach
             </div>
             <div class="content">
                 <div class="d-flex">
