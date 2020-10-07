@@ -49,7 +49,7 @@ class ContactController extends Controller
         Mail::to('yutmtsm@gmail.com')->send(new HelloEmail($data));
         
         // フラッシュデータを保存
-        session()->flash('success', '送信いたしました！ありがとうございました。');
+        session()->flash('success', '送信いたしました！ご意見ありがとうございました。');
         return back();
     }
 }

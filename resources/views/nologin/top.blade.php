@@ -6,7 +6,7 @@
 @section('content')
 @if (Session::has('success'))
     <div id="sample">
-        <p class="">{{ Session::get('success') }}</p>
+        <p class="bg-info">{{ Session::get('success') }}</p>
     </div>
 @endif
 <div id="top-wrapper">
