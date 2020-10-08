@@ -21,7 +21,7 @@
                                 </div>
                         </a>
                                 <div class="m-10">
-                                    <p class="mb-0 text-secondary text-right">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
+                                    <p class="mb-0 text-secondary text-right">{{ $timeline->created_at->format('Y-m-d') }}</p>
                                     <h5>『{{ $timeline->title }}』</h5>
                                 </div>
                             </div>
