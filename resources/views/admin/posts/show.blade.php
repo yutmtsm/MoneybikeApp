@@ -51,7 +51,7 @@
                        <div class="form-inline">
                            <a class="other-link" href="#">
                             </a>
-                           <div class="post-date">{{ $post->created_at }}</div>
+                           <div class="post-date">{{ $post->created_at->format('Y-m-d') }}</div>
                         </div>
                         <div class="post-title">
                             <h3>『{{ $post->title }}』</h3>
@@ -162,7 +162,7 @@
                                            <div class="post-top">
                                                  <div class="form-inline">
                                                      <div class="post-name" style="margin-right: 10px;">{{ $post->user_name }}</div>
-                                                   <div class="post-date">{{ $post->created_at }}</div>
+                                                   <div class="post-date">{{ $post->created_at->format('Y-m-d') }}</div>
                                                 </div>
                                                 <div class="post-title">
                                                     <h5>『{{ $post->title }}』</h5>
@@ -239,7 +239,7 @@
                             </div>
                         </a>
                     </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ $comment->created_at }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ $comment->created_at->format('Y-m-d') }}</h6>
                     <p class="card-text">
                       {{ str_limit($comment->text, 1500) }}
                     </p>

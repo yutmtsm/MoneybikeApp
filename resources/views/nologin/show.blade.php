@@ -50,7 +50,7 @@
                        <div class="form-inline">
                            <a class="other-link" href="#">
                             </a>
-                           <div class="post-date">{{ $post->created_at }}</div>
+                           <div class="post-date">{{ $post->created_at->format('Y-m-d') }}</div>
                         </div>
                         <div class="post-title">
                             <h3>『{{ $post->title }}』</h3>

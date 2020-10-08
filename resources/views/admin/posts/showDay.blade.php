@@ -43,7 +43,7 @@
                            <a class="other-link" href="#">
                                <div class="post-name" style="margin-right: 10px;">{{ $post->user_name }}</div>
                             </a>
-                           <div class="post-date">{{ $post->created_at }}</div>
+                           <div class="post-date">{{ $post->created_at->format('Y-m-d') }}</div>
                         </div>
                         <div class="post-title">
                             <h3>『{{ $post->title }}』</h3>
@@ -155,7 +155,7 @@
                                            <div class="post-top">
                                                  <div class="form-inline">
                                                      <div class="post-name" style="margin-right: 10px;">{{ $post->user_name }}</div>
-                                                   <div class="post-date">{{ $post->created_at }}</div>
+                                                   <div class="post-date">{{ $post->created_at->format('Y-m-d') }}</div>
                                                 </div>
                                                 <div class="post-title">
                                                     <h5>『{{ $post->title }}』</h5>
