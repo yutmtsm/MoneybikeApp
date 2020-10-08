@@ -110,64 +110,9 @@
             <main class="py-4">
                 @yield('content')
             </main>
-            <footer>
-                {{-- ナビゲーションバー --}}
-            
-            <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <footer class="bg-dark">
                 <a class="navbar-brand" href="{{ url('/') }}"><img src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/UoFaPWcB4lzTlRVQWzQBCqwcMWwZ8IAljmGSXDeW.gif"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse w-100" id="navbarNav">
-                    @if (Route::has('login'))
-                    <ul class="navbar-nav">
-                        @auth
-                        <li class="nav-item active bg-dark">
-                            <a class="nav-link nav-link text-light" href="{{ url('mypage/') }}">{{ __('messages.nav_mypage') }} <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item bg-dark">
-                            <a class="nav-link nav-link text-light" href="{{ url('mypage/myfollowers') }}">{{ __('messages.nav_myfollower') }}</a>
-                        </li>
-                        <li class="nav-item bg-dark">
-                            <a class="nav-link nav-link text-light" href="{{ url('mypage/posts') }}">{{ __('messages.nav_mypost') }}</a>
-                        </li>
-                        <li class="nav-item bg-dark">
-                            <a class="nav-link nav-link text-light" href="{{ url('mypage/money') }}">{{ __('messages.nav_moneyaccount') }}</a>
-                        </li>
-                        <li class="nav-item bg-dark">
-                            <a class="nav-link nav-link text-light" href="{{ url('mypage/spot_search') }}">{{ __('messages.nav_spotsearch') }}</a>
-                        </li>
-                        <li class="nav-item bg-dark">
-                            <a class="nav-link nav-link text-light" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('messages.nav_logout') }}</a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                            </form>
-                                
-                        </li>
-                        @else
-                        <li class="nav-item bg-dark">
-                            <a class="nav-link nav-link text-light" href="#top-wrapper">{{ __('messages.nav_home') }}</a>
-                        </li>
-                        <li class="nav-item bg-dark">
-                            <a class="nav-link nav-link text-light" href="#service-wrapper">{{ __('messages.nav_searvice') }}</a>
-                        </li>
-                        <li class="nav-item bg-dark">
-                            <a class="nav-link nav-link text-light" href="#about-wrapper">{{ __('messages.nav_about') }}</a>
-                        </li>
-                        @if (Route::has('register'))
-                        <li class="nav-item bg-dark">
-                            <a class="nav-link nav-link text-light" href="{{ route('register') }}">{{ __('messages.nav_register') }}</a>
-                        </li>
-                        @endif
-                        <li class="nav-item bg-dark">
-                            <a class="nav-link nav-link text-light" href="{{ route('login') }}">{{ __('messages.nav_login') }}</a>
-                        </li>
-                        @endauth
-                    </ul>
-                    @endif
-                </div>
             </nav>
-            
             </footer>
         </div>
     </body>
