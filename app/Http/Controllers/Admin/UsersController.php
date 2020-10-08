@@ -95,20 +95,22 @@ class UsersController extends Controller
         $validator->validate();
         
         // 画像の判定処理
-        if(isset($form['image'])){
+        if ($request->remove == 'true') {
+            $user->profile_image = "https://yutmtsm.s3.ap-northeast-1.amazonaws.com/users/siiRse9NafrvwM6Te9scdx4yh7osd7SEQMcsDqzq.jpeg";
+        } elseif (isset($form['image'])){
             $path = Storage::disk('s3')->putFile('/users',$form['image'],'public');
             $user->profile_image = Storage::disk('s3')->url($path);
         } else {
-            $user->profile_image = "https://yutmtsm.s3.ap-northeast-1.amazonaws.com/users/siiRse9NafrvwM6Te9scdx4yh7osd7SEQMcsDqzq.jpeg";
+            $user->profile_image;
         }
-        
         
         unset($form['_token']);
         unset($form['image']);
+        unset($form['remove']);
         
         $user->fill($form)->save();
         
-        return redirect('mypage');
+        return redirect('/mypage');
     }
     
     public function myfollowers(Tweet $tweet, Follower $follower)

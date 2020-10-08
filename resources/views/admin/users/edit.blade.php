@@ -34,8 +34,10 @@
 
                             <div class="col-md-6 d-flex align-items-center">
                                 <img src="{{ $user->profile_image }}" class="mr-2 w-5 h-5 rounded-circle" width="80" height="80" alt="profile_image">
-                                <input type="file" name="image" class="@error('image') is-invalid @enderror" autocomplete="image">
-
+                                <div>
+                                    <input type="file" name="image" class="@error('image') is-invalid @enderror" autocomplete="image">
+                                    <input type="checkbox" class="" name="remove" value="true">画像を削除
+                                </div>
                                 @error('image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

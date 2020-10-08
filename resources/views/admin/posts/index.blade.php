@@ -96,7 +96,7 @@
                                 @else <i class="fa fa-transgender text-success" aria-hidden="true"></i>
                                 @endif
                                 </p>
-                                <a href="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->screen_name }}</a>
+                                <a href="#" class="text-secondary">{{ $timeline->user->screen_name }}</a>
                             </div>
                             <div class="m-10">
                                 <p class="mb-0 text-secondary text-right"><i class="fa fa-calculator text-danger"></i> {{ $timeline->created_at->format('Y-m-d') }}</p>
