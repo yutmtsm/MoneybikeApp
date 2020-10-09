@@ -37,7 +37,6 @@ class BikeController extends Controller
         unset($form['_token']);
         
         $mybike->fill($form);
-        dd($mybike);
         $mybike->save();
         
         return redirect('mypage');
