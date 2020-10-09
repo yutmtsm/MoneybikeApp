@@ -38,7 +38,7 @@ class BikeController extends Controller
         
         $mybike->fill($form);
         $mybike->save();
-        
+        dd($mybike);
         return redirect('mypage');
     }
     
