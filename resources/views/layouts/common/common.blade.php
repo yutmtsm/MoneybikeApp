@@ -14,7 +14,7 @@
         <!-- default（Safariと同じ） / black（黒） / black-translucent（ステータスバーをコンテンツに含める） -->
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <!-- ホーム画面に表示されるアプリ名 -->
-        <meta name="apple-mobile-web-app-title" content="TAP10">
+        <meta name="apple-mobile-web-app-title" content="Moneybike">
         <!-- ホーム画面に表示されるアプリアイコン -->
         <link rel="apple-touch-icon" href="https://yutmtsm.s3-ap-northeast-1.amazonaws.com/bikes/9LIBAh8NtLNb2GmVpa2oNQtBGpvimNUx1zhK4hfQ.jpeg">
 
