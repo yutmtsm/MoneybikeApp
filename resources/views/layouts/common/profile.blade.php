@@ -158,8 +158,8 @@
                           </div>
                         </div>
                         <!-- Modalここまで -->
-                        </div>
-                        @endforeach
+                    </div>
+                @endforeach
             </div>
             <div class="content">
                 <div class="d-flex">

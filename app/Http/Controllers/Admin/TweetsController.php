@@ -201,6 +201,6 @@ class TweetsController extends Controller
         $tweet = Tweet::find($request->id);
         $tweet->delete();
 
-        return back();
+        return redirect('mypage/posts');
     }
 }
