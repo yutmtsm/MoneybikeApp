@@ -16,7 +16,7 @@
         <!-- ホーム画面に表示されるアプリ名 -->
         <meta name="apple-mobile-web-app-title" content="TAP10">
         <!-- ホーム画面に表示されるアプリアイコン -->
-        <link rel="apple-touch-icon" href="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/users/siiRse9NafrvwM6Te9scdx4yh7osd7SEQMcsDqzq.jpeg">
+        <link rel="apple-touch-icon" href="/publi/appimage.jpeg">
 
         <title>@yield('title')</title>
         
