@@ -24,7 +24,6 @@ class BikeController extends Controller
         
         // userと関連付け
         $mybike->user_id = $user->id;
-        dd($mybike);
         
         if(isset($form['image'])){
             //画像をStrange内に格納し、パスを代入
@@ -38,6 +37,7 @@ class BikeController extends Controller
         unset($form['_token']);
         
         $mybike->fill($form);
+        dd($mybike);
         $mybike->save();
         
         return redirect('mypage');
