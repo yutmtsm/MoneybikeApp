@@ -248,6 +248,8 @@
                         <input type="text" class="form-control" name="parking_fee" value="{{ old('parking_fee') }}">
                         <label class="control-label">消耗品費</label>
                         <input type="text" class="form-control" name="consumables" value="{{ old('consumables') }}">
+                        <label class="control-label">分割払い金</label>
+                        <input type="text" class="form-control" name="installment" value="{{ old('installment') }}">
                     </div>
                 </div>
                 <!-- 画像 -->

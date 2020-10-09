@@ -10,7 +10,8 @@ class Bike extends Model
     protected $fillable = [
         'manufacturer', 'engine_displacement', 'type', 'model_year',
         'light_vehicle_tax', 'weight_tax', 'liability_insurance',
-        'voluntary_insurance', 'vehicle_inspection', 'parking_fee', 'consumables'
+        'voluntary_insurance', 'vehicle_inspection', 'parking_fee', 'consumables',
+        'installment'
     ];
     
     public function user()

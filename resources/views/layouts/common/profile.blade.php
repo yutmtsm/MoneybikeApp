@@ -142,6 +142,10 @@
                                                     <th>消耗品費</th>
                                                     <td>{{ $mybike->consumables }}円</td>
                                                 </tr>
+                                                <tr>
+                                                    <th>分割払い金</th>
+                                                    <td>{{ $mybike->installment }}円</td>
+                                                </tr>
                                             </table>
                                         </div>
                                     </div>

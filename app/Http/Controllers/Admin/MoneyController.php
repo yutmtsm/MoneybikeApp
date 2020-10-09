@@ -62,12 +62,13 @@ class MoneyController extends Controller
             $money->total_vehicle_inspection += $mybike->vehicle_inspection;
             $money->total_parking_fee += $mybike->parking_fee;
             $money->total_consumables += $mybike->consumables;
+            $money->total_installment += $mybike->installment;
             // 固定費の合計金
             $money->total_liability_insurance += $mybike->liability_insurance;
             $money->total_weight_tax += $mybike->weight_tax;
             $money->total_light_vehicle_tax += $mybike->light_vehicle_tax;
         }
-        $money->total_variable_cost = $money->total_voluntary_insurance + $money->total_vehicle_inspection + $money->total_parking_fee + $money->total_consumables;
+        $money->total_variable_cost = $money->total_voluntary_insurance + $money->total_vehicle_inspection + $money->total_parking_fee + $money->total_consumables + $money->total_installment;
         $money->total_fixed_cost = $money->total_liability_insurance + $money->total_weight_tax + $money->total_light_vehicle_tax;
         $money->spending_month = $money->total_travel_expenses + $money->total_variable_cost/12 + $money->total_fixed_cost/12;
 

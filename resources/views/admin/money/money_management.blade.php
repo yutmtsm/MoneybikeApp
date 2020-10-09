@@ -680,7 +680,7 @@
                         <li class="list-group-item text-dark">車検　　　：{{ number_format($money->total_vehicle_inspection) }}円</li>
                         <li class="list-group-item text-dark">駐車場代　：{{ number_format($money->total_parking_fee) }}円</li>
                         <li class="list-group-item text-dark">消耗品費　：{{ number_format($money->total_consumables) }}円</li>
-                        <li class="list-group-item text-dark">分割払い金：円</li>
+                        <li class="list-group-item text-dark">分割払い金：{{ number_format($money->total_installment) }}円</li>
                     </ul>
                 </div>
             </div>

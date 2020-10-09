@@ -89,7 +89,7 @@
                     <li class="nav-items follow-bar">
                         <a href="#following" class="nav-link aabb active" data-toggle="tab">フォロー</a>
                     </li>
-                    <li class="nav-items col-md-6">
+                    <li class="nav-items follow-bar">
                         <a href="#followed" class="nav-link aabb" data-toggle="tab">フォロワー</a>
                     </li>
                 </ul>
@@ -163,11 +163,11 @@
                                         </div>
                                     </a>
                                     @if (auth()->user()->isFollowed($followed_User->id))
-                                        <div class="px-2">
-                                            <span class="px-1 bg-secondary text-light">フォローされています</span>
-                                        </div>
+                                    <div class="px-2">
+                                        <span class="px-1 bg-secondary text-light">フォローされています</span>
+                                    </div>
                                     @endif
-                                    <div class="d-flex justify-content-end flex-grow-1">
+                                    <div class="d-md-flex justify-content-end flex-grow-1">
                                         @if (auth()->user()->isFollowing($followed_User->id))
                                             <form action="{{ route('unfollow', ['id' => $followed_User->id]) }}" method="POST">
                                                 {{ csrf_field() }}
