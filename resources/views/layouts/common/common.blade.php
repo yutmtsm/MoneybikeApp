@@ -116,7 +116,6 @@
                 @else
                 <a class="navbar-brand" href="{{ url('/') }}"><img src="https://yutmtsm.s3.ap-northeast-1.amazonaws.com/UoFaPWcB4lzTlRVQWzQBCqwcMWwZ8IAljmGSXDeW.gif"></a>
                 @endauth
-            </nav>
             </footer>
         </div>
     </body>
