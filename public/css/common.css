@@ -51,6 +51,40 @@ nav {
   z-index: 99;
 }
 
+/*モーダル*/
+.login-modal-wrapper, .signup-modal-wrapper {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+}
+
+.modal {
+  margin: 0 auto;
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  background-color: #e6ecf0;
+  padding: 20px 0 40px;
+  border-radius: 10px;
+  width: 80%;
+  height: auto;
+  text-align: center;
+  display: block;
+}
+
+.fa-times {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: rgba(128, 128, 128, 0.46);
+  cursor: pointer;
+}
+
 /*ぱんくずりすと*/
 
 .breadcrumb {
