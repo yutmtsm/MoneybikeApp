@@ -217,7 +217,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">
-                            
+                            <p><i class="fa fa-comment fa-fw"></i>コメント一覧</p>
                         </div>
                     </div>
                 </div>
@@ -243,8 +243,6 @@
                     <p class="card-text">
                       {{ str_limit($comment->text, 1500) }}
                     </p>
-                    <a href="#!" class="card-link">Card link</a>
-                    <a href="#!" class="card-link">Another link</a>
                 </div>
             </div>
             @endforeach
