@@ -63,7 +63,7 @@ nav {
   z-index: 100;
 }
 
-.modal {
+.top-login-modal {
   margin: 0 auto;
   position: absolute;
   top: 20%;

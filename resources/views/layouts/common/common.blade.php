@@ -129,10 +129,9 @@
                 @endauth
             </footer>
         </div>
-        <div class="login" id="login-show">ログイン</div>
         
         <div class="login-modal-wrapper" id="login-modal">
-            <div class="modal">
+            <div class="top-login-modal">
                 <div class="close-modal">
                     <i class="fa fa-2x fa-times"></i>
                 </div>

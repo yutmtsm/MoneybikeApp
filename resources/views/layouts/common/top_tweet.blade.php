@@ -73,7 +73,7 @@
                   
                     </div>
                 </div>
-            </a>
+   
             @endforeach
             <div class="my-4 d-flex justify-content-center">
                 {{ $timelines->links() }}
