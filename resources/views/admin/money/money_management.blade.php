@@ -56,9 +56,9 @@
             <div class="card" style="margin-top: 10px;">
                 <div class="card-body">
                     <div class="card-title">{{ $month }}月</div>
-                    <div class="card-header d-flex">
+                    <div class="card-header">
                         <a class="btn btn-primary" href="{{ action('Admin\MoneyController@moneypage', ['year_month' => $year_month, 'target' => $last_month]) }}">前の月</a>
-                        <a class="btn btn-primary" href="{{ action('Admin\MoneyController@moneypage', ['year_month' => $year_month, 'target' => $next_month]) }}">次の月</a>
+                        <a class="btn btn-primary" href="{{ action('Admin\MoneyController@moneypage', ['year_month' => $year_month, 'target' => $next_month]) }}" style="float: right;">次の月</a>
                     </div>
                 </div>
                 
