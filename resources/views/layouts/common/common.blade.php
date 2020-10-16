@@ -69,7 +69,7 @@
                     <ul class="navbar-nav">
                         @auth
                         <li class="nav-item active bg-dark">
-                            <a class="nav-link nav-link text-light" href="{{ url('mypage/') }}">{{ __('messages.nav_mypage') }} <span class="sr-only">(current)</span></a>
+                            <a class="nav-link nav-link text-light" href="{{ url('mypage/') }}"> <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item bg-dark">
                             <a class="nav-link nav-link text-light" href="{{ url('mypage/myfollowers') }}">{{ __('messages.nav_myfollower') }}</a>
