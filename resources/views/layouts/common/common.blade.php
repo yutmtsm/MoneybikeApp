@@ -90,6 +90,11 @@
                             </form>
                                 
                         </li>
+                        @if ($user->id == 16)
+                        <li class="nav-item bg-dark">
+                            <a class="nav-link nav-link text-light" href="{{ url('mypage/spot_search') }}">{{ __('messages.edithistorys') }}</a>
+                        </li>
+                        @endif
                         @else
                         <li class="nav-item bg-dark">
                             <a class="nav-link nav-link text-light" href="{{ url('/') }}">{{ __('messages.nav_home') }}</a>

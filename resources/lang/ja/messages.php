@@ -20,6 +20,7 @@ return [
     'nav_contact' => 'お問い合わせ',
     'nav_register' => '新規登録',
     'nav_login' => 'ログイン',
+    'edithistorys' => '編集履歴を追加',
     'Login' => 'ログイン',
     'E-Mail Address' => 'メールアドレス',
     'Password' => 'パスワード',

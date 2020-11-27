@@ -69,6 +69,10 @@ Route::group(['middleware' => 'auth'], function() {
     // 他人のページ
     Route::get('other_mypage', 'Other\MoneybikeController@mypage');
     Route::get('other_mypage/money', 'Other\MoneyController@moneypage');
+    
+    // 編集履歴追加
+    Route::resource('animes', 'Admin\EdithistoryController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update']]);
+   
 });
     
 

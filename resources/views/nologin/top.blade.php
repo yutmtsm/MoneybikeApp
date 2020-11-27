@@ -142,10 +142,9 @@
 <div class="container">
     <div class="">
         <div class="item">
-            <div class="card">
+            <div class="card text-secondary">
                 <div class="card-header d-md-flex">
                     <div class="card-title">運営からのお知らせ</div>
-                    <p class="card-title text-right" style="float: right;">追加</p>
                 </div>
                 <div class="card-body">
                     <div class="edit-information"></div>
